@@ -1,0 +1,2733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RV Pets Zone | Pets, Birds, Fish &amp; Livestock Marketplace</title>
+<meta name="description" content="RV Pets Zone is a marketplace platform for discovering pets, birds, aquarium fish and livestock listings with responsible buying, selling and ownership guidelines." />
+<meta name="theme-color" content="#0D5C4D" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="RV Pets Zone" />
+<meta property="og:title" content="RV Pets Zone | Pets, Birds, Fish &amp; Livestock Marketplace" />
+<meta property="og:description" content="A smarter marketplace for pets, birds, fish &amp; livestock. Discover listings, review guidelines, and connect responsibly.   " />
+<meta property="og:locale" content="en_IN" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="RV Pets Zone | Pets, Birds, Fish &amp; Livestock Marketplace" />
+<meta name="twitter:description" content="A smarter marketplace for pets, birds, fish &amp; livestock. Discover listings, review guidelines, and connect responsibly." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%230D5C4D'/%3E%3Cellipse cx='15' cy='12.5' rx='2.6' ry='6.2' fill='%23fff' transform='rotate(-12 15 12.5)'/%3E%3Cellipse cx='24.5' cy='12.5' rx='2.6' ry='6.2' fill='%23fff' transform='rotate(12 24.5 12.5)'/%3E%3Ccircle cx='20' cy='24' r='8.4' fill='%23fff'/%3E%3Ccircle cx='16.8' cy='23' r='1.15' fill='%230D5C4D'/%3E%3Ccircle cx='23.2' cy='23' r='1.15' fill='%230D5C4D'/%3E%3C/svg%3E" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "RV Pets Zone",
+  "slogan": "A Smarter Marketplace for Pets, Birds, Fish & Livestock",
+  "description": "RV Pets Zone is a marketplace platform for discovering pets, birds, aquarium fish and livestock listings with responsible buying, selling and ownership guidelines.",
+  "email": "rvpetszone@gmail.com",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "XSympan Technologies"
+  }
+}
+</script>
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --primary:#0D5C4D;
+  --primary-dark:#083F35;
+  --primary-soft:#E8F2EF;
+  --primary-line:#CFE3DD;
+
+  --accent:#C4702A;
+  --accent-soft:#FBF0E4;
+  --accent-line:#EED9C2;
+
+  --ink:#0F1A17;
+  --ink-2:#374743;
+  --muted:#6B7C77;
+
+  --line:#E3E9E6;
+  --bg:#FFFFFF;
+  --bg-soft:#F6F9F8;
+  --bg-tint:#FBFCFC;
+
+  --ok:#1E7A4B;
+  --ok-soft:#E7F4EC;
+  --warn:#A96A11;
+  --warn-soft:#FBF2E2;
+  --info:#1F5FA8;
+  --info-soft:#E9F1FA;
+  --danger:#A33A32;
+  --danger-soft:#FBEBE9;
+  --neutral:#5C6B67;
+  --neutral-soft:#EEF1F0;
+
+  --radius:14px;
+  --radius-lg:18px;
+  --radius-sm:10px;
+
+  --shadow-xs:0 1px 2px rgba(15,26,23,.05);
+  --shadow-sm:0 1px 2px rgba(15,26,23,.05), 0 2px 8px -4px rgba(15,26,23,.08);
+  --shadow-md:0 10px 30px -14px rgba(15,26,23,.22);
+  --shadow-lg:0 24px 60px -24px rgba(15,26,23,.30);
+
+  --max:1200px;
+  --nav-h:68px;
+}
+
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  color:var(--ink-2);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.modal-open{overflow:hidden;}
+img{max-width:100%;display:block;}
+h1,h2,h3,h4,h5{color:var(--ink);margin:0 0 .5em;line-height:1.22;font-weight:700;letter-spacing:-.018em;}
+h1{font-size:clamp(2rem,1.35rem + 2.6vw,3.4rem);font-weight:800;letter-spacing:-.03em;}
+h2{font-size:clamp(1.5rem,1.15rem + 1.35vw,2.25rem);}
+h3{font-size:clamp(1.06rem,1rem + .3vw,1.22rem);}
+h4{font-size:1rem;}
+p{margin:0 0 1rem;}
+a{color:var(--primary);text-decoration:none;}
+a:hover{text-decoration:underline;}
+ul,ol{margin:0 0 1rem;padding-left:1.15rem;}
+li{margin-bottom:.4rem;}
+strong{color:var(--ink);font-weight:600;}
+:focus-visible{outline:3px solid rgba(13,92,77,.35);outline-offset:2px;border-radius:6px;}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container{width:100%;max-width:var(--max);margin:0 auto;padding:0 20px;}
+section{scroll-margin-top:calc(var(--nav-h) + 12px);}
+.section{padding:84px 0;}
+.section--soft{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.section--tint{background:var(--bg-tint);border-top:1px solid var(--line);}
+.section--dark{background:var(--primary-dark);color:#C9DED8;}
+.section--dark h2,.section--dark h3,.section--dark h4{color:#fff;}
+.section--dark p{color:#B9D2CB;}
+
+.section-head{max-width:760px;margin-bottom:44px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--primary);background:var(--primary-soft);
+  border:1px solid var(--primary-line);
+  padding:5px 12px;border-radius:999px;margin-bottom:16px;
+}
+.section--dark .eyebrow{color:#9FD3C6;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);}
+.lead{font-size:1.05rem;color:var(--muted);margin-bottom:0;}
+.section--dark .lead{color:#B9D2CB;}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font:inherit;font-size:.94rem;font-weight:600;line-height:1;
+  padding:14px 22px;border-radius:11px;border:1px solid transparent;
+  cursor:pointer;text-decoration:none;white-space:nowrap;
+  transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+.btn:hover{text-decoration:none;transform:translateY(-1px);}
+.btn:active{transform:translateY(0);}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:var(--shadow-sm);}
+.btn-primary:hover{background:var(--primary-dark);box-shadow:var(--shadow-md);}
+.btn-outline{background:#fff;color:var(--ink);border-color:var(--line);box-shadow:var(--shadow-xs);}
+.btn-outline:hover{border-color:var(--primary-line);color:var(--primary);background:var(--primary-soft);}
+.btn-ghost{background:transparent;color:var(--ink);border-color:transparent;padding-left:6px;padding-right:6px;}
+.btn-ghost:hover{color:var(--primary);background:var(--primary-soft);}
+.btn-light{background:#fff;color:var(--primary-dark);}
+.btn-light:hover{background:#EAF4F1;}
+.btn-on-dark{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.22);}
+.btn-on-dark:hover{background:rgba(255,255,255,.18);}
+.btn-sm{padding:10px 16px;font-size:.85rem;border-radius:9px;}
+.btn-block{width:100%;}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:900;
+  background:rgba(255,255,255,.93);
+  backdrop-filter:saturate(180%) blur(12px);
+  -webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow .25s ease;
+}
+.site-header.scrolled{box-shadow:0 6px 22px -18px rgba(15,26,23,.45);}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:var(--nav-h);}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0;}
+.brand:hover{text-decoration:none;}
+.logo-mark{width:38px;height:38px;flex-shrink:0;border-radius:11px;box-shadow:var(--shadow-xs);}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;}
+.brand-name{font-size:.98rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.brand-sub{font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0;}
+.nav-links a{
+  display:block;position:relative;
+  font-size:.815rem;font-weight:600;color:var(--ink-2);
+  padding:9px 10px;border-radius:8px;text-decoration:none;
+  transition:color .16s ease,background .16s ease;
+  white-space:nowrap;
+}
+.nav-links a:hover{color:var(--primary);background:var(--primary-soft);text-decoration:none;}
+.nav-links a.active{color:var(--primary);}
+.nav-links a.active::after{
+  content:"";position:absolute;left:10px;right:10px;bottom:3px;height:2px;
+  background:var(--primary);border-radius:2px;
+}
+.nav-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+
+.nav-toggle{
+  display:none;width:42px;height:42px;border-radius:10px;
+  border:1px solid var(--line);background:#fff;cursor:pointer;
+  align-items:center;justify-content:center;padding:0;
+}
+.nav-toggle:hover{border-color:var(--primary-line);background:var(--primary-soft);}
+.nav-toggle span{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:.25s ease;}
+.nav-toggle span::before,.nav-toggle span::after{
+  content:"";position:absolute;left:0;width:18px;height:2px;background:var(--ink);border-radius:2px;transition:.25s ease;
+}
+.nav-toggle span::before{top:-6px;}
+.nav-toggle span::after{top:6px;}
+.nav-toggle[aria-expanded="true"] span{background:transparent;}
+.nav-toggle[aria-expanded="true"] span::before{top:0;transform:rotate(45deg);}
+.nav-toggle[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg);}
+
+@media (max-width:1140px){
+  .nav-toggle{display:flex;}
+  .nav-links{
+    position:fixed;top:var(--nav-h);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:#fff;border-bottom:1px solid var(--line);
+    padding:14px 20px 20px;max-height:calc(100vh - var(--nav-h));
+    overflow-y:auto;
+    box-shadow:0 24px 40px -30px rgba(15,26,23,.5);
+    transform:translateY(-8px);opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .22s ease,transform .22s ease,visibility .22s;
+  }
+  .nav-links.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto;}
+  .nav-links a{font-size:.95rem;padding:12px 14px;border-radius:9px;}
+  .nav-links a.active::after{display:none;}
+  .nav-links a.active{background:var(--primary-soft);}
+  .nav-cta{display:none;}
+}
+@media (max-width:420px){
+  .brand-sub{display:none;}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  padding:76px 0 84px;
+  background:
+    radial-gradient(900px 420px at 88% -8%, rgba(13,92,77,.10), transparent 62%),
+    radial-gradient(700px 380px at 4% 106%, rgba(196,112,42,.09), transparent 60%),
+    var(--bg);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(15,26,23,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(15,26,23,.035) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 78%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:relative;
+  display:grid;grid-template-columns:1.06fr .94fr;gap:56px;align-items:center;
+}
+.hero h1{margin-bottom:14px;}
+.hero h1 .accent{color:var(--primary);}
+.hero-tagline{
+  font-size:1.06rem;font-weight:600;color:var(--primary);
+  margin:0 0 14px;letter-spacing:-.01em;
+}
+.hero-copy{font-size:1.05rem;color:var(--muted);max-width:56ch;margin-bottom:28px;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px;}
+.chip{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.78rem;font-weight:600;color:var(--ink-2);
+  background:#fff;border:1px solid var(--line);
+  padding:7px 13px;border-radius:999px;box-shadow:var(--shadow-xs);
+}
+.chip svg{flex-shrink:0;color:var(--primary);}
+
+.hero-media{position:relative;}
+.hero-photo-card{
+  position:relative;border-radius:var(--radius-lg);overflow:hidden;
+  border:1px solid var(--line);background:#fff;
+  box-shadow:var(--shadow-lg);
+}
+.hero-photo-card img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1;}
+.hero-photo{aspect-ratio:1/1;}
+.hero-photo.is-missing{display:none;}
+.hero-fallback{
+  display:none;align-items:center;justify-content:center;
+  aspect-ratio:1/1;background:linear-gradient(150deg,#0D5C4D,#083F35);
+}
+.hero-photo.is-missing + .hero-fallback{display:flex;}
+.hero-fallback svg{width:52%;height:52%;opacity:.95;}
+
+.hero-float{
+  position:absolute;left:-14px;bottom:22px;
+  background:#fff;border:1px solid var(--line);border-radius:13px;
+  padding:12px 15px;box-shadow:var(--shadow-md);
+  display:flex;align-items:center;gap:11px;max-width:250px;
+}
+.hero-float .dot{width:9px;height:9px;border-radius:50%;background:var(--warn);flex-shrink:0;box-shadow:0 0 0 3px var(--warn-soft);}
+.hero-float strong{display:block;font-size:.82rem;color:var(--ink);line-height:1.3;}
+.hero-float span{font-size:.72rem;color:var(--muted);}
+
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:44px;}
+  .hero-media{max-width:460px;margin:0 auto;width:100%;}
+  .hero{padding:56px 0 64px;}
+}
+@media (max-width:420px){
+  .hero-float{left:8px;bottom:12px;padding:10px 12px;}
+}
+
+/* ============================================================
+   CARDS / GRIDS
+   ============================================================ */
+.grid{display:grid;gap:20px;}
+.g-2{grid-template-columns:repeat(2,1fr);}
+.g-3{grid-template-columns:repeat(3,1fr);}
+.g-4{grid-template-columns:repeat(4,1fr);}
+.g-5{grid-template-columns:repeat(5,1fr);}
+@media (max-width:1024px){ .g-4,.g-5{grid-template-columns:repeat(2,1fr);} .g-3{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:720px){ .g-2,.g-3,.g-4,.g-5{grid-template-columns:1fr;} }
+
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;box-shadow:var(--shadow-xs);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--primary-line);}
+.card h3{margin-bottom:8px;}
+.card p:last-child{margin-bottom:0;}
+.card p{color:var(--muted);font-size:.93rem;}
+.card-ico{
+  width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+  background:var(--primary-soft);color:var(--primary);margin-bottom:16px;flex-shrink:0;
+}
+.card-ico.accent{background:var(--accent-soft);color:var(--accent);}
+.card-ico svg{width:21px;height:21px;}
+
+.card-flat{background:var(--bg-tint);box-shadow:none;}
+.card-flat:hover{transform:none;box-shadow:var(--shadow-sm);}
+
+/* Principle flow */
+.flow{
+  display:flex;flex-wrap:wrap;align-items:stretch;gap:12px;margin-top:34px;
+  padding:18px;border:1px dashed var(--primary-line);border-radius:var(--radius);
+  background:var(--primary-soft);
+}
+.flow-step{
+  display:flex;align-items:center;gap:9px;font-weight:700;font-size:.86rem;color:var(--primary-dark);
+  background:#fff;border:1px solid var(--primary-line);border-radius:999px;padding:9px 16px;
+}
+.flow-arrow{display:flex;align-items:center;color:var(--primary);opacity:.55;}
+@media (max-width:720px){ .flow{flex-direction:column;} .flow-arrow{transform:rotate(90deg);justify-content:center;} }
+
+/* Steps */
+.step{
+  position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 22px 22px;box-shadow:var(--shadow-xs);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.step:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--primary-line);}
+.step-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:11px;margin-bottom:14px;
+  background:var(--primary);color:#fff;font-weight:800;font-size:.9rem;letter-spacing:.02em;
+}
+.step h3{font-size:1rem;margin-bottom:7px;}
+.step p{font-size:.9rem;color:var(--muted);margin:0;}
+
+/* ============================================================
+   LIVE STOCK
+   ============================================================ */
+.status-card{
+  border:1px solid var(--line);border-radius:var(--radius);background:#fff;
+  padding:18px;box-shadow:var(--shadow-xs);
+}
+.status-head{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.status-card h4{margin:0;font-size:.92rem;}
+.status-card p{font-size:.82rem;color:var(--muted);margin:0;}
+.s-ok{background:var(--ok);box-shadow:0 0 0 3px var(--ok-soft);}
+.s-warn{background:var(--warn);box-shadow:0 0 0 3px var(--warn-soft);}
+.s-info{background:var(--info);box-shadow:0 0 0 3px var(--info-soft);}
+.s-neutral{background:var(--neutral);box-shadow:0 0 0 3px var(--neutral-soft);}
+.s-danger{background:var(--danger);box-shadow:0 0 0 3px var(--danger-soft);}
+
+.notice{
+  display:flex;gap:13px;align-items:flex-start;
+  border-radius:var(--radius);padding:16px 18px;font-size:.9rem;
+  border:1px solid var(--line);background:var(--bg-tint);color:var(--ink-2);
+}
+.notice svg{flex-shrink:0;margin-top:2px;}
+.notice strong{display:block;color:var(--ink);margin-bottom:2px;}
+.notice p{margin:0;color:inherit;font-size:.9rem;}
+.notice--warn{background:var(--warn-soft);border-color:var(--accent-line);}
+.notice--warn svg{color:var(--warn);}
+.notice--info{background:var(--info-soft);border-color:#CFE0F2;}
+.notice--info svg{color:var(--info);}
+.notice--ok{background:var(--ok-soft);border-color:#CFE6D9;}
+.notice--ok svg{color:var(--ok);}
+.notice--danger{background:var(--danger-soft);border-color:#EFD3D0;}
+.notice--danger svg{color:var(--danger);}
+
+.table-wrap{
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;
+  box-shadow:var(--shadow-xs);
+}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;min-width:760px;font-size:.88rem;}
+thead th{
+  text-align:left;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;background:var(--bg-soft);
+  padding:14px 18px;border-bottom:1px solid var(--line);white-space:nowrap;
+}
+tbody td{padding:15px 18px;border-bottom:1px solid var(--line);color:var(--ink-2);vertical-align:top;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:var(--bg-tint);}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;
+  padding:4px 10px;border-radius:999px;white-space:nowrap;letter-spacing:.01em;
+}
+.badge-ok{background:var(--ok-soft);color:var(--ok);}
+.badge-warn{background:var(--warn-soft);color:var(--warn);}
+.badge-info{background:var(--info-soft);color:var(--info);}
+.badge-neutral{background:var(--neutral-soft);color:var(--neutral);}
+.badge-danger{background:var(--danger-soft);color:var(--danger);}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem;color:var(--muted);}
+
+/* ============================================================
+   CHECKLISTS
+   ============================================================ */
+.checklist-panel{
+  border:1px solid var(--line);border-radius:var(--radius-lg);background:#fff;
+  padding:26px;box-shadow:var(--shadow-sm);
+}
+.checklist-head{
+  display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+  padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--line);
+}
+.checklist-head h3{margin:0;font-size:1.05rem;}
+.checklist-head p{margin:4px 0 0;font-size:.85rem;color:var(--muted);}
+.progress{
+  min-width:190px;flex:1;max-width:260px;
+}
+.progress-bar{
+  height:8px;border-radius:999px;background:var(--neutral-soft);overflow:hidden;
+}
+.progress-fill{
+  height:100%;width:0%;border-radius:999px;background:var(--primary);
+  transition:width .35s cubic-bezier(.2,.7,.3,1);
+}
+.progress-label{font-size:.75rem;font-weight:600;color:var(--muted);margin-top:7px;display:block;}
+
+.check-list{list-style:none;margin:0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(2,1fr);}
+@media (max-width:860px){ .check-list{grid-template-columns:1fr;} }
+.check-item{
+  display:flex;gap:12px;align-items:flex-start;
+  border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:13px 15px;background:#fff;cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.check-item:hover{border-color:var(--primary-line);background:var(--bg-tint);}
+.check-item input{
+  appearance:none;-webkit-appearance:none;
+  width:20px;height:20px;flex-shrink:0;margin-top:1px;
+  border:1.5px solid #C3D0CC;border-radius:6px;background:#fff;
+  cursor:pointer;position:relative;transition:.18s ease;
+}
+.check-item input:checked{background:var(--primary);border-color:var(--primary);}
+.check-item input:checked::after{
+  content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);
+}
+.check-item input:focus-visible{outline:3px solid rgba(13,92,77,.3);outline-offset:2px;}
+.check-item span{font-size:.9rem;color:var(--ink-2);line-height:1.5;}
+.check-item input:checked ~ span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--primary-line);}
+.check-item.done{background:var(--primary-soft);border-color:var(--primary-line);}
+
+/* ============================================================
+   ACCORDIONS (FAQ + CATEGORY)
+   ============================================================ */
+.acc{border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;box-shadow:var(--shadow-xs);}
+.acc + .acc{margin-top:12px;}
+.acc-btn{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  font:inherit;font-size:.96rem;font-weight:600;color:var(--ink);text-align:left;
+  background:transparent;border:0;padding:19px 22px;cursor:pointer;
+  transition:background .18s ease,color .18s ease;
+}
+.acc-btn:hover{background:var(--bg-tint);color:var(--primary);}
+.acc-btn .acc-ico{
+  width:26px;height:26px;flex-shrink:0;border-radius:8px;
+  background:var(--primary-soft);color:var(--primary);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .28s ease,background .2s ease,color .2s ease;
+}
+.acc-btn[aria-expanded="true"] .acc-ico{transform:rotate(180deg);background:var(--primary);color:#fff;}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s cubic-bezier(.2,.7,.3,1);}
+.acc-panel > div{overflow:hidden;}
+.acc.open .acc-panel{grid-template-rows:1fr;}
+.acc-body{padding:0 22px 22px;font-size:.93rem;color:var(--muted);}
+.acc-body p:last-child{margin-bottom:0;}
+.acc-body ul{margin-bottom:0;}
+
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media (max-width:1024px){ .cat-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:720px){ .cat-grid{grid-template-columns:1fr;} }
+.cat-grid .acc + .acc{margin-top:0;}
+
+/* ============================================================
+   ROADMAP
+   ============================================================ */
+.roadmap{display:grid;gap:16px;}
+.phase{
+  display:grid;grid-template-columns:130px 1fr;gap:24px;
+  border:1px solid var(--line);border-radius:var(--radius);background:#fff;
+  padding:22px 24px;box-shadow:var(--shadow-xs);
+  transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.phase:hover{border-color:var(--primary-line);box-shadow:var(--shadow-sm);transform:translateX(3px);}
+.phase-tag{
+  font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--primary);background:var(--primary-soft);border:1px solid var(--primary-line);
+  border-radius:8px;padding:7px 12px;height:fit-content;text-align:center;
+}
+.phase h3{margin:0 0 6px;font-size:1.02rem;}
+.phase p{margin:0;font-size:.9rem;color:var(--muted);}
+.phase .planned{
+  display:inline-block;margin-left:8px;font-size:.66rem;font-weight:800;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--accent);background:var(--accent-soft);
+  border:1px solid var(--accent-line);border-radius:6px;padding:2px 8px;vertical-align:middle;
+}
+@media (max-width:720px){ .phase{grid-template-columns:1fr;gap:14px;} .phase-tag{width:fit-content;} }
+
+/* ============================================================
+   SPLIT / COMPARE
+   ============================================================ */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+@media (max-width:860px){ .split{grid-template-columns:1fr;} }
+.panel{
+  border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;background:#fff;
+  box-shadow:var(--shadow-xs);
+}
+.panel--yes{background:var(--primary-soft);border-color:var(--primary-line);}
+.panel--no{background:var(--bg-soft);}
+.panel h3{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:1.05rem;}
+.panel h3 .tick{
+  width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.tick-yes{background:var(--primary);color:#fff;}
+.tick-no{background:#fff;color:var(--muted);border:1px solid var(--line);}
+.panel ul{margin:0;padding:0;list-style:none;}
+.panel li{
+  position:relative;padding-left:24px;margin-bottom:11px;font-size:.92rem;color:var(--ink-2);
+}
+.panel li::before{
+  content:"";position:absolute;left:2px;top:.55em;width:7px;height:7px;border-radius:50%;
+  background:var(--primary);
+}
+.panel--no li::before{background:#B9C4C1;}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal{
+  position:fixed;inset:0;z-index:1000;display:none;
+  align-items:center;justify-content:center;padding:20px;
+}
+.modal.open{display:flex;}
+.modal-backdrop{
+  position:absolute;inset:0;background:rgba(8,28,24,.55);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  animation:fadeIn .2s ease;
+}
+.modal-dialog{
+  position:relative;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;
+  background:#fff;border-radius:var(--radius-lg);border:1px solid var(--line);
+  box-shadow:var(--shadow-lg);padding:28px;
+  animation:popIn .24s cubic-bezier(.2,.8,.3,1);
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.modal-close{
+  position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:9px;
+  border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--muted);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;line-height:1;
+  transition:.18s ease;
+}
+.modal-close:hover{background:var(--bg-soft);color:var(--ink);border-color:var(--primary-line);}
+.modal h3{margin-bottom:6px;padding-right:40px;}
+.modal .modal-sub{font-size:.9rem;color:var(--muted);margin-bottom:22px;}
+
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:.83rem;font-weight:600;color:var(--ink);margin-bottom:7px;}
+.field input,.field select,.field textarea{
+  width:100%;font:inherit;font-size:.9rem;color:var(--ink);
+  padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+.field textarea{resize:vertical;min-height:104px;}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(13,92,77,.13);
+}
+.form-note{
+  font-size:.78rem;color:var(--muted);background:var(--bg-soft);
+  border:1px solid var(--line);border-radius:9px;padding:11px 13px;margin-top:4px;
+}
+.form-status{
+  display:none;margin-top:14px;font-size:.85rem;
+  border-radius:10px;padding:12px 14px;
+  background:var(--ok-soft);border:1px solid #CFE6D9;color:var(--ok);
+}
+.form-status.show{display:block;}
+
+.contact-line{
+  display:flex;align-items:center;gap:12px;
+  border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg-tint);
+  margin-bottom:12px;
+}
+.contact-line svg{color:var(--primary);flex-shrink:0;}
+.contact-line strong{display:block;font-size:.8rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em;}
+.contact-line a{font-size:.95rem;font-weight:600;word-break:break-all;}
+
+/* ============================================================
+   CONTACT / DISCLAIMER / FOOTER
+   ============================================================ */
+.contact-card{
+  border:1px solid var(--line);border-radius:var(--radius-lg);
+  background:#fff;padding:44px;box-shadow:var(--shadow-sm);text-align:center;
+}
+.contact-card h2{margin-bottom:10px;}
+.contact-card .mail{
+  display:inline-block;font-size:1.05rem;font-weight:700;color:var(--primary);
+  margin:6px 0 22px;word-break:break-all;
+}
+.disclaimer{
+  border-left:4px solid var(--primary);background:var(--bg-soft);
+  border-radius:0 var(--radius) var(--radius) 0;padding:22px 26px;
+}
+.disclaimer h3{font-size:.95rem;margin-bottom:9px;}
+.disclaimer p{font-size:.88rem;color:var(--muted);margin:0;}
+
+.site-footer{background:var(--primary-dark);color:#A9C6BF;padding:60px 0 0;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:40px;}
+@media (max-width:860px){ .footer-grid{grid-template-columns:1fr;gap:32px;} }
+.site-footer h4{color:#fff;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;}
+.site-footer p{color:#9CBAB3;font-size:.88rem;}
+.site-footer a{color:#C8DED8;font-size:.88rem;text-decoration:none;}
+.site-footer a:hover{color:#fff;text-decoration:underline;}
+.footer-links{list-style:none;margin:0;padding:0;}
+.footer-links li{margin-bottom:9px;}
+.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.footer-brand .brand-name{color:#fff;}
+.footer-brand .brand-sub{color:#8FB3AB;}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.12);
+  padding:22px 0;display:flex;flex-wrap:wrap;gap:12px;
+  align-items:center;justify-content:space-between;
+  font-size:.82rem;color:#8FB3AB;
+}
+@media (max-width:600px){ .footer-bottom{flex-direction:column;text-align:center;} }
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+.to-top{
+  position:fixed;right:20px;bottom:20px;z-index:800;
+  width:46px;height:46px;border-radius:12px;border:1px solid var(--line);
+  background:#fff;color:var(--primary);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-md);
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity .25s ease,transform .25s ease,visibility .25s;
+}
+.to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
+.to-top:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
+
+/* ============================================================
+   REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1);}
+.reveal.in{opacity:1;transform:none;}
+.reveal.d1{transition-delay:.06s;}
+.reveal.d2{transition-delay:.12s;}
+.reveal.d3{transition-delay:.18s;}
+.reveal.d4{transition-delay:.24s;}
+
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:1200;
+  background:#fff;color:var(--primary);padding:12px 18px;border-radius:0 0 10px 0;
+  font-weight:600;border:1px solid var(--line);
+}
+.skip-link:focus{left:0;}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+  .reveal{opacity:1;transform:none;}
+}
+
+@media (max-width:720px){
+  .section{padding:58px 0;}
+  .section-head{margin-bottom:32px;}
+  .contact-card{padding:30px 22px;}
+  .checklist-panel{padding:20px;}
+  .panel{padding:22px;}
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ============================================================
+     HEADER / NAV
+     ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="#home" aria-label="RV Pets Zone home">
+        <svg class="logo-mark" viewBox="0 0 40 40" role="img" aria-label="RV Pets Zone brand mark">
+          <rect width="40" height="40" rx="11" fill="#0D5C4D"/>
+          <ellipse cx="15" cy="12.5" rx="2.6" ry="6.2" fill="#ffffff" transform="rotate(-12 15 12.5)"/>
+          <ellipse cx="24.5" cy="12.5" rx="2.6" ry="6.2" fill="#ffffff" transform="rotate(12 24.5 12.5)"/>
+          <ellipse cx="15" cy="13.4" rx="1.1" ry="3.6" fill="#C4702A" transform="rotate(-12 15 13.4)"/>
+          <ellipse cx="24.5" cy="13.4" rx="1.1" ry="3.6" fill="#C4702A" transform="rotate(12 24.5 13.4)"/>
+          <circle cx="20" cy="24" r="8.4" fill="#ffffff"/>
+          <circle cx="16.9" cy="23" r="1.15" fill="#0D5C4D"/>
+          <circle cx="23.1" cy="23" r="1.15" fill="#0D5C4D"/>
+          <path d="M20 26.3l-1.5 1.7h3z" fill="#C4702A"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">RV Pets Zone</span>
+          <span class="brand-sub">Cap</span>
+        </span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#live-stock">Live Stock</a></li>
+        <li><a href="#buyer-guidelines">Buyer Guidelines</a></li>
+        <li><a href="#seller-guidelines">Seller Guidelines</a></li>
+        <li><a href="#responsible-ownership">Responsible Ownership</a></li>
+        <li><a href="#safety">Safety</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm nav-cta" href="mailto:rvpetszone@gmail.com">Contact</a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-grid">
+
+      <div class="hero-content">
+        <span class="eyebrow">Marketplace &amp; Guidelines</span>
+        <h1>RV PETS <span class="accent">ZONE</span></h1>
+        <p class="hero-tagline">A Smarter Marketplace for Pets, Birds, Fish &amp; Livestock</p>
+        <p class="hero-copy">
+          Discover available listings, understand responsible ownership requirements, and connect
+          with sellers through a structured marketplace experience.
+        </p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#live-stock">
+            Explore Listings
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-outline" href="#buyer-guidelines">View Guidelines</a>
+          <a class="btn btn-ghost" href="mailto:rvpetszone@gmail.com">Contact RV Pets Zone</a>
+        </div>
+
+        <div class="hero-chips">
+          <span class="chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Structured discovery
+          </span>
+          <span class="chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Guidelines-first approach
+          </span>
+          <span class="chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Responsible ownership
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-media reveal d2">
+        <div class="hero-photo-card">
+          <!--
+            Replace "rv-pets-zone-rabbit.png" with the brand photograph / logo file.
+            If the file is missing, a built-in brand mark is displayed automatically.
+          -->
+          <img
+            class="hero-photo"
+            src="rv-pets-zone-rabbit.png"
+            alt="RV Pets Zone brand photograph of a black and white rabbit resting on a stone surface"
+            width="1024" height="1024" loading="eager"
+            onerror="this.classList.add('is-missing');" />
+          <div class="hero-fallback" aria-hidden="true">
+            <svg viewBox="0 0 40 40" role="img" aria-label="RV Pets Zone brand mark">
+              <ellipse cx="15" cy="12.5" rx="2.6" ry="6.2" fill="#ffffff" transform="rotate(-12 15 12.5)"/>
+              <ellipse cx="24.5" cy="12.5" rx="2.6" ry="6.2" fill="#ffffff" transform="rotate(12 24.5 12.5)"/>
+              <ellipse cx="15" cy="13.4" rx="1.1" ry="3.6" fill="#C4702A" transform="rotate(-12 15 13.4)"/>
+              <ellipse cx="24.5" cy="13.4" rx="1.1" ry="3.6" fill="#C4702A" transform="rotate(12 24.5 13.4)"/>
+              <circle cx="20" cy="24" r="8.4" fill="#ffffff"/>
+              <circle cx="16.9" cy="23" r="1.15" fill="#0D5C4D"/>
+              <circle cx="23.1" cy="23" r="1.15" fill="#0D5C4D"/>
+              <path d="M20 26.3l-1.5 1.7h3z" fill="#C4702A"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="hero-float">
+          <span class="dot" aria-hidden="true"></span>
+          <span>
+            <strong>Availability to confirm</strong>
+            <span>Always verify with the seller first</span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     OFFICIAL APPLICATION — LAUNCHING SOON
+     ============================================================ -->
+<section class="section section--soft" id="app-launch">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Official Application</span>
+      <h2>The RV Pets Zone application is expected to launch soon</h2>
+      <p class="lead">
+        Alongside the current marketplace and guidelines experience, an official RV Pets Zone
+        application is in development. The details below describe expected direction — not
+        confirmed release dates or currently available features.
+      </p>
+    </div>
+
+    <div class="launch-band reveal">
+      <div class="launch-band-main">
+        <span class="launch-pill">
+          <span class="launch-dot" aria-hidden="true"></span>
+          Expected Soon
+        </span>
+        <h3>Official RV Pets Zone Application</h3>
+        <p>
+          The application is intended to bring listing discovery, category browsing and
+          marketplace guidelines into a dedicated, mobile-friendly experience. Availability,
+          features and timelines remain subject to change and will be communicated through
+          official RV Pets Zone channels only.
+        </p>
+
+        <div class="btn-row" style="margin-top:20px;">
+          <a class="btn btn-primary"
+             href="mailto:rvpetszone@gmail.com?subject=RV%20Pets%20Zone%20Application%20Launch%20Enquiry">
+            Enquire About the Launch
+          </a>
+          <button class="btn btn-outline" type="button" data-open-modal="contactModal">
+            Contact RV Pets Zone
+          </button>
+        </div>
+      </div>
+
+      <div class="launch-band-side">
+        <div class="launch-meta">
+          <div class="launch-meta-row">
+            <span class="launch-meta-key">Status</span>
+            <span class="badge badge-warn">In Development</span>
+          </div>
+          <div class="launch-meta-row">
+            <span class="launch-meta-key">Release Date</span>
+            <span class="badge badge-neutral">Not Confirmed</span>
+          </div>
+          <div class="launch-meta-row">
+            <span class="launch-meta-key">Platform</span>
+            <span class="badge badge-info">Planned</span>
+          </div>
+          <div class="launch-meta-row">
+            <span class="launch-meta-key">Official Contact</span>
+            <a href="mailto:rvpetszone@gmail.com" style="font-size:.82rem;font-weight:600;word-break:break-all;">rvpetszone@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="reveal" style="margin:38px 0 16px;">What is expected in the application</h3>
+
+    <div class="grid g-4">
+      <article class="card reveal">
+        <div class="card-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>
+        </div>
+        <h3>Mobile-first experience <span class="planned">Planned</span></h3>
+        <p>An application interface designed for browsing listings comfortably on smaller screens.</p>
+      </article>
+
+      <article class="card reveal d1">
+        <div class="card-ico accent" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </div>
+        <h3>Simpler discovery <span class="planned">Planned</span></h3>
+        <p>Category-based browsing and listing discovery presented in a structured way.</p>
+      </article>
+
+      <article class="card reveal d2">
+        <div class="card-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H8l-4 4V5a2 2 0 012-2h13a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>Clearer communication <span class="planned">Planned</span></h3>
+        <p>Improvements to how buyers and sellers connect around a listing, where supported.</p>
+      </article>
+
+      <article class="card reveal d3">
+        <div class="card-ico accent" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9.5 12.2l1.8 1.8 3.4-3.6"/></svg>
+        </div>
+        <h3>Guidelines built in <span class="planned">Planned</span></h3>
+        <p>Buyer, seller, welfare and safety guidance made accessible within the application.</p>
+      </article>
+    </div>
+
+    <div class="notice notice--info reveal" style="margin-top:26px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      <div>
+        <strong>Please note</strong>
+        <p>
+          No release date has been confirmed. The features listed above are expected direction only
+          and may change before or during development. Any official announcement regarding the
+          application will be shared through RV Pets Zone’s official email channel.
+        </p>
+      </div>
+    </div>
+
+    <div class="notice notice--warn reveal" style="margin-top:16px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+      <div>
+        <strong>Beware of unofficial sources</strong>
+        <p>
+          RV Pets Zone has not authorised any third-party application, download link or payment
+          request. Do not install files or make payments claiming to be from RV Pets Zone.
+          Verify any communication by emailing
+          <a href="mailto:rvpetszone@gmail.com">rvpetszone@gmail.com</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">About the Platform</span>
+      <h2>A structured marketplace for animal &amp; livestock listings</h2>
+      <p class="lead">
+        RV Pets Zone is designed to provide a structured digital marketplace experience for
+        discovering animals, birds, aquarium fish and livestock listings. The platform aims to make
+        listing discovery easier while encouraging responsible buying, selling and ownership practices.
+      </p>
+    </div>
+
+    <div class="grid g-3">
+      <article class="card reveal">
+        <div class="card-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </div>
+        <h3>Discovery-focused</h3>
+        <p>
+          The platform organises listings into clear categories so users can browse relevant
+          animals, birds, fish and livestock more efficiently.
+        </p>
+      </article>
+
+      <article class="card reveal d1">
+        <div class="card-ico accent" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9.5 12.2l1.8 1.8 3.4-3.6"/></svg>
+        </div>
+        <h3>Guidelines-led</h3>
+        <p>
+          Buyer, seller, welfare and safety guidelines are presented openly so users can make
+          informed and responsible decisions before completing a transaction.
+        </p>
+      </article>
+
+      <article class="card reveal d2">
+        <div class="card-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20v-1a5 5 0 015-5h6a5 5 0 015 5v1"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>User-driven listings</h3>
+        <p>
+          Listings may be created by individual sellers and users. RV Pets Zone is not presented
+          as the owner or physical custodian of the animals shown in listings.
+        </p>
+      </article>
+    </div>
+
+    <div class="notice notice--info reveal" style="margin-top:26px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      <div>
+        <strong>Please note</strong>
+        <p>
+          Listing information and availability can change at any time and should be independently
+          verified. RV Pets Zone should not be understood as personally guaranteeing every listing.
+          Buyers and sellers are responsible for complying with applicable laws and regulations.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRINCIPLES
+     ============================================================ -->
+<section class="section section--soft" id="principles">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Platform Philosophy</span>
+      <h2>Our Marketplace Principles</h2>
+      <p class="lead">Five principles guide how RV Pets Zone is designed and how it should be used.</p>
+    </div>
+
+    <div class="grid g-5">
+      <article class="card card-flat reveal">
+        <div class="card-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </div>
+        <h3>Discover</h3>
+        <p>Find relevant animals, birds, fish and livestock listings.</p>
+      </article>
+
+      <article class="card card-flat reveal d1">
+        <div class="card-ico accent" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9.5 12.2l1.8 1.8 3.4-3.6"/></svg>
+        </div>
+        <h3>Verify</h3>
+        <p>Review listing details and independently verify important information.</p>
+      </article>
+
+      <article class="card card-flat reveal d2">
+        <div class="card-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H8l-4 4V5a2 2 0 012-2h13a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>Connect</h3>
+        <p>Communicate with the relevant seller or listing owner.</p>
+      </article>
+
+      <article class="card card-flat reveal d3">
+        <div class="card-ico accent" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="3.4"/></svg>
+        </div>
+        <h3>Decide Responsibly</h3>
+        <p>Consider suitability, care requirements, legality and long-term responsibility.</p>
+      </article>
+
+      <article class="card card-flat reveal d4">
+        <div class="card-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+        </div>
+        <h3>Complete Safely</h3>
+        <p>Follow appropriate transaction, pickup/delivery and payment precautions.</p>
+      </article>
+    </div>
+
+    <div class="flow reveal" aria-label="Marketplace flow">
+      <span class="flow-step">Discover</span>
+      <span class="flow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+      <span class="flow-step">Verify</span>
+      <span class="flow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+      <span class="flow-step">Connect</span>
+      <span class="flow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+      <span class="flow-step">Decide</span>
+      <span class="flow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+      <span class="flow-step">Complete</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW IT WORKS
+     ============================================================ -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2>Five steps from browsing to completion</h2>
+      <p class="lead">
+        RV Pets Zone provides a structured path for discovering listings and connecting with sellers.
+        Each step places verification responsibility on the user.
+      </p>
+    </div>
+
+    <div class="grid g-5">
+      <article class="step reveal">
+        <span class="step-num">01</span>
+        <h3>Browse</h3>
+        <p>Explore available categories and listings.</p>
+      </article>
+      <article class="step reveal d1">
+        <span class="step-num">02</span>
+        <h3>Review</h3>
+        <p>Check photos, description, age, quantity, location and other available information.</p>
+      </article>
+      <article class="step reveal d2">
+        <span class="step-num">03</span>
+        <h3>Contact</h3>
+        <p>Connect with the seller through the available platform or contact method.</p>
+      </article>
+      <article class="step reveal d3">
+        <span class="step-num">04</span>
+        <h3>Verify</h3>
+        <p>Confirm actual availability, condition, ownership, legal requirements and transaction details.</p>
+      </article>
+      <article class="step reveal d4">
+        <span class="step-num">05</span>
+        <h3>Complete</h3>
+        <p>Proceed with payment, pickup or delivery only after satisfactory verification.</p>
+      </article>
+    </div>
+
+    <div class="notice notice--warn reveal" style="margin-top:26px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+      <div>
+        <strong>Important</strong>
+        <p>Listing availability and information can change. Users should verify current details before completing any transaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CATEGORIES
+     ============================================================ -->
+<section class="section section--soft" id="categories">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Category Guide</span>
+      <h2>What can be listed on RV Pets Zone</h2>
+      <p class="lead">
+        The platform may include the categories below. Expand each category to review basic listing
+        and ownership considerations.
+      </p>
+    </div>
+
+    <div class="cat-grid">
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="cat-1" id="cat-btn-1">
+          Cows
+          <span class="acc-ico" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="acc-panel" id="cat-1" role="region" aria-labelledby="cat-btn-1">
+          <div><div class="acc-body">
+            <p>Livestock listings such as cows should describe breed or type where known, approximate age, quantity, health information shared by the seller, and current availability.</p>
+            <ul>
+              <li>Confirm ownership and identification details where applicable.</li>
+              <li>Review transportation and handling requirements before committing.</li>
+              <li>Check applicable local livestock regulations.</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal d1">
+        <button class="acc-btn" aria-expanded="false" aria-controls="cat-2" id="cat-btn-2">
+          Goats
+          <span class="acc-ico" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="acc-panel" id="cat-2" role="region" aria-labelledby="cat-btn-2">
+          <div><div class="acc-body">
+            <p>Goat listings should clearly state quantity, approximate age, purpose where relevant, and availability. Buyers should verify condition and care requirements directly.</p>
+            <ul>
+              <li>Inspect the animal where practical before purchase.</li>
+              <li>Confirm housing, feed and space requirements in advance.</li>
+              <li>Verify seller details and transaction terms.</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal d2">
+        <button class="acc-btn" aria-expanded="false" aria-controls="cat-3" id="cat-btn-3">
+          Hens
+          <span class="acc-ico" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="acc-panel" id="cat-3" role="region" aria-labelledby="cat-btn-3">
+          <div><div class="acc-body">
+            <p>Poultry listings should indicate quantity, approximate age, condition and current availability. Buyers should confirm these details directly with the seller.</p>
+            <ul>
+              <li>Ask about vaccination or care history where the seller can provide it.</li>
+              <li>Plan appropriate transport and housing before purchase.</li>
+              <li>Confirm the price per bird or per lot.</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="cat-4" id="cat-btn-4">
+          Pigeons
+          <span class="acc-ico" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="acc-panel" id="cat-4" role="region" aria-labelledby="cat-btn-4">
+          <div><div class="acc-body">
+            <p>Pigeon listings should describe type or variety where known, quantity, age and availability. Responsible ownership includes suitable housing and daily care.</p>
+            <ul>
+              <li>Confirm the type and quantity before travelling.</li>
+              <li>Consider long-term housing and care requirements.</li>
+              <li>Verify seller-provided information independently.</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal d1">
+        <button class="acc-btn" aria-expanded="false" aria-controls="cat-5" id="cat-btn-5">
+          Lovebirds
+          <span class="acc-ico" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="acc-panel" id="cat-5" role="region" aria-labelledby="cat-btn-5">
+          <div><div class="acc-body">
+            <p>Lovebird listings may include species information where known, quantity, approximate age and availability. Buyers should research species-specific care requirements.</p>
+            <ul>
+              <li>Understand housing, diet and social needs before purchase.</li>
+              <li>Confirm availability and condition with the seller.</li>
+              <li>Plan appropriate and safe transportation.</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal d2">
+        <button class="acc-btn" aria-expanded="false" aria-controls="cat-6" id="cat-btn-6">
+          Aquarium Fish
+          <span class="acc-ico" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="acc-panel" id="cat-6" role="region" aria-labelledby="cat-btn-6">
+          <div><div class="acc-body">
+            <p>Aquarium and ornamental fish listings should state species where known, quantity, and aquarium requirements. Compatibility and tank conditions matter.</p>
+            <ul>
+              <li>Confirm species, quantity and compatibility before purchase.</li>
+              <li>Prepare the aquarium environment in advance.</li>
+              <li>Discuss appropriate transport arrangements with the seller.</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="margin-top:22px;font-size:.88rem;color:var(--muted);">
+      Category availability depends on what is supported by the current RV Pets Zone application.
+      Additional categories are not implied.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     LIVE STOCK
+     ============================================================ -->
+<section class="section" id="live-stock">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Live Stock &amp; Availability</span>
+      <h2>Understanding listing availability</h2>
+      <p class="lead">
+        “Live Stock” refers to listings currently shown as available on the platform. It does not
+        mean that RV Pets Zone guarantees physical inventory or holds animals on behalf of sellers.
+      </p>
+    </div>
+
+    <div class="grid g-5" style="margin-bottom:34px;">
+      <div class="status-card reveal">
+        <div class="status-head"><span class="status-dot s-ok" aria-hidden="true"></span><h4>Available</h4></div>
+        <p>Listing is currently shown as available by the seller.</p>
+      </div>
+      <div class="status-card reveal d1">
+        <div class="status-head"><span class="status-dot s-warn" aria-hidden="true"></span><h4>Limited Availability</h4></div>
+        <p>Quantity or options may be restricted.</p>
+      </div>
+      <div class="status-card reveal d2">
+        <div class="status-head"><span class="status-dot s-info" aria-hidden="true"></span><h4>Recently Listed</h4></div>
+        <p>Listing was added recently to the platform.</p>
+      </div>
+      <div class="status-card reveal d3">
+        <div class="status-head"><span class="status-dot s-neutral" aria-hidden="true"></span><h4>Availability to Confirm</h4></div>
+        <p>Status has not been confirmed and should be verified.</p>
+      </div>
+      <div class="status-card reveal d4">
+        <div class="status-head"><span class="status-dot s-danger" aria-hidden="true"></span><h4>Sold / Unavailable</h4></div>
+        <p>Listing is no longer expected to be available.</p>
+      </div>
+    </div>
+
+    <div class="notice notice--info reveal" style="margin-bottom:22px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      <div>
+        <strong>Demonstration structure — not live data</strong>
+        <p>
+          The table below illustrates how listing information can be presented. It contains sample
+          placeholders only and is not connected to a live database. Real availability data requires
+          backend or API integration and is not claimed here.
+        </p>
+      </div>
+    </div>
+
+    <div class="table-wrap reveal">
+      <div class="table-scroll">
+        <table>
+          <caption class="sr-only" style="position:absolute;left:-9999px;">Sample listing structure demonstration</caption>
+          <thead>
+            <tr>
+              <th scope="col">Listing ID</th>
+              <th scope="col">Category</th>
+              <th scope="col">Listing Details</th>
+              <th scope="col">Location</th>
+              <th scope="col">Availability Status</th>
+              <th scope="col">Last Updated</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono">SAMPLE-001</td>
+              <td>Livestock</td>
+              <td>Sample entry — details provided by seller</td>
+              <td>Area to be provided by seller</td>
+              <td><span class="badge badge-ok">Available</span></td>
+              <td class="mono">—</td>
+            </tr>
+            <tr>
+              <td class="mono">SAMPLE-002</td>
+              <td>Birds</td>
+              <td>Sample entry — quantity and age as listed</td>
+              <td>Area to be provided by seller</td>
+              <td><span class="badge badge-warn">Limited Availability</span></td>
+              <td class="mono">—</td>
+            </tr>
+            <tr>
+              <td class="mono">SAMPLE-003</td>
+              <td>Aquarium &amp; Fish</td>
+              <td>Sample entry — species and quantity as listed</td>
+              <td>Area to be provided by seller</td>
+              <td><span class="badge badge-info">Recently Listed</span></td>
+              <td class="mono">—</td>
+            </tr>
+            <tr>
+              <td class="mono">SAMPLE-004</td>
+              <td>Poultry</td>
+              <td>Sample entry — availability not yet confirmed</td>
+              <td>Area to be provided by seller</td>
+              <td><span class="badge badge-neutral">Availability to Confirm</span></td>
+              <td class="mono">—</td>
+            </tr>
+            <tr>
+              <td class="mono">SAMPLE-005</td>
+              <td>Livestock</td>
+              <td>Sample entry — previously listed item</td>
+              <td>Area to be provided by seller</td>
+              <td><span class="badge badge-danger">Sold / Unavailable</span></td>
+              <td class="mono">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="notice notice--warn reveal" style="margin-top:22px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+      <div>
+        <strong>Always confirm current availability</strong>
+        <p>Confirm current availability directly before travelling, paying or arranging transportation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LISTING INFORMATION GUIDELINES
+     ============================================================ -->
+<section class="section section--soft" id="listing-guidelines">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Listing Quality</span>
+      <h2>What a good listing should contain</h2>
+      <p class="lead">
+        Complete and accurate listings help buyers understand what is being offered and support
+        safer, better-informed decisions.
+      </p>
+    </div>
+
+    <div class="grid g-4">
+      <div class="card reveal"><h3>Category</h3><p>The relevant marketplace category for the listing.</p></div>
+      <div class="card reveal d1"><h3>Animal / bird / fish type</h3><p>The type, breed or species where known.</p></div>
+      <div class="card reveal d2"><h3>Quantity</h3><p>How many are being offered, where applicable.</p></div>
+      <div class="card reveal d3"><h3>Age where relevant</h3><p>Approximate age if the seller can provide it.</p></div>
+      <div class="card reveal"><h3>Basic description</h3><p>A clear, honest summary of the listing.</p></div>
+      <div class="card reveal d1"><h3>Current availability</h3><p>Whether the listing is currently available.</p></div>
+      <div class="card reveal d2"><h3>Location / area</h3><p>The general area relevant to pickup or delivery.</p></div>
+      <div class="card reveal d3"><h3>Clear photographs</h3><p>Genuine and relevant images of what is offered.</p></div>
+      <div class="card reveal"><h3>Price where applicable</h3><p>Clearly stated pricing and any additional costs.</p></div>
+      <div class="card reveal d1"><h3>Relevant care information</h3><p>Care considerations the buyer should be aware of.</p></div>
+      <div class="card reveal d2"><h3>Seller contact details</h3><p>The communication method available for enquiries.</p></div>
+      <div class="card reveal d3"><h3>Other important information</h3><p>Any category-specific details that affect the decision.</p></div>
+    </div>
+
+    <div class="flow reveal" style="margin-top:30px;">
+      <span class="flow-step">Clear Information</span>
+      <span class="flow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+      <span class="flow-step">Better Understanding</span>
+      <span class="flow-arrow" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+      <span class="flow-step">Safer Decisions</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUYER GUIDELINES
+     ============================================================ -->
+<section class="section" id="buyer-guidelines">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Buyer Guidelines</span>
+      <h2>Before you purchase</h2>
+      <p class="lead">
+        Use this checklist as a practical guide. Tick items as you complete them — the checklist is
+        for your own reference and is not submitted anywhere.
+      </p>
+    </div>
+
+    <div class="checklist-panel reveal" data-checklist>
+      <div class="checklist-head">
+        <div>
+          <h3>Buyer verification checklist</h3>
+          <p>Complete as many items as possible before making any payment.</p>
+        </div>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" aria-label="Buyer checklist progress">
+            <div class="progress-fill" data-progress-fill></div>
+          </div>
+          <span class="progress-label" data-progress-label>0 of 12 completed</span>
+        </div>
+      </div>
+
+      <ul class="check-list">
+        <li><label class="check-item"><input type="checkbox" /><span>Confirm availability</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Review listing information</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Ask relevant questions</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Verify seller identity/details where appropriate</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Inspect the animal/bird/fish/livestock where practical</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Consider health and welfare requirements</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Understand transportation requirements</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Confirm price and additional costs</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Understand payment terms</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Check applicable legal requirements</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Confirm pickup/delivery arrangements</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Keep transaction records where appropriate</span></label></li>
+      </ul>
+    </div>
+
+    <div class="notice notice--danger reveal" style="margin-top:22px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 9v4M12 17h.01"/></svg>
+      <div>
+        <strong>Do not make payment solely because a listing appears on the platform.</strong>
+        <p>Verify the seller and listing details before proceeding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SELLER GUIDELINES
+     ============================================================ -->
+<section class="section section--soft" id="seller-guidelines">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Seller &amp; Listing Guidelines</span>
+      <h2>Listing accurately and responsibly</h2>
+      <p class="lead">
+        Sellers play a central role in marketplace quality. Accurate listings protect both buyers
+        and sellers.
+      </p>
+    </div>
+
+    <div class="checklist-panel reveal" data-checklist>
+      <div class="checklist-head">
+        <div>
+          <h3>Seller responsibility checklist</h3>
+          <p>Review these points before publishing or updating a listing.</p>
+        </div>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" aria-label="Seller checklist progress">
+            <div class="progress-fill" data-progress-fill></div>
+          </div>
+          <span class="progress-label" data-progress-label>0 of 10 completed</span>
+        </div>
+      </div>
+
+      <ul class="check-list">
+        <li><label class="check-item"><input type="checkbox" /><span>Provide accurate information</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Upload genuine and relevant photographs</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Keep availability updated</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Clearly state quantity where applicable</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Avoid misleading descriptions</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Communicate important limitations or conditions</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Comply with applicable laws and regulations</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Ensure appropriate animal welfare</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Avoid prohibited listings</span></label></li>
+        <li><label class="check-item"><input type="checkbox" /><span>Update or remove unavailable listings</span></label></li>
+      </ul>
+    </div>
+
+    <div class="notice notice--warn reveal" style="margin-top:22px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      <div>
+        <strong>Listing standards</strong>
+        <p>Misleading, fraudulent, illegal or inappropriate listings may be subject to removal according to platform policies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RESPONSIBLE OWNERSHIP
+     ============================================================ -->
+<section class="section section--dark" id="responsible-ownership">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Responsible Ownership</span>
+      <h2>Ownership Is a Responsibility, Not Just a Purchase</h2>
+      <p class="lead">
+        Before acquiring any animal, bird, fish or livestock, prospective owners should carefully
+        consider the long-term commitment involved.
+      </p>
+    </div>
+
+    <div class="grid g-4">
+      <div class="card card-flat reveal" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Food requirements</h4>
+        <p style="color:#B9D2CB;">Appropriate, species-adequate nutrition.</p>
+      </div>
+      <div class="card card-flat reveal d1" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Housing</h4>
+        <p style="color:#B9D2CB;">Safe, suitable and secure shelter or enclosure.</p>
+      </div>
+      <div class="card card-flat reveal d2" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Space</h4>
+        <p style="color:#B9D2CB;">Enough room for the animal's needs and movement.</p>
+      </div>
+      <div class="card card-flat reveal d3" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Hygiene</h4>
+        <p style="color:#B9D2CB;">Routine cleaning and healthy living conditions.</p>
+      </div>
+      <div class="card card-flat reveal" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Veterinary / care requirements</h4>
+        <p style="color:#B9D2CB;">Access to appropriate professional care when needed.</p>
+      </div>
+      <div class="card card-flat reveal d1" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Transportation</h4>
+        <p style="color:#B9D2CB;">Safe and appropriate movement of the animal.</p>
+      </div>
+      <div class="card card-flat reveal d2" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Time commitment</h4>
+        <p style="color:#B9D2CB;">Daily attention and consistent long-term care.</p>
+      </div>
+      <div class="card card-flat reveal d3" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Cost of long-term care</h4>
+        <p style="color:#B9D2CB;">Feed, housing, care and related ongoing expenses.</p>
+      </div>
+      <div class="card card-flat reveal" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Species / breed-specific needs</h4>
+        <p style="color:#B9D2CB;">Requirements unique to the animal concerned.</p>
+      </div>
+      <div class="card card-flat reveal d1" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Local legal requirements</h4>
+        <p style="color:#B9D2CB;">Rules that may apply in your area.</p>
+      </div>
+      <div class="card card-flat reveal d2" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);">
+        <h4 style="color:#fff;">Welfare considerations</h4>
+        <p style="color:#B9D2CB;">The animal's wellbeing throughout its life.</p>
+      </div>
+    </div>
+
+    <div class="notice reveal" style="margin-top:30px;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#DCEBE7;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#9FD3C6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.6-7 10-7 10z"/></svg>
+      <div>
+        <strong style="color:#fff;">Please choose an animal only when you are prepared to provide appropriate long-term care.</strong>
+        <p style="color:#B9D2CB;">This platform does not provide medical diagnosis or veterinary advice. Consult a qualified professional for animal health concerns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SAFETY / WELFARE / PROHIBITED
+     ============================================================ -->
+<section class="section" id="safety">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Safety &amp; Welfare</span>
+      <h2>Animal welfare and prohibited listings</h2>
+      <p class="lead">
+        RV Pets Zone expects all users to act responsibly. The guidelines below apply to every
+        listing and interaction on the platform.
+      </p>
+    </div>
+
+    <div class="grid g-2" style="margin-bottom:34px;">
+      <div class="panel panel--yes reveal">
+        <h3>
+          <span class="tick tick-yes" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </span>
+          Welfare guidelines
+        </h3>
+        <ul>
+          <li>Encourage appropriate food, housing, hygiene and care.</li>
+          <li>Encourage professional veterinary assistance where appropriate.</li>
+          <li>Encourage honest representation of an animal's condition.</li>
+          <li>Encourage responsible, long-term ownership planning.</li>
+          <li>Encourage compliance with animal-welfare requirements.</li>
+        </ul>
+      </div>
+
+      <div class="panel panel--no reveal d1">
+        <h3>
+          <span class="tick tick-no" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </span>
+          Not acceptable
+        </h3>
+        <ul>
+          <li>Do not promote cruelty.</li>
+          <li>Do not intentionally misrepresent an animal's condition.</li>
+          <li>Do not encourage abandonment.</li>
+          <li>Do not encourage illegal wildlife trade.</li>
+          <li>Do not promote harmful treatment.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="reveal" style="margin-bottom:14px;">Prohibited / restricted listings</h3>
+    <p class="reveal" style="max-width:760px;color:var(--muted);">
+      Users should not create listings involving any of the following. This list is illustrative and
+      not exhaustive.
+    </p>
+
+    <div class="grid g-3" style="margin-top:20px;">
+      <div class="card reveal"><h4>Illegal wildlife</h4><p>Any species that cannot lawfully be traded.</p></div>
+      <div class="card reveal d1"><h4>Protected species</h4><p>Where trade is prohibited by applicable law.</p></div>
+      <div class="card reveal d2"><h4>Legally prohibited animals</h4><p>Animals prohibited by applicable law.</p></div>
+      <div class="card reveal"><h4>Stolen animals</h4><p>Any animal not lawfully owned by the seller.</p></div>
+      <div class="card reveal d1"><h4>Fraudulent listings</h4><p>Listings created to deceive other users.</p></div>
+      <div class="card reveal d2"><h4>Misleading listings</h4><p>Listings with intentionally inaccurate details.</p></div>
+      <div class="card reveal"><h4>Animal cruelty</h4><p>Listings involving or encouraging cruelty.</p></div>
+      <div class="card reveal d1"><h4>Dangerous or unlawful transactions</h4><p>Any transaction that is unsafe or unlawful.</p></div>
+      <div class="card reveal d2"><h4>Other prohibited categories</h4><p>Anything prohibited under law or platform rules.</p></div>
+    </div>
+
+    <div class="notice notice--info reveal" style="margin-top:26px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      <div>
+        <strong>Not legal advice</strong>
+        <p>Users are responsible for understanding and complying with applicable local, state and national laws and regulations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PAYMENT & TRANSACTION
+     ============================================================ -->
+<section class="section section--soft" id="payment">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Payment &amp; Transactions</span>
+      <h2>Understanding transaction responsibilities</h2>
+      <p class="lead">
+        RV Pets Zone may facilitate discovery and communication. Unless a specific transaction or
+        payment system is actually implemented, RV Pets Zone does not process or guarantee every
+        payment made between users.
+      </p>
+    </div>
+
+    <div class="grid g-3">
+      <div class="card reveal"><h4>Confirm total price</h4><p>Agree the full amount clearly before paying.</p></div>
+      <div class="card reveal d1"><h4>Confirm additional costs</h4><p>Ask about transport, handling or other charges.</p></div>
+      <div class="card reveal d2"><h4>Verify seller details</h4><p>Confirm who you are dealing with where appropriate.</p></div>
+      <div class="card reveal"><h4>Avoid suspicious requests</h4><p>Be cautious of unusual or pressured payment requests.</p></div>
+      <div class="card reveal d1"><h4>Keep transaction evidence</h4><p>Retain records of communication and payment.</p></div>
+      <div class="card reveal d2"><h4>Clarify refund terms</h4><p>Understand cancellation and refund positions before paying.</p></div>
+    </div>
+
+    <div class="notice notice--danger reveal" style="margin-top:26px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+      <div>
+        <strong>Never share unnecessary financial credentials.</strong>
+        <p>Do not share OTPs, PINs, passwords or banking credentials with any other user.</p>
+      </div>
+    </div>
+
+    <p class="reveal" style="margin-top:20px;font-size:.86rem;color:var(--muted);">
+      <em>Note:</em> If an official payment gateway is introduced in future, this section will be
+      updated to reflect the actual mechanisms available.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     PICKUP & TRANSPORTATION
+     ============================================================ -->
+<section class="section" id="pickup">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Delivery &amp; Pickup</span>
+      <h2>Pickup &amp; Transportation</h2>
+      <p class="lead">
+        Arrangements for pickup and transportation should be discussed and confirmed directly
+        between the buyer and the seller.
+      </p>
+    </div>
+
+    <div class="grid g-4">
+      <div class="card reveal"><h4>Confirm location</h4><p>Verify the exact pickup location before travelling.</p></div>
+      <div class="card reveal d1"><h4>Confirm timing</h4><p>Agree a suitable pickup time in advance.</p></div>
+      <div class="card reveal d2"><h4>Discuss transportation</h4><p>Clarify the requirements for the specific animal or category.</p></div>
+      <div class="card reveal d3"><h4>Use appropriate transport</h4><p>Choose a suitable method for the animal concerned.</p></div>
+      <div class="card reveal"><h4>Consider welfare in transit</h4><p>Keep transit as safe and comfortable as reasonably possible.</p></div>
+      <div class="card reveal d1"><h4>Clarify responsibility</h4><p>Agree who arranges and bears responsibility for transport.</p></div>
+      <div class="card reveal d2"><h4>Confirm extra charges</h4><p>Agree any additional transportation costs beforehand.</p></div>
+      <div class="card reveal d3"><h4>Follow regulations</h4><p>Comply with applicable transportation rules.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PLATFORM RESPONSIBILITY
+     ============================================================ -->
+<section class="section section--soft" id="responsibility">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Transparency</span>
+      <h2>Platform responsibility</h2>
+      <p class="lead">
+        Clear expectations help everyone use the marketplace appropriately.
+      </p>
+    </div>
+
+    <div class="split">
+      <div class="panel panel--yes reveal">
+        <h3>
+          <span class="tick tick-yes" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </span>
+          What RV Pets Zone provides
+        </h3>
+        <ul>
+          <li>Listing discovery</li>
+          <li>Marketplace organisation</li>
+          <li>Category browsing</li>
+          <li>Listing presentation</li>
+          <li>User communication features where available</li>
+          <li>Educational guidelines</li>
+          <li>Marketplace information</li>
+        </ul>
+      </div>
+
+      <div class="panel panel--no reveal d1">
+        <h3>
+          <span class="tick tick-no" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </span>
+          What is not automatically guaranteed
+        </h3>
+        <ul>
+          <li>Seller identity</li>
+          <li>Animal health</li>
+          <li>Animal ownership</li>
+          <li>Listing accuracy</li>
+          <li>Continuous availability</li>
+          <li>Transaction completion</li>
+          <li>Payment safety outside official platform mechanisms</li>
+          <li>Delivery condition</li>
+          <li>Seller or buyer conduct</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     USER RESPONSIBILITY
+     ============================================================ -->
+<section class="section" id="user-responsibility">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Shared Responsibility</span>
+      <h2>Buyer &amp; seller responsibility</h2>
+    </div>
+
+    <div class="split" style="margin-bottom:26px;">
+      <div class="card reveal" style="padding:30px;">
+        <div class="card-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20v-1a5 5 0 015-5h6a5 5 0 015 5v1"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Buyer Responsibility</h3>
+        <p>Verify before purchasing — confirm the seller, the listing details, the animal's condition, the price, and all legal requirements.</p>
+      </div>
+
+      <div class="card reveal d1" style="padding:30px;">
+        <div class="card-ico accent" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20v-1a5 5 0 015-5h6a5 5 0 015 5v1"/><circle cx="12" cy="7" r="4"/><path d="M9.5 7l1.6 1.6L14.5 5.2"/></svg>
+        </div>
+        <h3>Seller Responsibility</h3>
+        <p>List accurately and responsibly — provide genuine information, keep availability current, and follow welfare and legal requirements.</p>
+      </div>
+    </div>
+
+    <div class="notice notice--info reveal">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      <div>
+        <p>The marketplace should be used as a discovery and connection platform. Users should exercise appropriate judgment and verification before completing transactions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REPORT A LISTING
+     ============================================================ -->
+<section class="section section--soft" id="report">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Trust &amp; Safety</span>
+      <h2>See Something Incorrect?</h2>
+      <p class="lead">
+        If you notice a problem with a listing or an interaction, you can report it to RV Pets Zone.
+      </p>
+    </div>
+
+    <div class="grid g-4" style="margin-bottom:30px;">
+      <div class="card card-flat reveal"><h4>Incorrect information</h4><p>Details that do not match the listing.</p></div>
+      <div class="card card-flat reveal d1"><h4>Fraudulent listing</h4><p>Listings that appear intended to deceive.</p></div>
+      <div class="card card-flat reveal d2"><h4>Suspicious activity</h4><p>Unusual behaviour around a listing or user.</p></div>
+      <div class="card card-flat reveal d3"><h4>Prohibited listing</h4><p>Listings that should not appear on the platform.</p></div>
+      <div class="card card-flat reveal"><h4>Welfare concern</h4><p>Concerns relating to animal wellbeing.</p></div>
+      <div class="card card-flat reveal d1"><h4>Duplicate listing</h4><p>The same item listed more than once.</p></div>
+      <div class="card card-flat reveal d2"><h4>Unavailable listing</h4><p>Listings that are no longer accurate.</p></div>
+    </div>
+
+    <div class="btn-row reveal">
+      <button class="btn btn-primary" type="button" data-open-modal="reportModal">Report / Contact RV Pets Zone</button>
+      <a class="btn btn-outline" href="mailto:rvpetszone@gmail.com">rvpetszone@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ROADMAP
+     ============================================================ -->
+<section class="section" id="roadmap">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Proposal &amp; Roadmap</span>
+      <h2>Platform development direction</h2>
+      <p class="lead">
+        The phases below describe intended areas of development. Items marked as planned or future
+        are not presented as existing features of the current application.
+      </p>
+    </div>
+
+    <div class="roadmap">
+      <div class="phase reveal">
+        <span class="phase-tag">Phase 01</span>
+        <div>
+          <h3>Marketplace Foundation</h3>
+          <p>Listings, categories, search and discovery.</p>
+        </div>
+      </div>
+
+      <div class="phase reveal d1">
+        <span class="phase-tag">Phase 02</span>
+        <div>
+          <h3>Seller &amp; Buyer Experience <span class="planned">Planned</span></h3>
+          <p>Improved profiles, communication and listing management.</p>
+        </div>
+      </div>
+
+      <div class="phase reveal d2">
+        <span class="phase-tag">Phase 03</span>
+        <div>
+          <h3>Availability Management <span class="planned">Planned</span></h3>
+          <p>Better stock and listing availability updates.</p>
+        </div>
+      </div>
+
+      <div class="phase reveal d3">
+        <span class="phase-tag">Phase 04</span>
+        <div>
+          <h3>Trust &amp; Safety <span class="planned">Planned</span></h3>
+          <p>Reporting, moderation and verification improvements.</p>
+        </div>
+      </div>
+
+      <div class="phase reveal d4">
+        <span class="phase-tag">Phase 05</span>
+        <div>
+          <h3>Platform Expansion <span class="planned">Future Possibilities</span></h3>
+          <p>Additional responsible marketplace and care-support features.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARKETPLACE PARTICIPATION
+     ============================================================ -->
+<section class="section section--soft" id="participation">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Service Model</span>
+      <h2>Marketplace Participation</h2>
+      <p class="lead">
+        Possible participation structures are outlined below. These are presented as concepts and
+        options — not as confirmed commercial offerings.
+      </p>
+    </div>
+
+    <div class="grid g-4">
+      <article class="card reveal">
+        <div class="card-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+        </div>
+        <h3>Basic Listing</h3>
+        <p>Standard listing visibility within the relevant category.</p>
+      </article>
+
+      <article class="card reveal d1">
+        <div class="card-ico accent" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.4l6.1-.8z"/></svg>
+        </div>
+        <h3>Enhanced Listing <span class="planned">Planned</span></h3>
+        <p>Additional presentation options where supported.</p>
+      </article>
+
+      <article class="card reveal d2">
+        <div class="card-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M12 11v3M12 8h.01"/></svg>
+        </div>
+        <h3>Seller Support <span class="planned">Concept</span></h3>
+        <p>Listing assistance and marketplace guidance.</p>
+      </article>
+
+      <article class="card reveal d3">
+        <div class="card-ico accent" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 20V10M11 20V4M16 20v-7M21 20v-4"/></svg>
+        </div>
+        <h3>Future Business Services <span class="planned">Future</span></h3>
+        <p>Potential future seller and promotional tools.</p>
+      </article>
+    </div>
+
+    <div class="notice notice--ok reveal" style="margin-top:26px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      <div>
+        <strong>Contact RV Pets Zone for current availability and applicable terms.</strong>
+        <p><a href="mailto:rvpetszone@gmail.com">rvpetszone@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHO CAN USE
+     ============================================================ -->
+<section class="section" id="who-can-use">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Audience</span>
+      <h2>Who can use RV Pets Zone?</h2>
+      <p class="lead">The platform is intended for a range of users interested in animals, birds, fish and livestock.</p>
+    </div>
+
+    <div class="grid g-4">
+      <div class="card reveal"><h4>Individual Buyers</h4><p>People looking for available listings.</p></div>
+      <div class="card reveal d1"><h4>Livestock Owners</h4><p>Those listing or acquiring livestock.</p></div>
+      <div class="card reveal d2"><h4>Bird Owners</h4><p>Keepers of permitted bird varieties.</p></div>
+      <div class="card reveal d3"><h4>Aquarium Hobbyists</h4><p>Enthusiasts exploring fish listings.</p></div>
+      <div class="card reveal"><h4>Responsible Sellers</h4><p>Users listing accurately and lawfully.</p></div>
+      <div class="card reveal d1"><h4>Farmers</h4><p>Those working with livestock and poultry.</p></div>
+      <div class="card reveal d2"><h4>Small Animal Businesses</h4><p>Smaller operations listing permitted categories.</p></div>
+      <div class="card reveal d3"><h4>Pet / Livestock Enthusiasts</h4><p>Anyone with a genuine interest in responsible ownership.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section section--soft" id="faq">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Frequently Asked Questions</span>
+      <h2>Answers about the platform</h2>
+      <p class="lead">Clear, transparent answers about how RV Pets Zone works.</p>
+    </div>
+
+    <div style="max-width:880px;margin:0 auto;">
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-1" id="faq-btn-1">
+          What is RV Pets Zone?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-1" role="region" aria-labelledby="faq-btn-1">
+          <div><div class="acc-body"><p>RV Pets Zone is a digital marketplace platform for discovering animals, birds, aquarium fish and livestock listings, with guidelines supporting responsible buying, selling and ownership.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-2" id="faq-btn-2">
+          What can I find on RV Pets Zone?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-2" role="region" aria-labelledby="faq-btn-2">
+          <div><div class="acc-body"><p>Listings across supported categories such as livestock, poultry, permitted birds, and aquarium or ornamental fish. Available categories depend on what the current application supports.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-3" id="faq-btn-3">
+          Does RV Pets Zone own the animals listed?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-3" role="region" aria-labelledby="faq-btn-3">
+          <div><div class="acc-body"><p>No. RV Pets Zone is a marketplace and information platform. Listings are typically created by individual sellers and users, and RV Pets Zone is not presented as the owner or physical custodian of listed animals.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-4" id="faq-btn-4">
+          What does “Live Stock” mean?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-4" role="region" aria-labelledby="faq-btn-4">
+          <div><div class="acc-body"><p>“Live Stock” refers to listings currently shown as available on the platform. It does not mean that RV Pets Zone guarantees physical inventory.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-5" id="faq-btn-5">
+          Are listings always available?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-5" role="region" aria-labelledby="faq-btn-5">
+          <div><div class="acc-body"><p>No. Availability can change at any time. Always confirm current availability directly with the seller before travelling, paying or arranging transportation.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-6" id="faq-btn-6">
+          How should I verify a listing?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-6" role="region" aria-labelledby="faq-btn-6">
+          <div><div class="acc-body"><p>Review the listing details, ask questions, confirm seller details where appropriate, inspect the animal where practical, and confirm price, payment terms, legal requirements and pickup or delivery arrangements.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-7" id="faq-btn-7">
+          Can I contact the seller?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-7" role="region" aria-labelledby="faq-btn-7">
+          <div><div class="acc-body"><p>Where communication features or seller contact details are available on the platform, you can use them to make enquiries. Availability of these features depends on the current application.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-8" id="faq-btn-8">
+          Does RV Pets Zone guarantee animal health?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-8" role="region" aria-labelledby="faq-btn-8">
+          <div><div class="acc-body"><p>No. Animal health, condition and ownership are not automatically guaranteed by the platform and should be independently verified by the buyer.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-9" id="faq-btn-9">
+          Does RV Pets Zone process payments?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-9" role="region" aria-labelledby="faq-btn-9">
+          <div><div class="acc-body"><p>Unless a specific transaction or payment system is actually implemented, RV Pets Zone does not process or guarantee payments. Users handle transactions directly and should take appropriate precautions.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-10" id="faq-btn-10">
+          What should buyers check before purchasing?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-10" role="region" aria-labelledby="faq-btn-10">
+          <div><div class="acc-body"><p>Availability, listing accuracy, seller details, animal condition, care requirements, transportation, total price, payment terms, legal requirements and pickup or delivery arrangements. See the Buyer Guidelines checklist above.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-11" id="faq-btn-11">
+          What should sellers include in listings?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-11" role="region" aria-labelledby="faq-btn-11">
+          <div><div class="acc-body"><p>Accurate category, type, quantity, age where relevant, description, availability, location, clear photographs, price where applicable, care information and contact details.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-12" id="faq-btn-12">
+          Can I report a suspicious listing?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-12" role="region" aria-labelledby="faq-btn-12">
+          <div><div class="acc-body"><p>Yes. You can report incorrect information, fraudulent listings, suspicious activity, prohibited listings, welfare concerns, duplicate listings or unavailable listings by contacting RV Pets Zone at <a href="mailto:rvpetszone@gmail.com">rvpetszone@gmail.com</a>.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-13" id="faq-btn-13">
+          Are all animals legal to buy or sell?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-13" role="region" aria-labelledby="faq-btn-13">
+          <div><div class="acc-body"><p>No. Legal requirements vary by location and species. Users are responsible for understanding and complying with applicable local, state and national laws and regulations.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-14" id="faq-btn-14">
+          Can I list prohibited animals?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-14" role="region" aria-labelledby="faq-btn-14">
+          <div><div class="acc-body"><p>No. Listings involving illegal wildlife, protected species where prohibited, animals prohibited by law, stolen animals, fraudulent or misleading listings, cruelty or unlawful transactions are not permitted and may be removed.</p></div></div>
+        </div>
+      </div>
+
+      <div class="acc reveal">
+        <button class="acc-btn" aria-expanded="false" aria-controls="faq-15" id="faq-btn-15">
+          How can I contact RV Pets Zone?
+          <span class="acc-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-panel" id="faq-15" role="region" aria-labelledby="faq-btn-15">
+          <div><div class="acc-body"><p>By email at <a href="mailto:rvpetszone@gmail.com">rvpetszone@gmail.com</a>. RV Pets Zone is a brand associated with XSympan Technologies.</p></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-card reveal">
+      <span class="eyebrow">Contact</span>
+      <h2>Have a Question About a Listing or the Platform?</h2>
+      <p class="lead" style="max-width:620px;margin:0 auto 4px;">
+        RV Pets Zone is a brand associated with XSympan Technologies. Reach out by email for
+        platform questions, listing concerns or guideline clarifications.
+      </p>
+
+      <div style="margin-top:22px;">
+        <p style="margin:0;font-weight:700;color:var(--ink);letter-spacing:-.01em;">RV PETS ZONE</p>
+        <p style="margin:2px 0 0;font-size:.86rem;color:var(--muted);">Cap</p>
+      </div>
+
+      <a class="mail" href="mailto:rvpetszone@gmail.com">rvpetszone@gmail.com</a>
+
+      <div class="btn-row" style="justify-content:center;">
+        <a class="btn btn-primary" href="mailto:rvpetszone@gmail.com">Contact RV Pets Zone</a>
+        <button class="btn btn-outline" type="button" data-open-modal="contactModal">View Contact Details</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DISCLAIMER
+     ============================================================ -->
+<section class="section" id="disclaimer" style="padding-top:0;">
+  <div class="container">
+    <div class="disclaimer reveal">
+      <h3>Important Disclaimer</h3>
+      <p>
+        RV Pets Zone is intended to provide a marketplace and information platform for discovering
+        and connecting around available listings. Listing information, availability, pricing,
+        ownership, animal condition and seller-provided details may change and should be
+        independently verified. Users are responsible for making informed decisions and complying
+        with applicable laws, regulations and animal-welfare requirements. RV Pets Zone does not
+        automatically guarantee every listing, transaction, seller, buyer, animal condition or
+        availability unless explicitly stated for a specific platform service.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-brand">
+          <svg class="logo-mark" viewBox="0 0 40 40" role="img" aria-label="RV Pets Zone brand mark">
+            <rect width="40" height="40" rx="11" fill="#0D5C4D" stroke="#2A7A69" stroke-width="1"/>
+            <ellipse cx="15" cy="12.5" rx="2.6" ry="6.2" fill="#ffffff" transform="rotate(-12 15 12.5)"/>
+            <ellipse cx="24.5" cy="12.5" rx="2.6" ry="6.2" fill="#ffffff" transform="rotate(12 24.5 12.5)"/>
+            <ellipse cx="15" cy="13.4" rx="1.1" ry="3.6" fill="#C4702A" transform="rotate(-12 15 13.4)"/>
+            <ellipse cx="24.5" cy="13.4" rx="1.1" ry="3.6" fill="#C4702A" transform="rotate(12 24.5 13.4)"/>
+            <circle cx="20" cy="24" r="8.4" fill="#ffffff"/>
+            <circle cx="16.9" cy="23" r="1.15" fill="#0D5C4D"/>
+            <circle cx="23.1" cy="23" r="1.15" fill="#0D5C4D"/>
+            <path d="M20 26.3l-1.5 1.7h3z" fill="#C4702A"/>
+          </svg>
+          <span class="brand-text">
+            <span class="brand-name">RV PETS ZONE</span>
+            <span class="brand-sub">Cap</span>
+          </span>
+        </div>
+        <p style="max-width:34ch;">A Smarter Marketplace for Pets, Birds, Fish &amp; Livestock</p>
+        <p style="margin-top:16px;">
+          <a href="mailto:rvpetszone@gmail.com">rvpetszone@gmail.com</a>
+        </p>
+      </div>
+
+      <div>
+        <h4>Platform</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#live-stock">Live Stock</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Guidelines &amp; Support</h4>
+        <ul class="footer-links">
+          <li><a href="#buyer-guidelines">Buyer Guidelines</a></li>
+          <li><a href="#seller-guidelines">Seller Guidelines</a></li>
+          <li><a href="#responsible-ownership">Responsible Ownership</a></li>
+          <li><a href="#safety">Safety</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 XSympan Technologies. All rights reserved.</span>
+      <span>RV Pets Zone — Marketplace &amp; Guidelines</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     BACK TO TOP
+     ============================================================ -->
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<!-- ============================================================
+     REPORT MODAL
+     ============================================================ -->
+<div class="modal" id="reportModal" role="dialog" aria-modal="true" aria-labelledby="reportTitle" hidden>
+  <div class="modal-backdrop" data-close-modal></div>
+  <div class="modal-dialog" role="document">
+    <button class="modal-close" type="button" data-close-modal aria-label="Close dialog">&#10005;</button>
+    <h3 id="reportTitle">Report a Listing</h3>
+    <p class="modal-sub">Help keep the marketplace accurate and safe.</p>
+
+    <form id="reportForm" novalidate>
+      <div class="field">
+        <label for="reportType">What would you like to report?</label>
+        <select id="reportType" name="reportType">
+          <option value="">Select a reason</option>
+          <option>Incorrect information</option>
+          <option>Fraudulent listing</option>
+          <option>Suspicious activity</option>
+          <option>Prohibited listing</option>
+          <option>Welfare concern</option>
+          <option>Duplicate listing</option>
+          <option>Unavailable listing</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="reportListing">Listing reference (optional)</label>
+        <input type="text" id="reportListing" name="listing" placeholder="Listing ID, title or link" />
+      </div>
+
+      <div class="field">
+        <label for="reportDetails">Details</label>
+        <textarea id="reportDetails" name="details" placeholder="Briefly describe the issue."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="reportEmail">Your email (optional)</label>
+        <input type="email" id="reportEmail" name="email" placeholder="you@example.com" />
+      </div>
+
+      <div class="form-note">
+        This form is a front-end demonstration only. Actual submission requires backend integration.
+        To send your report now, please email
+        <a href="mailto:rvpetszone@gmail.com">rvpetszone@gmail.com</a>.
+      </div>
+
+      <div class="btn-row" style="margin-top:18px;">
+        <button class="btn btn-primary" type="submit">Prepare Report</button>
+        <a class="btn btn-outline" href="mailto:rvpetszone@gmail.com">Email RV Pets Zone</a>
+      </div>
+
+      <div class="form-status" id="reportStatus" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+
+<!-- ============================================================
+     CONTACT MODAL
+     ============================================================ -->
+<div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle" hidden>
+  <div class="modal-backdrop" data-close-modal></div>
+  <div class="modal-dialog" role="document">
+    <button class="modal-close" type="button" data-close-modal aria-label="Close dialog">&#10005;</button>
+    <h3 id="contactTitle">Contact RV Pets Zone</h3>
+    <p class="modal-sub">We respond to platform, listing and guideline enquiries by email.</p>
+
+    <div class="contact-line">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg>
+      <span>
+        <strong>Email</strong>
+        <a href="mailto:rvpetszone@gmail.com">rvpetszone@gmail.com</a>
+      </span>
+    </div>
+
+    <div class="contact-line">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/></svg>
+      <span>
+        <strong>Brand</strong>
+        <span style="font-size:.95rem;font-weight:600;color:var(--ink);">RV Pets Zone — Cap</span>
+      </span>
+    </div>
+
+    <p style="font-size:.82rem;color:var(--muted);margin-top:16px;">
+      No phone number or physical address is published for this platform. Email is the official
+      contact channel.
+    </p>
+
+    <div class="btn-row" style="margin-top:6px;">
+      <a class="btn btn-primary" href="mailto:rvpetszone@gmail.com">Send an Email</a>
+      <button class="btn btn-outline" type="button" data-close-modal>Close</button>
+    </div>
+  </div>
+</div>
+
+<noscript>
+  <style>
+    .acc-panel{grid-template-rows:1fr !important;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  </style>
+</noscript>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------
+     HEADER SHADOW + BACK TO TOP
+     ------------------------------------------------------------ */
+  var header = document.getElementById('siteHeader');
+  var toTop = document.getElementById('toTop');
+
+  function onScroll() {
+    var y = window.scrollY || window.pageYOffset;
+    if (header) header.classList.toggle('scrolled', y > 8);
+    if (toTop) toTop.classList.toggle('show', y > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (toTop) {
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ------------------------------------------------------------
+     MOBILE NAV
+     ------------------------------------------------------------ */
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+
+  function closeNav() {
+    if (!navLinks || !navToggle) return;
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function () {
+      var open = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    navLinks.addEventListener('click', function (e) {
+      if (e.target.closest('a')) closeNav();
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!navLinks.classList.contains('open')) return;
+      if (navLinks.contains(e.target) || navToggle.contains(e.target)) return;
+      closeNav();
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 1140) closeNav();
+    });
+  }
+
+  /* ------------------------------------------------------------
+     SMOOTH SCROLL (offset-aware fallback)
+     ------------------------------------------------------------ */
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = link.getAttribute('href');
+      if (!id || id === '#') return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      closeNav();
+
+      var navH = header ? header.offsetHeight : 68;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - navH - 12;
+
+      window.scrollTo({
+        top: Math.max(top, 0),
+        behavior: 'smooth'
+      });
+
+      history.replaceState(null, '', id);
+    });
+  });
+
+  /* ------------------------------------------------------------
+     SCROLLSPY — ACTIVE NAV STATE
+     ------------------------------------------------------------ */
+  var navAnchors = Array.prototype.slice.call(
+    document.querySelectorAll('.nav-links a[href^="#"]')
+  );
+  var sections = navAnchors
+    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+    .filter(Boolean);
+
+  function setActive(id) {
+    navAnchors.forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  if ('IntersectionObserver' in window && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      var visible = entries
+        .filter(function (en) { return en.isIntersecting; })
+        .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; });
+      if (visible.length) setActive(visible[0].target.id);
+    }, {
+      rootMargin: '-45% 0px -50% 0px',
+      threshold: [0, 0.15, 0.4, 0.75]
+    });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ------------------------------------------------------------
+     SCROLL REVEAL
+     ------------------------------------------------------------ */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var revealObs = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          obs.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    revealEls.forEach(function (el) { revealObs.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ------------------------------------------------------------
+     ACCORDIONS (FAQ + CATEGORY)
+     ------------------------------------------------------------ */
+  document.querySelectorAll('.acc-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var acc = btn.closest('.acc');
+      var isOpen = acc.classList.contains('open');
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+
+      /* Single-open behaviour within the same group */
+      var group = acc.parentElement;
+      if (group) {
+        Array.prototype.forEach.call(group.children, function (sibling) {
+          if (sibling !== acc && sibling.classList && sibling.classList.contains('acc')) {
+            sibling.classList.remove('open');
+            var sb = sibling.querySelector('.acc-btn');
+            if (sb) sb.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      acc.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    });
+
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+  });
+
+  /* ------------------------------------------------------------
+     CHECKLISTS
+     ------------------------------------------------------------ */
+  document.querySelectorAll('[data-checklist]').forEach(function (panel) {
+    var inputs = panel.querySelectorAll('input[type="checkbox"]');
+    var fill = panel.querySelector('[data-progress-fill]');
+    var label = panel.querySelector('[data-progress-label]');
+    var bar = panel.querySelector('.progress-bar');
+    var total = inputs.length;
+
+    function update() {
+      var done = 0;
+      inputs.forEach(function (input) {
+        var item = input.closest('.check-item');
+        if (input.checked) { done++; if (item) item.classList.add('done'); }
+        else if (item) { item.classList.remove('done'); }
+      });
+      var pct = total ? Math.round((done / total) * 100) : 0;
+      if (fill) fill.style.width = pct + '%';
+      if (label) label.textContent = done + ' of ' + total + ' completed';
+      if (bar) bar.setAttribute('aria-valuenow', String(done));
+    }
+
+    inputs.forEach(function (input) {
+      input.addEventListener('change', update);
+    });
+    update();
+  });
+
+  /* ------------------------------------------------------------
+     MODALS
+     ------------------------------------------------------------ */
+  var lastFocused = null;
+
+  function openModal(id) {
+    var modal = document.getElementById(id);
+    if (!modal) return;
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+
+    var focusable = modal.querySelector('button, [href], input, select, textarea');
+    if (focusable) {
+      window.setTimeout(function () { focusable.focus(); }, 40);
+    }
+  }
+
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.hidden = true;
+    if (!document.querySelector('.modal.open')) {
+      document.body.classList.remove('modal-open');
+    }
+    if (lastFocused && typeof lastFocused.focus === 'function') {
+      lastFocused.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-open-modal]').forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+      openModal(trigger.getAttribute('data-open-modal'));
+    });
+  });
+
+  document.querySelectorAll('.modal').forEach(function (modal) {
+    modal.querySelectorAll('[data-close-modal]').forEach(function (el) {
+      el.addEventListener('click', function () { closeModal(modal); });
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      var open = document.querySelector('.modal.open');
+      if (open) closeModal(open);
+      closeNav();
+    }
+    if (e.key === 'Tab') {
+      var open = document.querySelector('.modal.open');
+      if (!open) return;
+      var focusables = open.querySelectorAll(
+        'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+  });
+
+  /* ------------------------------------------------------------
+     REPORT FORM (front-end demonstration only)
+     ------------------------------------------------------------ */
+  var reportForm = document.getElementById('reportForm');
+  if (reportForm) {
+    reportForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var status = document.getElementById('reportStatus');
+      var type = document.getElementById('reportType').value;
+
+      if (!type) {
+        if (status) {
+          status.style.background = 'var(--danger-soft)';
+          status.style.borderColor = '#EFD3D0';
+          status.style.color = 'var(--danger)';
+          status.textContent = 'Please select a report reason.';
+          status.classList.add('show');
+        }
+        return;
+      }
+
+      if (status) {
+        status.style.background = 'var(--ok-soft)';
+        status.style.borderColor = '#CFE6D9';
+        status.style.color = 'var(--ok)';
+        status.textContent =
+          'Report details captured in this demonstration form. No data has been submitted — ' +
+          'please email rvpetszone@gmail.com to complete your report.';
+        status.classList.add('show');
+      }
+    });
+  }
+
+})();
+</script>
+</body>
+</html>

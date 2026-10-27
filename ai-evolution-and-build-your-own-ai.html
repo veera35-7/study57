@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Evolution: From Rules to Reasoning, Agents &amp; AI Systems</title>
+<meta name="description" content="Understand where AI came from, how modern AI systems work, what technologies power them, and how to build your own — from AI APIs to foundation models.">
+<style>
+/* ============ TOKENS ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#05080d;
+  --bg2:#080c14;
+  --panel:rgba(255,255,255,.035);
+  --panel-2:rgba(255,255,255,.055);
+  --border:rgba(255,255,255,.09);
+  --border-hi:rgba(34,211,238,.35);
+  --txt:#e6eefb;
+  --muted:#8b9ab3;
+  --dim:#5d6b82;
+  --cyan:#22d3ee;
+  --blue:#3b82f6;
+  --violet:#8b5cf6;
+  --green:#22c55e;
+  --pink:#ec4899;
+  --amber:#f59e0b;
+  --red:#ef4444;
+  --radius:16px;
+  --radius-sm:10px;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+body{
+  font-family:var(--font);background:var(--bg);color:var(--txt);
+  line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ============ BACKGROUND ============ */
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+  background-image:
+    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 55% at 50% 0%,#000 15%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 55% at 50% 0%,#000 15%,transparent 75%);
+}
+.orb{
+  position:fixed;border-radius:50%;filter:blur(100px);opacity:.24;
+  pointer-events:none;z-index:0;animation:float 24s ease-in-out infinite;
+}
+.orb-1{width:520px;height:520px;background:radial-gradient(circle,#22d3ee,transparent 70%);top:-160px;left:-160px}
+.orb-2{width:560px;height:560px;background:radial-gradient(circle,#8b5cf6,transparent 70%);top:40%;right:-240px;animation-delay:-8s}
+.orb-3{width:460px;height:460px;background:radial-gradient(circle,#3b82f6,transparent 70%);bottom:-180px;left:22%;animation-delay:-15s;opacity:.18}
+@keyframes float{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  33%{transform:translate3d(36px,-44px,0) scale(1.07)}
+  66%{transform:translate3d(-30px,30px,0) scale(.95)}
+}
+
+/* ============ PROGRESS ============ */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0;z-index:1000;
+  background:linear-gradient(90deg,var(--cyan),var(--violet),var(--blue));
+  box-shadow:0 0 14px rgba(34,211,238,.7);transition:width .1s linear;
+}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  background:rgba(5,8,13,.76);border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1320px;margin:0 auto;padding:0 20px;height:64px;
+  display:flex;align-items:center;gap:20px;
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:.92rem;letter-spacing:.4px;white-space:nowrap}
+.brand-dot{
+  width:10px;height:10px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 0 0 rgba(34,211,238,.7);animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(34,211,238,.7)}
+  70%{box-shadow:0 0 0 14px rgba(34,211,238,0)}
+  100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}
+}
+.brand span{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;gap:2px;overflow-x:auto;flex:1;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  color:var(--muted);font-size:.75rem;font-weight:600;letter-spacing:.2px;
+  padding:7px 10px;border-radius:8px;white-space:nowrap;transition:.2s;text-decoration:none;
+}
+.nav-links a:hover{color:var(--txt);background:var(--panel-2);text-decoration:none}
+.nav-links a.active{color:var(--cyan);background:rgba(34,211,238,.1)}
+
+/* ============ LAYOUT ============ */
+main{position:relative;z-index:2}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+section{padding:72px 0;position:relative}
+section + section{border-top:1px solid rgba(255,255,255,.04)}
+
+.sec-num{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  color:var(--cyan);letter-spacing:2.2px;margin-bottom:10px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-num::after{content:'';flex:1;height:1px;max-width:100px;background:linear-gradient(90deg,rgba(34,211,238,.6),transparent)}
+
+h1,h2,h3,h4{line-height:1.2;letter-spacing:-.4px}
+h2{font-size:clamp(1.55rem,3.2vw,2.25rem);font-weight:850;margin-bottom:14px}
+h2 .accent{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+h3{font-size:1.13rem;font-weight:750;margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h3::before{content:'';width:4px;height:18px;border-radius:2px;background:linear-gradient(180deg,var(--cyan),var(--violet));flex-shrink:0}
+h4{font-size:.96rem;font-weight:700;margin:20px 0 8px;color:var(--cyan)}
+
+p{color:var(--muted);margin-bottom:14px;font-size:.95rem}
+p strong{color:var(--txt);font-weight:650}
+.lead{font-size:1.02rem;color:#a9b6cc;max-width:820px}
+
+/* ============ HERO ============ */
+header.hero{position:relative;z-index:2;padding:120px 22px 70px;min-height:auto}
+.hero-inner{max-width:1180px;margin:0 auto}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;
+  background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.28);
+  color:var(--cyan);font-size:.68rem;font-weight:700;letter-spacing:1.4px;
+  text-transform:uppercase;margin-bottom:22px;
+}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 1.8s infinite}
+h1.hero-title{
+  font-size:clamp(2rem,5vw,3.7rem);font-weight:900;letter-spacing:-1.4px;
+  margin-bottom:20px;line-height:1.06;
+}
+h1.hero-title .grad{
+  background:linear-gradient(100deg,var(--cyan),var(--violet) 50%,var(--blue));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:200% auto;animation:shine 7s linear infinite;
+}
+@keyframes shine{to{background-position:200% center}}
+.hero-sub{font-size:1.04rem;color:var(--muted);max-width:680px;margin-bottom:30px}
+.hero-stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:24px}
+.stat b{
+  display:block;font-size:1.6rem;font-weight:900;letter-spacing:-1px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat small{font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:1.1px;font-weight:600}
+
+/* evolution pipeline */
+.evo-pipe{
+  margin-top:44px;padding:26px 20px;border-radius:var(--radius);
+  background:linear-gradient(135deg,rgba(34,211,238,.05),rgba(139,92,246,.045));
+  border:1px solid var(--border);position:relative;overflow:hidden;
+}
+.evo-pipe::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 50%,rgba(34,211,238,.08),transparent 55%);
+  pointer-events:none;
+}
+.evo-track{
+  display:flex;align-items:center;gap:0;overflow-x:auto;padding:8px 4px 14px;
+  scrollbar-width:thin;scrollbar-color:rgba(34,211,238,.4) transparent;
+}
+.evo-track::-webkit-scrollbar{height:6px}
+.evo-track::-webkit-scrollbar-thumb{background:rgba(34,211,238,.35);border-radius:6px}
+.evo-node{
+  flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:0 4px;cursor:default;
+}
+.evo-dot{
+  width:14px;height:14px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  box-shadow:0 0 0 4px rgba(34,211,238,.12),0 0 16px rgba(34,211,238,.5);
+  position:relative;z-index:2;
+}
+.evo-dot::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid rgba(34,211,238,.3);animation:ripple 3s ease-out infinite;
+}
+@keyframes ripple{0%{transform:scale(.7);opacity:.8}100%{transform:scale(1.8);opacity:0}}
+.evo-label{
+  font-family:var(--mono);font-size:.68rem;color:var(--muted);
+  white-space:nowrap;letter-spacing:.3px;text-align:center;font-weight:600;
+}
+.evo-line{
+  flex:1;min-width:24px;height:2px;
+  background:linear-gradient(90deg,rgba(34,211,238,.6),rgba(139,92,246,.4));
+  align-self:flex-start;margin-top:6px;
+}
+
+/* ============ CARDS / GRID ============ */
+.card{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px 24px;margin:20px 0;transition:.3s;position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:100%;
+  background:linear-gradient(180deg,var(--cyan),var(--violet));opacity:0;transition:.3s;
+}
+.card:hover{border-color:rgba(34,211,238,.25);background:var(--panel-2);transform:translateY(-3px)}
+.card:hover::before{opacity:1}
+
+.grid{display:grid;gap:16px;margin:22px 0}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+
+.mini{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:16px 18px;transition:.3s;
+}
+.mini:hover{border-color:var(--border-hi);background:var(--panel-2);transform:translateY(-3px)}
+.mini b{display:block;color:var(--txt);font-size:.88rem;margin-bottom:5px;font-weight:700}
+.mini span{font-size:.82rem;color:var(--muted);line-height:1.55}
+
+/* ============ TABLES ============ */
+.table-wrap{overflow-x:auto;margin:22px 0;border-radius:var(--radius);border:1px solid var(--border);background:var(--panel)}
+table{width:100%;border-collapse:collapse;font-size:.84rem;min-width:560px}
+thead{background:rgba(34,211,238,.06)}
+th{text-align:left;padding:13px 16px;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--cyan);border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.05);color:var(--muted);vertical-align:top}
+td strong{color:var(--txt);font-weight:650}
+tbody tr{transition:.2s}
+tbody tr:hover{background:rgba(34,211,238,.045)}
+tbody tr:last-child td{border-bottom:none}
+
+/* ============ FLOW ============ */
+.flow{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  margin:24px 0;padding:22px;border-radius:var(--radius);
+  background:linear-gradient(180deg,rgba(34,211,238,.035),rgba(139,92,246,.03));
+  border:1px solid var(--border);
+}
+.flow-node{
+  font-family:var(--mono);font-size:.76rem;font-weight:600;
+  padding:10px 18px;border-radius:10px;background:rgba(255,255,255,.045);
+  border:1px solid var(--border);color:var(--txt);text-align:center;
+  transition:.3s;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;
+}
+.flow-node:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(34,211,238,.22);transform:scale(1.03)}
+.flow-node.hi{background:linear-gradient(90deg,rgba(34,211,238,.16),rgba(139,92,246,.16));border-color:rgba(34,211,238,.4);color:#fff}
+.flow-arrow{color:var(--cyan);font-size:1rem;line-height:1;padding:4px 0;opacity:.6;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(4px);opacity:1}}
+.flow-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:18px 0}
+.flow-row .flow-arrow{transform:rotate(-90deg);padding:0 2px}
+
+/* ============ CALLOUTS ============ */
+.callout{border-left:3px solid var(--cyan);background:rgba(34,211,238,.05);padding:14px 20px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin:20px 0}
+.callout p{margin:0;color:#b8c6dc;font-size:.9rem}
+.callout.warn{border-color:var(--amber);background:rgba(245,158,11,.06)}
+.callout.danger{border-color:var(--red);background:rgba(239,68,68,.06)}
+.callout.ok{border-color:var(--green);background:rgba(34,197,94,.06)}
+
+/* ============ CODE ============ */
+pre{
+  background:#06090f;border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:16px 18px;overflow-x:auto;margin:16px 0;
+  font-family:var(--mono);font-size:.78rem;line-height:1.7;color:#a5d6ff;
+}
+code{font-family:var(--mono);font-size:.83em;background:rgba(34,211,238,.09);color:var(--cyan);padding:2px 6px;border-radius:5px}
+
+/* ============ TIMELINE ============ */
+.timeline{position:relative;margin:40px 0 10px}
+.timeline::before{
+  content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);
+  background:linear-gradient(180deg,transparent,var(--cyan),var(--violet),var(--blue),transparent);opacity:.45;
+}
+.tl-item{position:relative;width:50%;padding:0 40px 40px 0;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.tl-item.show{opacity:1;transform:none}
+.tl-item:nth-child(even){margin-left:50%;padding:0 0 40px 40px;text-align:left}
+.tl-item:nth-child(odd){text-align:right}
+.tl-dot{
+  position:absolute;top:5px;width:14px;height:14px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--cyan);
+  box-shadow:0 0 0 4px rgba(34,211,238,.12),0 0 16px rgba(34,211,238,.5);z-index:2;
+}
+.tl-item:nth-child(odd) .tl-dot{right:-7px}
+.tl-item:nth-child(even) .tl-dot{left:-7px}
+.tl-item:nth-child(4n+1) .tl-dot{border-color:var(--cyan)}
+.tl-item:nth-child(4n+2) .tl-dot{border-color:var(--violet);box-shadow:0 0 0 4px rgba(139,92,246,.12),0 0 16px rgba(139,92,246,.5)}
+.tl-item:nth-child(4n+3) .tl-dot{border-color:var(--blue);box-shadow:0 0 0 4px rgba(59,130,246,.12),0 0 16px rgba(59,130,246,.5)}
+.tl-item:nth-child(4n+4) .tl-dot{border-color:var(--green);box-shadow:0 0 0 4px rgba(34,197,94,.12),0 0 16px rgba(34,197,94,.5)}
+.tl-year{font-family:var(--mono);font-size:.72rem;font-weight:800;color:var(--cyan);letter-spacing:1.5px;margin-bottom:6px}
+.tl-card{
+  display:inline-block;text-align:left;background:var(--panel);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:14px 18px;transition:.3s;max-width:100%;
+}
+.tl-card:hover{border-color:var(--border-hi);background:var(--panel-2);transform:translateY(-2px)}
+.tl-card b{display:block;font-size:.9rem;color:var(--txt);margin-bottom:4px;font-weight:700}
+.tl-card span{font-size:.8rem;color:var(--muted);line-height:1.55}
+.tl-note{
+  display:inline-block;margin-top:8px;font-size:.68rem;color:var(--dim);
+  padding:3px 9px;border-radius:6px;border:1px dashed rgba(255,255,255,.14);
+  font-family:var(--mono);letter-spacing:.4px;
+}
+.tl-note.current{border-color:rgba(34,211,238,.4);color:var(--cyan)}
+.tl-note.emerging{border-color:rgba(139,92,246,.4);color:var(--violet)}
+.tl-note.research{border-color:rgba(245,158,11,.4);color:var(--amber)}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.show{opacity:1;transform:none}
+
+/* ============ FAMILY TREE ============ */
+.tree{margin:24px 0;font-family:var(--mono);font-size:.82rem}
+.tree-root{
+  display:inline-block;padding:12px 22px;border-radius:10px;
+  background:linear-gradient(135deg,rgba(34,211,238,.15),rgba(139,92,246,.15));
+  border:1px solid rgba(34,211,238,.35);color:#fff;font-weight:700;letter-spacing:.5px;
+}
+.tree-branch{margin-left:28px;padding-left:20px;border-left:2px solid rgba(34,211,238,.2);margin-top:10px}
+.tree-node{
+  display:flex;align-items:flex-start;gap:10px;padding:8px 0;cursor:pointer;
+  user-select:none;transition:.2s;
+}
+.tree-node:hover{color:var(--cyan)}
+.tree-node .twirl{
+  width:16px;height:16px;flex-shrink:0;margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cyan);font-size:.7rem;transition:.25s;
+}
+.tree-node.open .twirl{transform:rotate(90deg)}
+.tree-node span{color:var(--muted)}
+.tree-node.open span, .tree-node:hover span{color:var(--txt)}
+.tree-children{display:none;margin-left:26px;padding-left:18px;border-left:1px dashed rgba(139,92,246,.28)}
+.tree-node.open + .tree-children{display:block;animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.tree-leaf{color:var(--dim);font-size:.78rem;padding:5px 0;font-family:var(--mono)}
+
+/* ============ TABS ============ */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:20px 0 14px}
+.tab{
+  padding:8px 15px;border-radius:8px;font-size:.78rem;font-weight:650;
+  background:var(--panel);border:1px solid var(--border);color:var(--muted);
+  cursor:pointer;transition:.22s;user-select:none;
+}
+.tab:hover{color:var(--txt);border-color:var(--border-hi)}
+.tab.active{background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(139,92,246,.18));color:#fff;border-color:var(--cyan)}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeIn .35s ease}
+
+/* ============ QUIZ ============ */
+.quiz-item{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:18px 20px;margin:12px 0;transition:.3s;
+}
+.quiz-item:hover{border-color:var(--border-hi)}
+.quiz-q{font-size:.92rem;font-weight:650;color:var(--txt);margin-bottom:12px}
+.quiz-opt{
+  display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;
+  background:rgba(255,255,255,.025);border:1px solid var(--border);
+  cursor:pointer;transition:.2s;font-size:.85rem;color:var(--muted);margin-bottom:7px;
+}
+.quiz-opt:hover{border-color:var(--border-hi);color:var(--txt);background:var(--panel-2)}
+.quiz-opt input{appearance:none;-webkit-appearance:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.25);border-radius:50%;cursor:pointer;flex-shrink:0;transition:.2s;position:relative}
+.quiz-opt.correct{border-color:rgba(34,197,94,.5);background:rgba(34,197,94,.07)}
+.quiz-opt.correct input{background:var(--green);border-color:var(--green)}
+.quiz-opt.wrong{border-color:rgba(239,68,68,.5);background:rgba(239,68,68,.06)}
+.quiz-opt.wrong input{background:var(--red);border-color:var(--red)}
+.quiz-expl{
+  display:none;margin-top:12px;padding:12px 16px;border-radius:8px;
+  background:rgba(34,211,238,.05);border-left:3px solid var(--cyan);
+  font-size:.82rem;color:#b8c6dc;
+}
+.quiz-expl.show{display:block;animation:fadeIn .3s ease}
+.quiz-score{
+  position:sticky;bottom:12px;background:linear-gradient(135deg,rgba(34,211,238,.15),rgba(139,92,246,.15));
+  border:1px solid rgba(34,211,238,.3);border-radius:12px;
+  padding:14px 20px;margin:20px 0;font-weight:700;text-align:center;font-size:.9rem;
+  backdrop-filter:blur(10px);
+}
+
+/* ============ PROJECT BUILDER ============ */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin:20px 0}
+.proj-chip{
+  padding:12px 14px;border-radius:10px;background:var(--panel);
+  border:1px solid var(--border);cursor:pointer;transition:.25s;
+  font-size:.82rem;font-weight:600;color:var(--muted);text-align:center;
+}
+.proj-chip:hover{border-color:var(--border-hi);color:var(--txt);transform:translateY(-2px)}
+.proj-chip.active{background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(139,92,246,.18));color:#fff;border-color:var(--cyan)}
+.proj-detail{
+  margin-top:16px;padding:22px;border-radius:var(--radius);
+  background:linear-gradient(135deg,rgba(34,211,238,.05),rgba(139,92,246,.04));
+  border:1px solid var(--border);min-height:180px;
+}
+.proj-detail h4{margin-top:0;font-size:1.05rem;color:var(--txt)}
+.proj-detail .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
+.proj-detail .cell{padding:12px 14px;border-radius:9px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+.proj-detail .cell b{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:5px;font-weight:800}
+.proj-detail .cell span{font-size:.82rem;color:var(--muted);line-height:1.5}
+
+/* ============ LADDER ============ */
+.ladder{display:flex;flex-direction:column;gap:8px;margin:22px 0}
+.rung{
+  display:flex;align-items:center;gap:14px;padding:14px 20px;border-radius:11px;
+  background:var(--panel);border:1px solid var(--border);transition:.3s;
+  position:relative;overflow:hidden;
+}
+.rung::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--cyan),var(--violet));opacity:.6;
+}
+.rung:hover{border-color:var(--border-hi);background:var(--panel-2);transform:translateX(4px)}
+.rung-num{
+  width:34px;height:34px;flex-shrink:0;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.7rem;font-weight:800;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(139,92,246,.16));
+  border:1px solid rgba(34,211,238,.28);color:var(--cyan);
+}
+.rung-body b{display:block;font-size:.9rem;color:var(--txt);font-weight:700;margin-bottom:2px}
+.rung-body span{font-size:.78rem;color:var(--muted);line-height:1.5}
+
+/* ============ ARCH LAB ============ */
+.arch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:9px;margin:20px 0}
+.arch-chip{
+  padding:11px 12px;border-radius:9px;background:var(--panel);border:1px solid var(--border);
+  cursor:pointer;transition:.2s;font-size:.78rem;font-weight:600;color:var(--muted);text-align:center;
+}
+.arch-chip:hover{border-color:var(--border-hi);color:var(--txt)}
+.arch-chip.active{background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(139,92,246,.18));color:#fff;border-color:var(--cyan)}
+.arch-stage{
+  margin-top:16px;padding:24px;border-radius:var(--radius);
+  background:linear-gradient(180deg,rgba(34,211,238,.04),rgba(139,92,246,.03));
+  border:1px solid var(--border);min-height:340px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+}
+.arch-stage .flow-node{font-size:.78rem;padding:9px 16px}
+
+/* ============ INDUSTRY CARDS ============ */
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:20px 0}
+.ind-card{
+  padding:16px 18px;border-radius:12px;background:var(--panel);
+  border:1px solid var(--border);transition:.3s;
+}
+.ind-card:hover{border-color:var(--border-hi);background:var(--panel-2);transform:translateY(-3px)}
+.ind-card b{display:block;font-size:.9rem;color:var(--txt);margin-bottom:6px;font-weight:700}
+.ind-card span{font-size:.78rem;color:var(--muted);line-height:1.55;display:block}
+
+/* ============ TOOL PILLS ============ */
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0}
+.pill{
+  font-size:.74rem;font-weight:600;padding:6px 12px;border-radius:999px;
+  background:var(--panel);border:1px solid var(--border);color:var(--muted);transition:.2s;
+}
+.pill:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px);background:rgba(34,211,238,.06)}
+
+/* ============ STACK CARDS ============ */
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:20px 0}
+.stack-card{
+  padding:14px 16px;border-radius:11px;background:var(--panel);
+  border:1px solid var(--border);transition:.25s;
+}
+.stack-card:hover{border-color:var(--border-hi);background:var(--panel-2)}
+.stack-card b{font-size:.68rem;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:7px}
+.stack-card span{font-size:.8rem;color:var(--muted);line-height:1.55;display:block}
+
+/* ============ LEVELS ============ */
+.level-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0}
+.level-card{
+  padding:18px 18px 16px;border-radius:12px;background:var(--panel);
+  border:1px solid var(--border);transition:.3s;position:relative;overflow:hidden;
+}
+.level-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet),var(--blue));
+  opacity:.6;
+}
+.level-card:hover{border-color:var(--border-hi);transform:translateY(-4px);background:var(--panel-2)}
+.level-card h4{margin:8px 0 8px;font-size:.94rem;color:var(--txt)}
+.level-card p{font-size:.8rem;margin-bottom:10px;color:var(--muted)}
+.level-card ul{list-style:none;padding:0;margin:0}
+.level-card li{font-size:.75rem;color:var(--dim);padding:3px 0;display:flex;gap:6px}
+.level-card li::before{content:'▸';color:var(--cyan)}
+
+/* ============ ROADMAP ============ */
+.roadmap{display:flex;flex-direction:column;gap:0;margin:22px 0}
+.rm-step{display:flex;gap:14px;align-items:flex-start;padding:12px 0;position:relative}
+.rm-step::before{
+  content:'';position:absolute;left:14px;top:34px;bottom:-6px;width:2px;
+  background:linear-gradient(180deg,rgba(34,211,238,.4),rgba(139,92,246,.1));
+}
+.rm-step:last-child::before{display:none}
+.rm-num{
+  width:30px;height:30px;flex-shrink:0;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.68rem;font-weight:800;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(139,92,246,.16));
+  border:1px solid rgba(34,211,238,.28);color:var(--cyan);position:relative;z-index:1;
+}
+.rm-body b{font-size:.88rem;color:var(--txt);font-weight:700;display:block;margin-bottom:2px}
+.rm-body span{font-size:.78rem;color:var(--muted);line-height:1.5}
+
+/* ============ REFERENCES ============ */
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:20px 0}
+.ref-card{
+  padding:14px 16px;border-radius:10px;background:var(--panel);
+  border:1px solid var(--border);transition:.25s;
+}
+.ref-card:hover{border-color:var(--border-hi);background:var(--panel-2)}
+.ref-card a{font-size:.85rem;font-weight:650;color:var(--cyan);display:block;margin-bottom:4px}
+.ref-card span{font-size:.75rem;color:var(--muted);line-height:1.5}
+
+/* ============ FOOTER ============ */
+footer{
+  position:relative;z-index:2;border-top:1px solid var(--border);
+  padding:46px 22px 38px;text-align:center;background:rgba(0,0,0,.28);
+}
+.hashtags{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;max-width:900px;margin:0 auto 22px}
+.hashtags span{font-size:.72rem;font-weight:600;color:var(--dim);padding:5px 11px;border-radius:7px;background:var(--panel);border:1px solid var(--border);transition:.25s}
+.hashtags span:hover{color:var(--cyan);border-color:var(--border-hi);transform:translateY(-2px)}
+footer small{color:var(--dim);font-size:.76rem;display:block;line-height:1.85}
+
+/* ============ TOP BUTTON ============ */
+#top{
+  position:fixed;right:20px;bottom:20px;z-index:800;width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));color:#05080d;
+  font-weight:900;font-size:1.05rem;border:none;cursor:pointer;
+  opacity:0;pointer-events:none;transition:.35s;
+  box-shadow:0 8px 26px rgba(34,211,238,.35);
+}
+#top.show{opacity:1;pointer-events:auto}
+#top:hover{transform:translateY(-4px) scale(1.06)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:960px){
+  .grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:680px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  section{padding:52px 0}
+  .wrap{padding:0 16px}
+  .nav-links{display:none}
+  .hero-stats{gap:20px}
+  .stat b{font-size:1.35rem}
+  .timeline::before{left:8px}
+  .tl-item,.tl-item:nth-child(even){width:100%;margin-left:0;padding:0 0 28px 30px;text-align:left}
+  .tl-item:nth-child(odd) .tl-dot,.tl-item:nth-child(even) .tl-dot{left:1px;right:auto}
+  .flow-node{font-size:.7rem;padding:8px 12px}
+  .tree-branch{margin-left:14px;padding-left:14px}
+  .tree-children{margin-left:14px;padding-left:12px}
+  .arch-stage{padding:16px;min-height:auto}
+}
+@media(max-width:360px){
+  .evo-label{font-size:.6rem}
+  .flow-node{font-size:.66rem}
+}
+
+/* ============ FOCUS ============ */
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:4px}
+button:focus-visible,.tab:focus-visible,.proj-chip:focus-visible,.arch-chip:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div id="progress"></div>
+
+<nav aria-label="Page sections">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-dot"></span><span>AI EVOLUTION</span></div>
+    <div class="nav-links">
+      <a href="#timeline">Timeline</a>
+      <a href="#tree">Family Tree</a>
+      <a href="#ai-vs">AI vs ML</a>
+      <a href="#ml">ML</a>
+      <a href="#dl">Deep Learning</a>
+      <a href="#transformer">Transformer</a>
+      <a href="#llm">LLM</a>
+      <a href="#foundation">Foundation</a>
+      <a href="#multimodal">Multimodal</a>
+      <a href="#reasoning">Reasoning</a>
+      <a href="#agents">Agents</a>
+      <a href="#multiagent">Multi-Agent</a>
+      <a href="#rag">RAG</a>
+      <a href="#build">Build AI</a>
+      <a href="#stack">Stack</a>
+      <a href="#tools">Tools</a>
+      <a href="#landscape">Landscape</a>
+      <a href="#hardware">Hardware</a>
+      <a href="#data">Data</a>
+      <a href="#training">Training</a>
+      <a href="#finetune">Fine-Tune</a>
+      <a href="#inference">Inference</a>
+      <a href="#serving">Serving</a>
+      <a href="#app-arch">App Arch</a>
+      <a href="#enterprise">Enterprise</a>
+      <a href="#eval">Evaluation</a>
+      <a href="#security">Security</a>
+      <a href="#responsible">Responsible</a>
+      <a href="#industry">Industry</a>
+      <a href="#builder">Projects</a>
+      <a href="#levels">Levels</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#lab">Lab</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#interview">Interview</a>
+      <a href="#howfar">How Far</a>
+      <a href="#refs">Refs</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="badge">AI EVOLUTION • ENGINEERING • INFRASTRUCTURE</div>
+    <h1 class="hero-title">AI Evolution:<br><span class="grad">From Rules to Reasoning, Agents &amp; AI Systems</span></h1>
+    <p class="hero-sub">Understand where AI came from, how modern AI systems work, what technologies power them, and how to build your own.</p>
+    <div class="hero-stats">
+      <div class="stat"><b>70+</b><small>Years of AI</small></div>
+      <div class="stat"><b>5</b><small>Build Levels</small></div>
+      <div class="stat"><b>18</b><small>Quiz Questions</small></div>
+      <div class="stat"><b>40+</b><small>Sections</small></div>
+    </div>
+
+    <div class="evo-pipe" aria-label="AI evolution pipeline">
+      <div class="evo-track">
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">RULES</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">STATISTICAL AI</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">MACHINE LEARNING</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">DEEP LEARNING</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">CNN / RNN</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">TRANSFORMERS</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">FOUNDATION MODELS</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">LLMs / VLMs / AUDIO</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">REASONING</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">RAG + TOOLS</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">AGENTS</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">MULTI-AGENT</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">AI SYSTEMS</div></div>
+        <div class="evo-line"></div>
+        <div class="evo-node"><div class="evo-dot"></div><div class="evo-label">PHYSICAL / SCIENTIFIC</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ 3. TIMELINE ============ -->
+<section id="timeline" class="reveal">
+  <div class="sec-num">01 — HISTORY</div>
+  <h2>AI <span class="accent">Evolution Timeline</span></h2>
+  <p class="lead">Historical milestones and emerging directions. Established facts are separated from experimental and projected developments.</p>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1950s</div><div class="tl-card"><b>AI Foundations</b><span>Turing's machine intelligence question, symbolic reasoning, early machine intelligence research.</span><div class="tl-note">ESTABLISHED</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1960s–70s</div><div class="tl-card"><b>Rule-Based Systems</b><span>Search, symbolic AI, expert-system foundations. Programs encoded human knowledge as explicit rules.</span><div class="tl-note">ESTABLISHED</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1980s</div><div class="tl-card"><b>Expert Systems</b><span>Knowledge engineering, probabilistic methods, commercial expert systems.</span><div class="tl-note">ESTABLISHED</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1990s</div><div class="tl-card"><b>Statistical ML</b><span>Support vector machines, decision trees, probabilistic learning, statistical machine learning.</span><div class="tl-note">ESTABLISHED</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2000s</div><div class="tl-card"><b>Data + GPUs</b><span>Larger datasets, GPU acceleration, recommendation systems, improved speech recognition.</span><div class="tl-note">ESTABLISHED</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2010s</div><div class="tl-card"><b>Deep Learning</b><span>CNNs, RNNs, representation learning, large-scale GPU training across vision and speech.</span><div class="tl-note">ESTABLISHED</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2017</div><div class="tl-card"><b>Transformer Architecture</b><span>Attention, self-attention, parallel training, long-context processing, sequence modeling. A major turning point.</span><div class="tl-note">ESTABLISHED</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Late 2010s</div><div class="tl-card"><b>Pretrained Language Models</b><span>Transfer learning and large-scale pretraining become standard practice.</span><div class="tl-note">ESTABLISHED</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2020s</div><div class="tl-card"><b>Foundation Models</b><span>LLMs, generative AI, multimodal AI, code models, image generation, speech and video models.</span><div class="tl-note current">CURRENT</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Next</div><div class="tl-card"><b>Reasoning, Agents &amp; Physical AI</b><span>Tool use, long-running workflows, computer-use systems, AI for science and biology, robotics, physical AI. Some elements are current, others experimental or projected.</span><div class="tl-note emerging">EMERGING</div></div></div>
+  </div>
+</section>
+
+<!-- ============ 4. FAMILY TREE ============ -->
+<section id="tree" class="reveal">
+  <div class="sec-num">02 — TAXONOMY</div>
+  <h2>AI <span class="accent">Family Tree</span></h2>
+  <p class="lead">Click any branch to expand. The tree shows how AI subfields relate to one another.</p>
+
+  <div class="tree">
+    <div class="tree-root">ARTIFICIAL INTELLIGENCE</div>
+
+    <div class="tree-branch">
+      <div class="tree-node" tabindex="0" role="button" aria-expanded="false"><span class="twirl">▶</span><span>Symbolic AI</span></div>
+      <div class="tree-children">
+        <div class="tree-leaf">Rule-based systems · Logic programming · Knowledge representation · Expert systems</div>
+      </div>
+    </div>
+
+    <div class="tree-branch">
+      <div class="tree-node" tabindex="0" role="button" aria-expanded="false"><span class="twirl">▶</span><span>Machine Learning</span></div>
+      <div class="tree-children">
+        <div class="tree-leaf">Supervised Learning</div>
+        <div class="tree-leaf">Unsupervised Learning</div>
+        <div class="tree-leaf">Self-Supervised Learning</div>
+        <div class="tree-leaf">Reinforcement Learning</div>
+      </div>
+    </div>
+
+    <div class="tree-branch">
+      <div class="tree-node" tabindex="0" role="button" aria-expanded="false"><span class="twirl">▶</span><span>Deep Learning</span></div>
+      <div class="tree-children">
+        <div class="tree-leaf">CNN</div>
+        <div class="tree-leaf">RNN</div>
+        <div class="tree-leaf">LSTM</div>
+        <div class="tree-leaf">Transformers</div>
+      </div>
+    </div>
+
+    <div class="tree-branch">
+      <div class="tree-node" tabindex="0" role="button" aria-expanded="false"><span class="twirl">▶</span><span>Generative AI</span></div>
+      <div class="tree-children">
+        <div class="tree-leaf">LLM</div>
+        <div class="tree-leaf">Vision</div>
+        <div class="tree-leaf">Audio</div>
+        <div class="tree-leaf">Video</div>
+        <div class="tree-leaf">Image Generation</div>
+      </div>
+    </div>
+
+    <div class="tree-branch">
+      <div class="tree-node" tabindex="0" role="button" aria-expanded="false"><span class="twirl">▶</span><span>Foundation Models</span></div>
+      <div class="tree-children">
+        <div class="tree-leaf">Pretrained large-scale models adaptable to many tasks</div>
+      </div>
+    </div>
+
+    <div class="tree-branch">
+      <div class="tree-node" tabindex="0" role="button" aria-expanded="false"><span class="twirl">▶</span><span>Multimodal AI</span></div>
+      <div class="tree-children">
+        <div class="tree-leaf">Text · Image · Audio · Video · Document · Sensor</div>
+      </div>
+    </div>
+
+    <div class="tree-branch">
+      <div class="tree-node" tabindex="0" role="button" aria-expanded="false"><span class="twirl">▶</span><span>Reasoning Systems</span></div>
+      <div class="tree-children">
+        <div class="tree-leaf">Deliberation · Planning · Decomposition · Verification</div>
+      </div>
+    </div>
+
+    <div class="tree-branch">
+      <div class="tree-node" tabindex="0" role="button" aria-expanded="false"><span class="twirl">▶</span><span>AI Agents</span></div>
+      <div class="tree-children">
+        <div class="tree-leaf">Tool use · Memory · Planning · State · Guardrails</div>
+      </div>
+    </div>
+
+    <div class="tree-branch">
+      <div class="tree-node" tabindex="0" role="button" aria-expanded="false"><span class="twirl">▶</span><span>Multi-Agent Systems</span></div>
+      <div class="tree-children">
+        <div class="tree-leaf">Planner · Executor · Specialists · Supervisor · Orchestrator</div>
+      </div>
+    </div>
+
+    <div class="tree-branch">
+      <div class="tree-node" tabindex="0" role="button" aria-expanded="false"><span class="twirl">▶</span><span>Embodied / Physical AI</span></div>
+      <div class="tree-children">
+        <div class="tree-leaf">Robotics · Autonomous systems · Scientific AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. WHAT IS AI ============ -->
+<section id="what" class="reveal">
+  <div class="sec-num">03 — FOUNDATIONS</div>
+  <h2>What Is <span class="accent">AI?</span></h2>
+  <p class="lead">AI is a system that performs tasks requiring capabilities commonly associated with intelligent behavior.</p>
+
+  <div class="grid grid-4">
+    <div class="mini"><b>Perception</b><span>Interpreting input from the world.</span></div>
+    <div class="mini"><b>Prediction</b><span>Estimating outcomes from patterns.</span></div>
+    <div class="mini"><b>Learning</b><span>Improving from data or feedback.</span></div>
+    <div class="mini"><b>Reasoning</b><span>Deriving conclusions from information.</span></div>
+    <div class="mini"><b>Planning</b><span>Sequencing actions toward a goal.</span></div>
+    <div class="mini"><b>Decision-making</b><span>Choosing among alternatives.</span></div>
+    <div class="mini"><b>Generation</b><span>Producing text, images, audio, code.</span></div>
+    <div class="mini"><b>Action</b><span>Interacting with systems or the world.</span></div>
+  </div>
+
+  <h3>The AI Loop</h3>
+  <div class="flow">
+    <div class="flow-node hi">INPUT</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">PERCEPTION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">REPRESENTATION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">MODEL</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">REASONING / PREDICTION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">ACTION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">FEEDBACK</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">LEARNING / IMPROVEMENT</div>
+  </div>
+</section>
+
+<!-- ============ 6. AI VS ML ============ -->
+<section id="ai-vs" class="reveal">
+  <div class="sec-num">04 — COMPARISON</div>
+  <h2>AI vs ML vs DL vs <span class="accent">Generative AI</span></h2>
+  <p class="lead">These terms are nested, not interchangeable. Each layer sits inside the previous one and adds specificity.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Term</th><th>Definition</th><th>Input</th><th>Output</th><th>Training Style</th><th>Typical Infrastructure</th></tr></thead>
+      <tbody>
+        <tr><td><strong>AI</strong></td><td>Systems performing tasks associated with intelligence</td><td>Any</td><td>Any</td><td>Rules, learning, hybrid</td><td>CPU to large clusters</td></tr>
+        <tr><td><strong>ML</strong></td><td>Systems that learn patterns from data</td><td>Datasets</td><td>Predictions</td><td>Supervised / unsupervised / RL</td><td>CPU, some GPU</td></tr>
+        <tr><td><strong>Deep Learning</strong></td><td>ML using multi-layer neural networks</td><td>Large datasets</td><td>Predictions, representations</td><td>Gradient-based</td><td>GPUs / accelerators</td></tr>
+        <tr><td><strong>Generative AI</strong></td><td>Models that generate new content</td><td>Prompts, conditions</td><td>Text, image, audio, video, code</td><td>Pretraining + alignment</td><td>GPU clusters</td></tr>
+        <tr><td><strong>Foundation Model</strong></td><td>Large pretrained model adaptable to many tasks</td><td>Massive corpora</td><td>Adaptable representations</td><td>Self-supervised pretraining</td><td>Large distributed clusters</td></tr>
+        <tr><td><strong>LLM</strong></td><td>Foundation model specialized for language</td><td>Text tokens</td><td>Text tokens</td><td>Pretraining + post-training</td><td>GPU serving infrastructure</td></tr>
+        <tr><td><strong>Multimodal Model</strong></td><td>Model handling more than one modality</td><td>Text, image, audio, video, docs</td><td>Any supported modality</td><td>Multimodal pretraining</td><td>GPU serving infrastructure</td></tr>
+        <tr><td><strong>Agentic System</strong></td><td>AI system that plans, uses tools, and acts</td><td>Goals, context, tools</td><td>Actions, results</td><td>Model + orchestration</td><td>Model + tool + runtime infra</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 7. MACHINE LEARNING ============ -->
+<section id="ml" class="reveal">
+  <div class="sec-num">05 — MACHINE LEARNING</div>
+  <h2>Machine <span class="accent">Learning</span></h2>
+
+  <h3>Learning Paradigms</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Supervised</b><span>Learn from labeled examples.</span></div>
+    <div class="mini"><b>Unsupervised</b><span>Find structure in unlabeled data.</span></div>
+    <div class="mini"><b>Semi-Supervised</b><span>Combine labeled and unlabeled data.</span></div>
+    <div class="mini"><b>Self-Supervised</b><span>Generate labels from data itself.</span></div>
+    <div class="mini"><b>Reinforcement</b><span>Learn from reward signals.</span></div>
+    <div class="mini"><b>Transfer</b><span>Reuse knowledge across tasks.</span></div>
+  </div>
+
+  <h3>Common Algorithms</h3>
+  <div class="pills">
+    <span class="pill">Linear Regression</span>
+    <span class="pill">Logistic Regression</span>
+    <span class="pill">Decision Trees</span>
+    <span class="pill">Random Forest</span>
+    <span class="pill">Gradient Boosting</span>
+    <span class="pill">SVM</span>
+    <span class="pill">K-Means</span>
+    <span class="pill">PCA</span>
+    <span class="pill">Neural Networks</span>
+  </div>
+
+  <h3>Core Vocabulary</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Dataset</strong></td><td>Collection of examples used for training or evaluation.</td></tr>
+        <tr><td><strong>Features</strong></td><td>Input variables the model uses.</td></tr>
+        <tr><td><strong>Labels</strong></td><td>Target outputs for supervised learning.</td></tr>
+        <tr><td><strong>Train / Validation / Test</strong></td><td>Three splits: learn, tune, and estimate generalization.</td></tr>
+        <tr><td><strong>Loss</strong></td><td>Measure of error the model minimizes.</td></tr>
+        <tr><td><strong>Optimizer</strong></td><td>Algorithm updating weights to reduce loss.</td></tr>
+        <tr><td><strong>Gradient</strong></td><td>Direction and rate of change of loss.</td></tr>
+        <tr><td><strong>Weights / Biases</strong></td><td>Learnable parameters.</td></tr>
+        <tr><td><strong>Epoch / Batch</strong></td><td>One pass over data / one group of samples.</td></tr>
+        <tr><td><strong>Learning Rate</strong></td><td>Step size for weight updates.</td></tr>
+        <tr><td><strong>Overfitting</strong></td><td>Model fits training data too closely; generalizes poorly.</td></tr>
+        <tr><td><strong>Underfitting</strong></td><td>Model too simple to capture the pattern.</td></tr>
+        <tr><td><strong>Regularization</strong></td><td>Techniques to reduce overfitting.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 8. DEEP LEARNING ============ -->
+<section id="dl" class="reveal">
+  <div class="sec-num">06 — DEEP LEARNING</div>
+  <h2>Deep <span class="accent">Learning</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">INPUT</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">HIDDEN LAYERS</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">OUTPUT</div>
+  </div>
+
+  <h3>Core Concepts</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Perceptron</b><span>Simplest neural unit.</span></div>
+    <div class="mini"><b>Neurons</b><span>Weighted sums + activation.</span></div>
+    <div class="mini"><b>Layers</b><span>Stacked transformations.</span></div>
+    <div class="mini"><b>Activation Functions</b><span>Introduce non-linearity.</span></div>
+    <div class="mini"><b>Forward Pass</b><span>Compute predictions.</span></div>
+    <div class="mini"><b>Loss</b><span>Measure error.</span></div>
+    <div class="mini"><b>Backpropagation</b><span>Compute gradients.</span></div>
+    <div class="mini"><b>Gradient Descent</b><span>Update weights.</span></div>
+    <div class="mini"><b>Optimizers</b><span>Adaptive update rules.</span></div>
+  </div>
+
+  <h3>Architectures</h3>
+  <div class="grid grid-4">
+    <div class="mini"><b>CNN</b><span>Convolutional networks for grid-like data.</span></div>
+    <div class="mini"><b>RNN</b><span>Recurrent networks for sequences.</span></div>
+    <div class="mini"><b>LSTM</b><span>Gated recurrent networks for long dependencies.</span></div>
+    <div class="mini"><b>Transformer</b><span>Attention-based networks for sequences and beyond.</span></div>
+  </div>
+</section>
+
+<!-- ============ 9. TRANSFORMER ============ -->
+<section id="transformer" class="reveal">
+  <div class="sec-num">07 — TRANSFORMER</div>
+  <h2>The <span class="accent">Transformer</span></h2>
+  <p class="lead">The architecture that reshaped modern AI. Introduced in 2017, it replaced recurrence with attention.</p>
+
+  <div class="flow">
+    <div class="flow-node">Tokens</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Embeddings</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Positional Information</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Self-Attention</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Multi-Head Attention</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Feed Forward Network</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Residual Connections</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Normalization</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Repeated Layers</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Output</div>
+  </div>
+
+  <h3>Attention in Plain Terms</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Query</b><span>What am I looking for?</span></div>
+    <div class="mini"><b>Key</b><span>What is available?</span></div>
+    <div class="mini"><b>Value</b><span>What gets passed forward?</span></div>
+    <div class="mini"><b>Attention Score</b><span>Query–Key similarity.</span></div>
+    <div class="mini"><b>Attention Weights</b><span>Normalized scores.</span></div>
+    <div class="mini"><b>Context Representation</b><span>Weighted blend of values.</span></div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Simplified example:</strong> In "The cat sat on the mat," when the model processes "sat," self-attention lets it weigh "cat" and "mat" more heavily than distant words — capturing meaning without recurrent state.</p>
+  </div>
+</section>
+
+<!-- ============ 10. LLM ============ -->
+<section id="llm" class="reveal">
+  <div class="sec-num">08 — LLM</div>
+  <h2>Large <span class="accent">Language Models</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">TEXT</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">TOKENIZER</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">TOKENS</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">EMBEDDINGS</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">TRANSFORMER</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">LOGITS</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">DECODER</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">TOKENS</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">TEXT</div>
+  </div>
+
+  <h3>Key Terms</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Token</b><span>Sub-word unit of text.</span></div>
+    <div class="mini"><b>Context</b><span>Tokens the model conditions on.</span></div>
+    <div class="mini"><b>Weights</b><span>Learned parameters.</span></div>
+    <div class="mini"><b>Inference</b><span>Running the trained model.</span></div>
+    <div class="mini"><b>Decoding</b><span>Choosing next tokens.</span></div>
+    <div class="mini"><b>Temperature</b><span>Randomness of sampling.</span></div>
+    <div class="mini"><b>Logits</b><span>Raw scores before softmax.</span></div>
+    <div class="mini"><b>Probabilities</b><span>Softmax over logits.</span></div>
+    <div class="mini"><b>Sampling</b><span>Choosing from probability distribution.</span></div>
+  </div>
+</section>
+
+<!-- ============ 11. FOUNDATION MODELS ============ -->
+<section id="foundation" class="reveal">
+  <div class="sec-num">09 — FOUNDATION MODELS</div>
+  <h2>Foundation <span class="accent">Models</span></h2>
+
+  <div class="flow">
+    <div class="flow-node hi">PRETRAIN</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">POST-TRAIN</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">EVALUATE</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">DEPLOY</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">MONITOR</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">IMPROVE</div>
+  </div>
+
+  <h3>Lifecycle Stages</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Pretraining</b><span>Self-supervised learning on large corpora.</span></div>
+    <div class="mini"><b>Instruction Tuning</b><span>Teach models to follow instructions.</span></div>
+    <div class="mini"><b>Alignment</b><span>Align behavior with human preferences.</span></div>
+    <div class="mini"><b>Fine-Tuning</b><span>Adapt to a specific domain or task.</span></div>
+    <div class="mini"><b>Adapters</b><span>Small trainable modules inserted into the model.</span></div>
+    <div class="mini"><b>LoRA / PEFT</b><span>Parameter-efficient adaptation methods.</span></div>
+    <div class="mini"><b>Evaluation</b><span>Measure quality, safety, and behavior.</span></div>
+    <div class="mini"><b>Deployment</b><span>Serve with the right runtime and guardrails.</span></div>
+  </div>
+
+  <h3>Complexity Ladder (illustrative)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Approach</th><th>Relative Effort</th><th>What It Changes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Prompting</strong></td><td>Lowest</td><td>Just the input.</td></tr>
+        <tr><td><strong>RAG</strong></td><td>Low</td><td>Adds retrieval context.</td></tr>
+        <tr><td><strong>Fine-Tuning</strong></td><td>Medium</td><td>Adjusts model weights.</td></tr>
+        <tr><td><strong>Pretraining from scratch</strong></td><td>Highest</td><td>Builds a model from raw data and compute.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout warn"><p><strong>Important distinction:</strong> Prompting, RAG, fine-tuning, and pretraining from scratch are fundamentally different engineering efforts. They are not interchangeable choices.</p></div>
+</section>
+
+<!-- ============ 12. MULTIMODAL ============ -->
+<section id="multimodal" class="reveal">
+  <div class="sec-num">10 — MULTIMODAL AI</div>
+  <h2>Multimodal <span class="accent">AI</span></h2>
+  <p class="lead">Models that handle more than one modality. Current platforms support various combinations of text, image, audio, video, and documents — not every model supports every modality.</p>
+
+  <div class="flow">
+    <div class="flow-row">
+      <div class="flow-node">TEXT</div>
+      <div class="flow-node">IMAGE</div>
+      <div class="flow-node">AUDIO</div>
+      <div class="flow-node">VIDEO</div>
+      <div class="flow-node">PDF / DOCS</div>
+      <div class="flow-node">SENSOR DATA</div>
+      <div class="flow-node">CODE</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-node hi">MULTIMODAL MODEL</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-row">
+      <div class="flow-node">TEXT</div>
+      <div class="flow-node">IMAGE</div>
+      <div class="flow-node">AUDIO</div>
+      <div class="flow-node">ACTION</div>
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="mini"><b>Multimodal Embeddings</b><span>Shared vector space across modalities.</span></div>
+    <div class="mini"><b>Cross-Modal Understanding</b><span>Reasoning across combined inputs.</span></div>
+    <div class="mini"><b>Vision-Language Models</b><span>Models that connect images and text.</span></div>
+    <div class="mini"><b>Document AI</b><span>Understanding of PDFs, scans, and forms.</span></div>
+    <div class="mini"><b>Audio + Text</b><span>Speech understanding and generation.</span></div>
+    <div class="mini"><b>Video Understanding</b><span>Combining temporal and visual signals.</span></div>
+  </div>
+</section>
+
+<!-- ============ 13. REASONING ============ -->
+<section id="reasoning" class="reveal">
+  <div class="sec-num">11 — REASONING AI</div>
+  <h2>Reasoning <span class="accent">AI</span></h2>
+
+  <div class="grid grid-2">
+    <div class="mini"><b>Pattern Completion</b><span>Predicting likely continuations from training patterns.</span></div>
+    <div class="mini"><b>Structured Reasoning</b><span>Deliberate multi-step derivation toward a conclusion.</span></div>
+  </div>
+
+  <h3>Capabilities</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Deliberation</b><span>Taking more compute before answering.</span></div>
+    <div class="mini"><b>Planning</b><span>Sequencing steps toward a goal.</span></div>
+    <div class="mini"><b>Decomposition</b><span>Breaking problems into sub-problems.</span></div>
+    <div class="mini"><b>Verification</b><span>Checking intermediate results.</span></div>
+    <div class="mini"><b>Self-Checking</b><span>Reviewing own output for errors.</span></div>
+    <div class="mini"><b>Tool-Assisted Reasoning</b><span>Using calculators, search, or code.</span></div>
+    <div class="mini"><b>Long-Horizon Tasks</b><span>Work spanning many steps or sessions.</span></div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Key distinction:</strong> Reasoning can be a <em>model capability</em> (produced by the model itself) or an <em>application-level workflow</em> (orchestrated by the surrounding system). Many production systems combine both.</p>
+  </div>
+</section>
+
+<!-- ============ 14. AGENTS ============ -->
+<section id="agents" class="reveal">
+  <div class="sec-num">12 — AI AGENTS</div>
+  <h2>AI <span class="accent">Agents</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">USER</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">GOAL</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">PLANNER</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">MODEL</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">TOOL SELECTOR</div>
+    <div class="flow-row">
+      <div class="flow-node">WEB</div>
+      <div class="flow-node">CODE</div>
+      <div class="flow-node">DATABASE</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-node">OBSERVATION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">MEMORY / STATE</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">VERIFICATION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">ACTION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">RESULT</div>
+  </div>
+
+  <h3>Agent Concepts</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Tool Calling</b><span>Agent invokes external tools.</span></div>
+    <div class="mini"><b>Function Calling</b><span>Structured invocation of functions.</span></div>
+    <div class="mini"><b>Memory</b><span>Persistent context across steps.</span></div>
+    <div class="mini"><b>Planning</b><span>Decomposing a goal into steps.</span></div>
+    <div class="mini"><b>State</b><span>Tracking progress within a task.</span></div>
+    <div class="mini"><b>Observability</b><span>Logging traces, tools, decisions.</span></div>
+    <div class="mini"><b>Guardrails</b><span>Constraints on what agents may do.</span></div>
+    <div class="mini"><b>Human Approval</b><span>Required sign-off for sensitive actions.</span></div>
+    <div class="mini"><b>Retries</b><span>Recovery from transient failures.</span></div>
+    <div class="mini"><b>Error Handling</b><span>Graceful degradation.</span></div>
+    <div class="mini"><b>Sandboxing</b><span>Isolating tool execution.</span></div>
+  </div>
+
+  <div class="callout"><p>Modern agent platforms increasingly expose tool use, file and search capabilities, computer interaction, and multi-step or long-running workflows. These capabilities are evolving rapidly — check current documentation before designing production systems.</p></div>
+</section>
+
+<!-- ============ 15. MULTI-AGENT ============ -->
+<section id="multiagent" class="reveal">
+  <div class="sec-num">13 — MULTI-AGENT</div>
+  <h2>Multi-Agent <span class="accent">Systems</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">Single Agent</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Planner + Executor</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Specialist Agents</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Supervisor</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Multi-Agent System</div>
+  </div>
+
+  <h3>Example Team</h3>
+  <div class="flow-row">
+    <div class="flow-node">RESEARCH</div>
+    <div class="flow-node">CODING</div>
+    <div class="flow-node">DATA</div>
+    <div class="flow-node">SECURITY</div>
+    <div class="flow-node">REVIEW</div>
+  </div>
+  <div class="flow">
+    <div class="flow-arrow">↓</div>
+    <div class="flow-node hi">ORCHESTRATOR</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-node">FINAL RESULT</div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="mini"><b>Coordination</b><span>Which agent does what and when.</span></div>
+    <div class="mini"><b>Communication</b><span>Structured messages between agents.</span></div>
+    <div class="mini"><b>Task Isolation</b><span>Bounded scopes and permissions.</span></div>
+    <div class="mini"><b>Verification</b><span>Independent checks on outputs.</span></div>
+  </div>
+</section>
+
+<!-- ============ 16. RAG ============ -->
+<section id="rag" class="reveal">
+  <div class="sec-num">14 — RAG</div>
+  <h2>Retrieval-<span class="accent">Augmented</span> Generation</h2>
+
+  <div class="flow">
+    <div class="flow-node">Documents</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Chunking</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Embedding</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Vector Database</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Retrieval</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Context</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">LLM</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Answer</div>
+  </div>
+
+  <h3>RAG Concepts</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Embeddings</b><span>Vector representations of content.</span></div>
+    <div class="mini"><b>Chunking</b><span>Splitting documents into retrievable pieces.</span></div>
+    <div class="mini"><b>Metadata</b><span>Filters, timestamps, permissions.</span></div>
+    <div class="mini"><b>Vector Search</b><span>Nearest-neighbor lookup by similarity.</span></div>
+    <div class="mini"><b>Hybrid Search</b><span>Combine keyword and vector retrieval.</span></div>
+    <div class="mini"><b>Reranking</b><span>Re-score results for better precision.</span></div>
+    <div class="mini"><b>Retrieval Quality</b><span>How relevant and complete context is.</span></div>
+    <div class="mini"><b>Grounding</b><span>Anchoring answers in retrieved facts.</span></div>
+    <div class="mini"><b>Citation</b><span>Pointing to source material.</span></div>
+    <div class="mini"><b>Freshness</b><span>Keeping retrieved content current.</span></div>
+    <div class="mini"><b>Access Control</b><span>Only retrieve what the user may see.</span></div>
+  </div>
+</section>
+
+<!-- ============ 17. HOW TO BUILD YOUR OWN AI ============ -->
+<section id="build" class="reveal">
+  <div class="sec-num">15 — BUILD YOUR OWN AI</div>
+  <h2>How to <span class="accent">Build Your Own AI</span></h2>
+  <p class="lead">One of the most important sections. The right path depends on what you actually want to build.</p>
+
+  <div class="callout"><p><strong>Question:</strong> What do you actually want to build? Choose the closest path below.</p></div>
+
+  <h3>PATH A — AI Application</h3>
+  <div class="flow-row">
+    <div class="flow-node">Use an API</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Build application</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Prompt / tools / structured output</div><div class="flow-arrow">→</div>
+    <div class="flow-node hi">Deploy</div>
+  </div>
+
+  <h3>PATH B — Private Knowledge AI</h3>
+  <div class="flow-row">
+    <div class="flow-node">RAG</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Document ingestion</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Vector DB</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Access control</div><div class="flow-arrow">→</div>
+    <div class="flow-node hi">Deploy</div>
+  </div>
+
+  <h3>PATH C — Domain-Specific AI</h3>
+  <div class="flow-row">
+    <div class="flow-node">Choose open model</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Collect high-quality data</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Evaluate baseline</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Fine-tune / adapters</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Evaluate</div><div class="flow-arrow">→</div>
+    <div class="flow-node hi">Deploy</div>
+  </div>
+
+  <h3>PATH D — Local AI</h3>
+  <div class="flow-row">
+    <div class="flow-node">Open model</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Quantization</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Local runtime</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Local API</div><div class="flow-arrow">→</div>
+    <div class="flow-node hi">Application</div>
+  </div>
+
+  <h3>PATH E — Foundation Model</h3>
+  <div class="flow-row">
+    <div class="flow-node">Massive dataset</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Tokenizer</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Distributed training</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Checkpointing</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Evaluation</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Post-training</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Inference infra</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Safety + governance</div><div class="flow-arrow">→</div>
+    <div class="flow-node hi">Production</div>
+  </div>
+
+  <div class="callout warn">
+    <p><strong>Training a foundation model from scratch is a fundamentally different engineering and capital problem from building an AI application.</strong> The data, compute, and organizational requirements differ by orders of magnitude.</p>
+  </div>
+</section>
+
+<!-- ============ 18. STACK ============ -->
+<section id="stack" class="reveal">
+  <div class="sec-num">16 — COMPLETE STACK</div>
+  <h2>Build Your Own AI — <span class="accent">Complete Stack</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">DATA</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">DATA PIPELINE</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">TOKENIZATION / PREPROCESSING</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">MODEL</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">TRAINING</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">EVALUATION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">MODEL REGISTRY</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">INFERENCE</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">API</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">APPLICATION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">OBSERVABILITY</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">SECURITY</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">GOVERNANCE</div>
+  </div>
+</section>
+
+<!-- ============ 19. TOOLS ============ -->
+<section id="tools" class="reveal">
+  <div class="sec-num">17 — TOOLS</div>
+  <h2>AI Tool <span class="accent">Ecosystem</span></h2>
+  <p class="lead">A map of the ecosystem by category. Verify current capabilities against official documentation — the ecosystem moves fast.</p>
+
+  <h3>Frameworks</h3>
+  <div class="pills"><span class="pill">PyTorch</span><span class="pill">Hugging Face Transformers</span></div>
+
+  <h3>Training &amp; Distributed</h3>
+  <div class="pills"><span class="pill">PyTorch</span><span class="pill">torch.distributed</span><span class="pill">DDP</span><span class="pill">FSDP</span><span class="pill">DeepSpeed</span><span class="pill">Accelerate</span><span class="pill">Ray</span></div>
+
+  <h3>Model &amp; Data Ecosystem</h3>
+  <div class="pills"><span class="pill">Hugging Face Hub</span><span class="pill">Datasets</span><span class="pill">Tokenizers</span></div>
+
+  <h3>Fine-Tuning</h3>
+  <div class="pills"><span class="pill">Transformers Trainer</span><span class="pill">PEFT / LoRA</span><span class="pill">QLoRA</span><span class="pill">Other PEFT methods</span></div>
+
+  <h3>Inference</h3>
+  <div class="pills"><span class="pill">vLLM</span><span class="pill">llama.cpp</span><span class="pill">SGLang</span><span class="pill">TensorRT-LLM</span></div>
+
+  <h3>NVIDIA Enterprise</h3>
+  <div class="pills"><span class="pill">NVIDIA NIM</span><span class="pill">NVIDIA NeMo</span></div>
+
+  <h3>MLOps</h3>
+  <div class="pills"><span class="pill">MLflow</span><span class="pill">Model Registry</span><span class="pill">Experiment Tracking</span><span class="pill">Evaluation</span><span class="pill">Monitoring</span></div>
+
+  <h3>Vector Databases</h3>
+  <div class="pills"><span class="pill">pgvector</span><span class="pill">FAISS</span><span class="pill">Milvus</span><span class="pill">Qdrant</span><span class="pill">Weaviate</span><span class="pill">Pinecone</span></div>
+
+  <h3>Orchestration</h3>
+  <div class="pills"><span class="pill">Kubernetes</span><span class="pill">Docker</span><span class="pill">Ray</span></div>
+
+  <h3>Cloud</h3>
+  <div class="pills"><span class="pill">AWS</span><span class="pill">Azure</span><span class="pill">Google Cloud</span></div>
+
+  <h3>Observability</h3>
+  <div class="pills"><span class="pill">OpenTelemetry</span><span class="pill">Prometheus</span><span class="pill">Grafana</span></div>
+
+  <h3>Security</h3>
+  <div class="pills"><span class="pill">Secrets Management</span><span class="pill">IAM</span><span class="pill">Network Controls</span><span class="pill">Input Validation</span><span class="pill">Rate Limits</span><span class="pill">Audit Logging</span><span class="pill">Model/Data Access Control</span><span class="pill">Sandboxing</span><span class="pill">Guardrails</span></div>
+
+  <div class="callout warn"><p><strong>Note on serving:</strong> vLLM can expose an OpenAI-compatible server for model inference. API-key configuration alone does not secure every endpoint — production deployments need additional hardening (TLS, network controls, rate limits, auth). Verify current guidance in official docs.</p></div>
+</section>
+
+<!-- ============ 20. LANDSCAPE ============ -->
+<section id="landscape" class="reveal">
+  <div class="sec-num">18 — MODEL LANDSCAPE</div>
+  <h2>Current AI <span class="accent">Model Landscape</span></h2>
+  <p class="lead">A category-based map, not a ranking. Model names, capabilities, and availability change rapidly.</p>
+
+  <div class="grid grid-3">
+    <div class="mini"><b>Frontier API Models</b><span>Hosted general-purpose models from major providers.</span></div>
+    <div class="mini"><b>Open-Weight Models</b><span>Models whose weights are publicly available for download and self-hosting.</span></div>
+    <div class="mini"><b>Reasoning Models</b><span>Models that spend more compute on multi-step problems.</span></div>
+    <div class="mini"><b>Multimodal Models</b><span>Models handling text, image, audio, or video.</span></div>
+    <div class="mini"><b>Code Models</b><span>Models tuned for programming tasks.</span></div>
+    <div class="mini"><b>Vision Models</b><span>Image classification, detection, segmentation.</span></div>
+    <div class="mini"><b>Speech Models</b><span>Speech recognition, synthesis, translation.</span></div>
+    <div class="mini"><b>Embedding Models</b><span>Vector representations for retrieval.</span></div>
+    <div class="mini"><b>Small / Edge Models</b><span>Lightweight models for local and mobile use.</span></div>
+    <div class="mini"><b>Specialized Scientific Models</b><span>Models for biology, chemistry, physics.</span></div>
+  </div>
+
+  <h3>Representative Ecosystems</h3>
+  <div class="pills">
+    <span class="pill">OpenAI</span>
+    <span class="pill">Anthropic</span>
+    <span class="pill">Google</span>
+    <span class="pill">Meta</span>
+    <span class="pill">Mistral</span>
+    <span class="pill">Qwen</span>
+    <span class="pill">Hugging Face ecosystem</span>
+    <span class="pill">NVIDIA ecosystem</span>
+  </div>
+
+  <div class="callout warn"><p><strong>Model capabilities, availability, and names change rapidly.</strong> Check official documentation before selecting a production model. This page does not rank models.</p></div>
+</section>
+
+<!-- ============ 21. HARDWARE ============ -->
+<section id="hardware" class="reveal">
+  <div class="sec-num">19 — HARDWARE</div>
+  <h2>AI Training <span class="accent">Hardware</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">CPU</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Single GPU</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Multi-GPU</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Multi-Node GPU Cluster</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">AI Data Center</div>
+  </div>
+
+  <h3>Factors</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>VRAM</b><span>Memory on accelerators.</span></div>
+    <div class="mini"><b>RAM</b><span>Host system memory.</span></div>
+    <div class="mini"><b>Storage</b><span>Fast local storage for checkpoints and datasets.</span></div>
+    <div class="mini"><b>GPU Compute</b><span>Throughput for training and inference.</span></div>
+    <div class="mini"><b>Interconnect</b><span>Bandwidth between accelerators.</span></div>
+    <div class="mini"><b>Networking</b><span>High-speed fabric between nodes.</span></div>
+    <div class="mini"><b>Power</b><span>Electrical supply and efficiency.</span></div>
+    <div class="mini"><b>Cooling</b><span>Thermal management at scale.</span></div>
+    <div class="mini"><b>Checkpoint Storage</b><span>Reliable storage for model state.</span></div>
+  </div>
+
+  <div class="callout"><p><strong>Training vs Inference:</strong> Training typically requires much more compute and memory than inference. Inference is optimized for latency, throughput, and cost per token. Specific hardware requirements vary widely — always size against your actual workload.</p></div>
+</section>
+
+<!-- ============ 22. DATA ============ -->
+<section id="data" class="reveal">
+  <div class="sec-num">20 — DATA</div>
+  <h2>Data <span class="accent">Requirements</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">RAW DATA</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">CLEAN DATA</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">FILTERED DATA</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">TOKENIZED DATA</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">TRAINING DATA</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">EVALUATION DATA</div>
+  </div>
+
+  <h3>Data Concerns</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Collection</b><span>Where and how data is gathered.</span></div>
+    <div class="mini"><b>Licensing</b><span>Legal rights to use data.</span></div>
+    <div class="mini"><b>Cleaning</b><span>Removing noise and errors.</span></div>
+    <div class="mini"><b>Deduplication</b><span>Reducing redundant samples.</span></div>
+    <div class="mini"><b>Filtering</b><span>Removing low-quality or harmful content.</span></div>
+    <div class="mini"><b>Quality Scoring</b><span>Ranking samples by usefulness.</span></div>
+    <div class="mini"><b>Labeling</b><span>Adding target outputs.</span></div>
+    <div class="mini"><b>Synthetic Data</b><span>Generated data to augment real samples.</span></div>
+    <div class="mini"><b>Data Contamination</b><span>Evaluation data leaking into training.</span></div>
+    <div class="mini"><b>Train/Val/Test</b><span>Proper splits for honest evaluation.</span></div>
+    <div class="mini"><b>Data Governance</b><span>Ownership, policy, stewardship.</span></div>
+    <div class="mini"><b>Privacy &amp; PII</b><span>Handling personal data responsibly.</span></div>
+    <div class="mini"><b>Security</b><span>Protecting data from tampering and leaks.</span></div>
+    <div class="mini"><b>Lineage</b><span>Tracking where data came from.</span></div>
+  </div>
+</section>
+
+<!-- ============ 23. TRAINING ============ -->
+<section id="training" class="reveal">
+  <div class="sec-num">21 — TRAINING</div>
+  <h2>Training a <span class="accent">Model</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">Initialize</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Load batch</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Forward pass</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Loss</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Backpropagation</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Optimizer</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Weight update</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Repeat</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Checkpoint</div>
+  </div>
+
+  <h3>Scaling Out</h3>
+  <div class="flow-row">
+    <div class="flow-node">Single GPU</div><div class="flow-arrow">→</div>
+    <div class="flow-node">Multi-GPU</div><div class="flow-arrow">→</div>
+    <div class="flow-node hi">Multi-node</div>
+  </div>
+
+  <h3>Parallelism Strategies</h3>
+  <div class="grid grid-4">
+    <div class="mini"><b>Data Parallelism</b><span>Replicate model; split data.</span></div>
+    <div class="mini"><b>Tensor Parallelism</b><span>Split layers across devices.</span></div>
+    <div class="mini"><b>Pipeline Parallelism</b><span>Split stages across devices.</span></div>
+    <div class="mini"><b>Fully Sharded</b><span>Shard params, grads, optimizer state.</span></div>
+  </div>
+</section>
+
+<!-- ============ 24. FINE-TUNING ============ -->
+<section id="finetune" class="reveal">
+  <div class="sec-num">22 — FINE-TUNING</div>
+  <h2>Fine-<span class="accent">Tuning</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">Base model</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Domain dataset</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Tokenizer</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Fine-tuning</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Validation</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Evaluation</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">Model version</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">Deployment</div>
+  </div>
+
+  <h3>Methods Compared</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Method</th><th>What Changes</th><th>When It Fits</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Full Fine-Tuning</strong></td><td>All model weights updated.</td><td>Large domain shift, ample data &amp; compute.</td></tr>
+        <tr><td><strong>LoRA</strong></td><td>Small trainable matrices added.</td><td>Efficient adaptation with limited compute.</td></tr>
+        <tr><td><strong>QLoRA</strong></td><td>LoRA with quantized base.</td><td>Adapting large models on modest hardware.</td></tr>
+        <tr><td><strong>Instruction Tuning</strong></td><td>Behavior on instruction-following.</td><td>Making a base model useful as an assistant.</td></tr>
+        <tr><td><strong>Preference Optimization</strong></td><td>Aligns to human preferences.</td><td>Improving helpfulness and safety behavior.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout warn"><p>No single method is universally best. Choose based on data volume, compute, latency targets, and evaluation results.</p></div>
+</section>
+
+<!-- ============ 25. INFERENCE ============ -->
+<section id="inference" class="reveal">
+  <div class="sec-num">23 — INFERENCE</div>
+  <h2>Inference <span class="accent">Pipeline</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">USER</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">API</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">INFERENCE SERVER</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">MODEL</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">TOKENS</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">RESPONSE</div>
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Model Loading</b><span>Bringing weights into memory.</span></div>
+    <div class="mini"><b>Tokenizer</b><span>Converting text to tokens.</span></div>
+    <div class="mini"><b>Request</b><span>Incoming prompt and parameters.</span></div>
+    <div class="mini"><b>Batching</b><span>Grouping requests for efficiency.</span></div>
+    <div class="mini"><b>KV Cache</b><span>Reusing attention computation.</span></div>
+    <div class="mini"><b>Decoding</b><span>Choosing next tokens.</span></div>
+    <div class="mini"><b>Streaming</b><span>Returning tokens as generated.</span></div>
+    <div class="mini"><b>Latency</b><span>Time to first token and completion.</span></div>
+    <div class="mini"><b>Throughput</b><span>Tokens per second across requests.</span></div>
+    <div class="mini"><b>Concurrency</b><span>Simultaneous requests handled.</span></div>
+  </div>
+</section>
+
+<!-- ============ 26. SERVING ============ -->
+<section id="serving" class="reveal">
+  <div class="sec-num">24 — SERVING</div>
+  <h2>Model <span class="accent">Serving</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">MODEL</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">RUNTIME</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">GPU</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">API SERVER</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">APPLICATION</div>
+  </div>
+
+  <h3>Common Runtimes</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>vLLM</b><span>High-throughput serving with OpenAI-compatible API.</span></div>
+    <div class="mini"><b>llama.cpp</b><span>Local inference, quantized models, OpenAI-compatible server.</span></div>
+    <div class="mini"><b>TensorRT-LLM</b><span>NVIDIA-optimized inference for supported GPUs.</span></div>
+    <div class="mini"><b>SGLang</b><span>Serving runtime with structured generation support.</span></div>
+    <div class="mini"><b>NVIDIA NIM</b><span>Production-oriented inference microservices, including Kubernetes deployment.</span></div>
+  </div>
+</section>
+
+<!-- ============ 27. APP ARCHITECTURE ============ -->
+<section id="app-arch" class="reveal">
+  <div class="sec-num">25 — APPLICATION ARCHITECTURE</div>
+  <h2>AI Application <span class="accent">Architecture</span></h2>
+
+  <div class="flow">
+    <div class="flow-node">USER</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">FRONTEND</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">API GATEWAY</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">AUTHENTICATION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">AI ORCHESTRATOR</div>
+    <div class="flow-row">
+      <div class="flow-node">LLM</div>
+      <div class="flow-node">RAG</div>
+      <div class="flow-node">TOOLS</div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-node">MODEL</div>
+      <div class="flow-node">VECTOR DB</div>
+      <div class="flow-node">SERVICES</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-node">GUARDRAILS</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">OBSERVABILITY</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">AUDIT LOG</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">RESPONSE</div>
+  </div>
+</section>
+
+<!-- ============ 28. ENTERPRISE ============ -->
+<section id="enterprise" class="reveal">
+  <div class="sec-num">26 — ENTERPRISE AI</div>
+  <h2>Enterprise <span class="accent">AI</span></h2>
+
+  <div class="grid grid-3">
+    <div class="mini"><b>Multi-tenancy</b><span>Isolate workloads between tenants.</span></div>
+    <div class="mini"><b>IAM</b><span>Identity and access management.</span></div>
+    <div class="mini"><b>RBAC</b><span>Role-based access control.</span></div>
+    <div class="mini"><b>Data Isolation</b><span>Separate data per tenant or user.</span></div>
+    <div class="mini"><b>Private Networking</b><span>VPC, private endpoints, no public ingress.</span></div>
+    <div class="mini"><b>Secrets</b><span>Managed secret storage and rotation.</span></div>
+    <div class="mini"><b>Encryption</b><span>At rest and in transit.</span></div>
+    <div class="mini"><b>Auditability</b><span>Traceable actions and access.</span></div>
+    <div class="mini"><b>Observability</b><span>Metrics, traces, logs across the pipeline.</span></div>
+    <div class="mini"><b>Model Routing</b><span>Select models by cost, latency, or capability.</span></div>
+    <div class="mini"><b>Fallback Models</b><span>Graceful degradation when a model fails.</span></div>
+    <div class="mini"><b>Rate Limiting</b><span>Protect models and infrastructure.</span></div>
+    <div class="mini"><b>Caching</b><span>Reduce cost and latency.</span></div>
+    <div class="mini"><b>Cost Control</b><span>Budgeting and quotas per workload.</span></div>
+    <div class="mini"><b>Human Approval</b><span>Sign-off for sensitive operations.</span></div>
+    <div class="mini"><b>Data Governance</b><span>Policy and lifecycle controls.</span></div>
+    <div class="mini"><b>Model Governance</b><span>Versioning, approvals, documentation.</span></div>
+    <div class="mini"><b>Policy Enforcement</b><span>Runtime constraints on AI behavior.</span></div>
+  </div>
+</section>
+
+<!-- ============ 29. EVALUATION ============ -->
+<section id="eval" class="reveal">
+  <div class="sec-num">27 — EVALUATION</div>
+  <h2>AI <span class="accent">Evaluation</span></h2>
+  <p class="lead">"The model works" is not enough. Evaluation is continuous and multidimensional.</p>
+
+  <div class="flow">
+    <div class="flow-node">INPUT</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">MODEL</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">OUTPUT</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">EVALUATOR</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">METRICS</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">PASS / FAIL</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">MODEL VERSION</div>
+  </div>
+
+  <h3>What to Evaluate</h3>
+  <div class="grid grid-3">
+    <div class="mini"><b>Accuracy</b><span>Correctness on tasks.</span></div>
+    <div class="mini"><b>Relevance</b><span>Fit to the user's need.</span></div>
+    <div class="mini"><b>Groundedness</b><span>Support from retrieved context.</span></div>
+    <div class="mini"><b>Factuality</b><span>Alignment with verified facts.</span></div>
+    <div class="mini"><b>Reasoning Quality</b><span>Validity of multi-step derivations.</span></div>
+    <div class="mini"><b>Latency</b><span>Time to first token and completion.</span></div>
+    <div class="mini"><b>Cost</b><span>Per request or token economics.</span></div>
+    <div class="mini"><b>Robustness</b><span>Behavior under adversarial or unusual inputs.</span></div>
+    <div class="mini"><b>Safety</b><span>Resistance to harmful outputs.</span></div>
+    <div class="mini"><b>Privacy</b><span>Handling of sensitive information.</span></div>
+    <div class="mini"><b>Toxicity</b><span>Harmful or abusive content.</span></div>
+    <div class="mini"><b>Bias</b><span>Systematic unfair treatment.</span></div>
+    <div class="mini"><b>Tool Correctness</b><span>Right tool with right arguments.</span></div>
+    <div class="mini"><b>Retrieval Quality</b><span>Relevance and coverage of context.</span></div>
+    <div class="mini"><b>Regression</b><span>No degradation across versions.</span></div>
+    <div class="mini"><b>Drift</b><span>Changes in data or behavior over time.</span></div>
+  </div>
+</section>
+
+<!-- ============ 30. SECURITY ============ -->
+<section id="security" class="reveal">
+  <div class="sec-num">28 — SECURITY</div>
+  <h2>AI <span class="accent">Security</span></h2>
+
+  <div class="callout danger"><p><strong>AI security is not just model security.</strong> It spans data, model, prompt, tools, identity, application, infrastructure, users, and supply chain.</p></div>
+
+  <div class="grid grid-3">
+    <div class="mini"><b>Prompt Injection</b><span>Malicious instructions in input.</span></div>
+    <div class="mini"><b>Indirect Prompt Injection</b><span>Injection through retrieved content.</span></div>
+    <div class="mini"><b>Sensitive Data Exposure</b><span>Leakage via outputs or logs.</span></div>
+    <div class="mini"><b>Insecure Tool Use</b><span>Unsafe tool invocation.</span></div>
+    <div class="mini"><b>Excessive Agency</b><span>Agent has more power than needed.</span></div>
+    <div class="mini"><b>Model Supply Chain</b><span>Untrusted weights, datasets, or dependencies.</span></div>
+    <div class="mini"><b>Data Poisoning</b><span>Tampered training data.</span></div>
+    <div class="mini"><b>Model Theft</b><span>Extraction or copying of weights.</span></div>
+    <div class="mini"><b>Credential Leakage</b><span>Keys exposed in prompts or logs.</span></div>
+    <div class="mini"><b>RAG Poisoning</b><span>Corrupted retrieval corpus.</span></div>
+    <div class="mini"><b>Vector Store Security</b><span>Access control on embeddings.</span></div>
+    <div class="mini"><b>Agent Isolation</b><span>Bounded execution environments.</span></div>
+    <div class="mini"><b>Sandboxing</b><span>Isolated tool and code execution.</span></div>
+    <div class="mini"><b>Output Validation</b><span>Checking outputs before acting on them.</span></div>
+    <div class="mini"><b>Tool Authorization</b><span>Per-tool permission checks.</span></div>
+    <div class="mini"><b>Audit Logging</b><span>Traces of prompts, tools, and decisions.</span></div>
+    <div class="mini"><b>Rate Limits</b><span>Protect endpoints from abuse.</span></div>
+    <div class="mini"><b>Secrets Management</b><span>Keys never hardcoded or logged.</span></div>
+    <div class="mini"><b>Access Control</b><span>Only authorized callers and tools.</span></div>
+    <div class="mini"><b>Model Endpoint Security</b><span>TLS, auth, network controls.</span></div>
+  </div>
+</section>
+
+<!-- ============ 31. RESPONSIBLE ============ -->
+<section id="responsible" class="reveal">
+  <div class="sec-num">29 — RESPONSIBLE AI</div>
+  <h2>Responsible &amp; <span class="accent">Trustworthy AI</span></h2>
+  <p class="lead">Lifecycle risk management — not a single compliance checklist. The NIST AI Risk Management Framework is a useful reference.</p>
+
+  <div class="grid grid-3">
+    <div class="mini"><b>Safety</b><span>Prevent harm to people and systems.</span></div>
+    <div class="mini"><b>Security</b><span>Protect from adversarial misuse.</span></div>
+    <div class="mini"><b>Privacy</b><span>Respect personal data and consent.</span></div>
+    <div class="mini"><b>Reliability</b><span>Consistent behavior over time.</span></div>
+    <div class="mini"><b>Transparency</b><span>Clear about capabilities and limits.</span></div>
+    <div class="mini"><b>Explainability</b><span>Understandable outputs and decisions.</span></div>
+    <div class="mini"><b>Accountability</b><span>Clear ownership of outcomes.</span></div>
+    <div class="mini"><b>Human Oversight</b><span>People remain in control.</span></div>
+    <div class="mini"><b>Governance</b><span>Policies, roles, review processes.</span></div>
+    <div class="mini"><b>Risk Management</b><span>Identify, assess, mitigate, monitor.</span></div>
+    <div class="mini"><b>Evaluation</b><span>Continuous measurement across the lifecycle.</span></div>
+  </div>
+</section>
+
+<!-- ============ 32. INDUSTRY ============ -->
+<section id="industry" class="reveal">
+  <div class="sec-num">30 — INDUSTRY AI</div>
+  <h2>AI for <span class="accent">Industry</span></h2>
+  <p class="lead">Every industry card follows the same lens: Problem → AI Use Case → Data → Model → Deployment → Security → Evaluation.</p>
+
+  <div class="ind-grid">
+    <div class="ind-card"><b>Healthcare</b><span>Clinical decision support, imaging, patient monitoring, documentation.</span></div>
+    <div class="ind-card"><b>Pharma</b><span>Drug discovery, clinical trials, safety signals, regulatory documents.</span></div>
+    <div class="ind-card"><b>Pharmacovigilance</b><span>AE classification, case triage, signal detection.</span></div>
+    <div class="ind-card"><b>Biotechnology</b><span>Genomics, proteomics, lab automation, bioinformatics.</span></div>
+    <div class="ind-card"><b>Chemical Engineering</b><span>Process optimization, safety monitoring, digital twins.</span></div>
+    <div class="ind-card"><b>Manufacturing</b><span>Quality prediction, predictive maintenance, anomaly detection.</span></div>
+    <div class="ind-card"><b>Automotive</b><span>Perception, driver assistance, OTA, telematics.</span></div>
+    <div class="ind-card"><b>Aerospace</b><span>Design analysis, predictive maintenance, flight ops.</span></div>
+    <div class="ind-card"><b>Finance</b><span>Risk, fraud detection, customer service, compliance.</span></div>
+    <div class="ind-card"><b>Banking</b><span>Underwriting, AML, real-time fraud.</span></div>
+    <div class="ind-card"><b>Insurance</b><span>Claims triage, risk scoring, document processing.</span></div>
+    <div class="ind-card"><b>Retail</b><span>Recommendations, demand forecasting, search.</span></div>
+    <div class="ind-card"><b>Education</b><span>Adaptive learning, tutoring, assessment.</span></div>
+    <div class="ind-card"><b>Telecom</b><span>Network optimization, customer care, fraud.</span></div>
+    <div class="ind-card"><b>Energy</b><span>Grid forecasting, predictive maintenance, safety.</span></div>
+    <div class="ind-card"><b>Agriculture</b><span>Precision farming, yield prediction, disease detection.</span></div>
+    <div class="ind-card"><b>Cybersecurity</b><span>Detection, triage, response, threat intel.</span></div>
+    <div class="ind-card"><b>Logistics</b><span>Routing, ETA prediction, warehouse optimization.</span></div>
+    <div class="ind-card"><b>Research</b><span>Literature synthesis, hypothesis generation, simulation.</span></div>
+  </div>
+
+  <div class="flow-row">
+    <div class="flow-node">PROBLEM</div><div class="flow-arrow">→</div>
+    <div class="flow-node">AI USE CASE</div><div class="flow-arrow">→</div>
+    <div class="flow-node">DATA</div><div class="flow-arrow">→</div>
+    <div class="flow-node">MODEL</div><div class="flow-arrow">→</div>
+    <div class="flow-node">DEPLOYMENT</div><div class="flow-arrow">→</div>
+    <div class="flow-node">SECURITY</div><div class="flow-arrow">→</div>
+    <div class="flow-node hi">EVALUATION</div>
+  </div>
+</section>
+
+<!-- ============ 33. HEALTHCARE AI ============ -->
+<section id="health-ai" class="reveal">
+  <div class="sec-num">31 — HEALTHCARE AI</div>
+  <h2>AI for <span class="accent">Healthcare</span></h2>
+
+  <div class="grid grid-3">
+    <div class="mini"><b>Clinical Decision Support</b><span>Evidence and context at point of care.</span></div>
+    <div class="mini"><b>Medical Imaging</b><span>Detection, segmentation, triage.</span></div>
+    <div class="mini"><b>Patient Monitoring</b><span>Trend detection and early warning.</span></div>
+    <div class="mini"><b>Drug Discovery</b><span>Candidate generation and prioritization.</span></div>
+    <div class="mini"><b>Drug Safety</b><span>Adverse event analysis.</span></div>
+    <div class="mini"><b>Pharmacovigilance</b><span>Case intake, coding, signal detection.</span></div>
+    <div class="mini"><b>Medical Documentation</b><span>Drafting and summarization.</span></div>
+    <div class="mini"><b>Healthcare Search</b><span>Retrieval across clinical knowledge.</span></div>
+    <div class="mini"><b>Clinical NLP</b><span>Understanding of clinical text.</span></div>
+    <div class="mini"><b>Biomarker Analysis</b><span>Multi-omic and signal analysis.</span></div>
+  </div>
+
+  <div class="callout danger"><p><strong>Important:</strong> AI assistance is not medical decision authority. Clinical decisions remain with qualified professionals, and AI outputs must be evaluated, explainable where required, and governed under applicable regulation.</p></div>
+</section>
+
+<!-- ============ 34. CHEMICAL AI ============ -->
+<section id="chem-ai" class="reveal">
+  <div class="sec-num">32 — CHEMICAL ENGINEERING AI</div>
+  <h2>AI for <span class="accent">Chemical Engineering</span></h2>
+
+  <div class="grid grid-3">
+    <div class="mini"><b>Process Optimization</b><span>Setpoints, yields, energy use.</span></div>
+    <div class="mini"><b>Predictive Maintenance</b><span>Equipment failure prediction.</span></div>
+    <div class="mini"><b>Process Anomaly Detection</b><span>Early warnings from sensor data.</span></div>
+    <div class="mini"><b>Energy Optimization</b><span>Reduce consumption and emissions.</span></div>
+    <div class="mini"><b>Quality Prediction</b><span>Infer quality from process signals.</span></div>
+    <div class="mini"><b>Digital Twins</b><span>Simulation models synced to plant data.</span></div>
+    <div class="mini"><b>Process Control Assistance</b><span>Operator decision support.</span></div>
+    <div class="mini"><b>Chemical Property Prediction</b><span>Estimate properties without experiments.</span></div>
+    <div class="mini"><b>Simulation Acceleration</b><span>Surrogate models for slow simulations.</span></div>
+    <div class="mini"><b>Safety Monitoring</b><span>Detect conditions preceding incidents.</span></div>
+    <div class="mini"><b>Operational Intelligence</b><span>Cross-plant analytics.</span></div>
+  </div>
+
+  <div class="flow">
+    <div class="flow-node">SENSORS</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">PROCESS DATA</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">FEATURES</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">MODEL</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">PREDICTION</div><div class="flow-arrow">↓</div>
+    <div class="flow-node hi">ENGINEER REVIEW</div><div class="flow-arrow">↓</div>
+    <div class="flow-node">CONTROL / DECISION</div>
+  </div>
+</section>
+
+<!-- ============ 35. PHARMA AI ============ -->
+<section id="pharma-ai" class="reveal">
+  <div class="sec-num">33 — PHARMA AI</div>
+  <h2>AI for <span class="accent">Pharma</span></h2>
+
+  <div class="grid grid-3">
+    <div class="mini"><b>Drug Discovery</b><span>Candidate generation and screening.</span></div>
+    <div class="mini"><b>Molecular Property Prediction</b><span>ADMET, activity, toxicity.</span></div>
+    <div class="mini"><b>Clinical Trials</b><span>Site selection, monitoring, analysis.</span></div>
+    <div class="mini"><b>Safety Signal Detection</b><span>Detect signals from case data.</span></div>
+    <div class="mini"><b>Pharmacovigilance</b><span>Case intake, coding, triage.</span></div>
+    <div class="mini"><b>Adverse-Event Classification</b><span>Automated categorization.</span></div>
+    <div class="mini"><b>Medical Literature Processing</b><span>Search and synthesis.</span></div>
+    <div class="mini"><b>Regulatory Document Analysis</b><span>Structured review of submissions.</span></div>
+    <div class="mini"><b>Manufacturing Quality</b><span>Process and batch analytics.</span></div>
+    <div class="mini"><b>Supply Chain</b><span>Demand, inventory, cold chain.</span></div>
+  </div>
+</section>
+
+<!-- ============ 36. PROJECT BUILDER ============ -->
+<section id="builder" class="reveal">
+  <div class="sec-num">34 — PROJECT BUILDER</div>
+  <h2>Choose Your <span class="accent">AI Project</span></h2>
+  <p class="lead">Pick a project type. Each shows data, model, stack, architecture, deployment, security, and evaluation.</p>
+
+  <div class="proj-grid" id="projGrid"></div>
+  <div class="proj-detail" id="projDetail">
+    <h4>Select a project above</h4>
+    <p>Details will appear here.</p>
+  </div>
+</section>
+
+<!-- ============ 37. LEVELS ============ -->
+<section id="levels" class="reveal">
+  <div class="sec-num">35 — BUILD LEVELS</div>
+  <h2>Build Your Own AI — <span class="accent">Five Levels</span></h2>
+
+  <div class="level-grid">
+    <div class="level-card">
+      <h4>LEVEL 1 — AI API Application</h4>
+      <p>Use a hosted model API to build an application.</p>
+      <ul>
+        <li>Prompt design, structured output</li>
+        <li>Basic evaluation and guardrails</li>
+        <li>Lowest infrastructure footprint</li>
+      </ul>
+    </div>
+    <div class="level-card">
+      <h4>LEVEL 2 — RAG + Tools</h4>
+      <p>Add retrieval and tool use to your application.</p>
+      <ul>
+        <li>Document ingestion and embeddings</li>
+        <li>Vector DB and access control</li>
+        <li>Tool calling and function calling</li>
+      </ul>
+    </div>
+    <div class="level-card">
+      <h4>LEVEL 3 — AI Agent</h4>
+      <p>Build agents that plan, act, and verify.</p>
+      <ul>
+        <li>Planning and memory</li>
+        <li>Sandboxing and approvals</li>
+        <li>Observability and guardrails</li>
+      </ul>
+    </div>
+    <div class="level-card">
+      <h4>LEVEL 4 — Fine-Tuned Open Model</h4>
+      <p>Adapt an open-weight model to your domain.</p>
+      <ul>
+        <li>Data curation and evaluation</li>
+        <li>LoRA / QLoRA or full fine-tune</li>
+        <li>Serving and versioning</li>
+      </ul>
+    </div>
+    <div class="level-card">
+      <h4>LEVEL 5 — Own Foundation Model</h4>
+      <p>Pretrain a large model from scratch.</p>
+      <ul>
+        <li>Massive data pipelines</li>
+        <li>Distributed training clusters</li>
+        <li>Safety, governance, serving at scale</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout warn"><p>Specific cost, data, and compute figures vary widely by scale, architecture, and provider. This page intentionally avoids fabricated estimates.</p></div>
+</section>
+
+<!-- ============ 38. ROADMAP ============ -->
+<section id="roadmap" class="reveal">
+  <div class="sec-num">36 — ROADMAP</div>
+  <h2>Technology <span class="accent">Roadmap</span></h2>
+
+  <div class="roadmap">
+    <div class="rm-step"><div class="rm-num">01</div><div class="rm-body"><b>Python</b><span>Core language for AI engineering.</span></div></div>
+    <div class="rm-step"><div class="rm-num">02</div><div class="rm-body"><b>Math</b><span>Linear algebra, calculus, probability.</span></div></div>
+    <div class="rm-step"><div class="rm-num">03</div><div class="rm-body"><b>Statistics</b><span>Distributions, inference, experimentation.</span></div></div>
+    <div class="rm-step"><div class="rm-num">04</div><div class="rm-body"><b>NumPy</b><span>Numerical computing foundation.</span></div></div>
+    <div class="rm-step"><div class="rm-num">05</div><div class="rm-body"><b>Pandas</b><span>Data manipulation and analysis.</span></div></div>
+    <div class="rm-step"><div class="rm-num">06</div><div class="rm-body"><b>Machine Learning</b><span>Classical algorithms and evaluation.</span></div></div>
+    <div class="rm-step"><div class="rm-num">07</div><div class="rm-body"><b>PyTorch</b><span>Deep learning framework.</span></div></div>
+    <div class="rm-step"><div class="rm-num">08</div><div class="rm-body"><b>Transformers</b><span>Modern architecture and ecosystem.</span></div></div>
+    <div class="rm-step"><div class="rm-num">09</div><div class="rm-body"><b>LLMs</b><span>Pretraining, post-training, prompting.</span></div></div>
+    <div class="rm-step"><div class="rm-num">10</div><div class="rm-body"><b>RAG</b><span>Retrieval-augmented generation.</span></div></div>
+    <div class="rm-step"><div class="rm-num">11</div><div class="rm-body"><b>Agents</b><span>Tool use, planning, memory.</span></div></div>
+    <div class="rm-step"><div class="rm-num">12</div><div class="rm-body"><b>Inference</b><span>Serving, batching, KV cache.</span></div></div>
+    <div class="rm-step"><div class="rm-num">13</div><div class="rm-body"><b>MLOps</b><span>Tracking, registry, deployment.</span></div></div>
+    <div class="rm-step"><div class="rm-num">14</div><div class="rm-body"><b>AI Security</b><span>Prompt injection, tool authorization, isolation.</span></div></div>
+    <div class="rm-step"><div class="rm-num">15</div><div class="rm-body"><b>Distributed AI</b><span>DDP, FSDP, multi-node training.</span></div></div>
+    <div class="rm-step"><div class="rm-num">16</div><div class="rm-body"><b>AI Infrastructure</b><span>Clusters, networking, storage, cost.</span></div></div>
+  </div>
+</section>
+
+<!-- ============ 39. ENGINEER STACK ============ -->
+<section id="eng-stack" class="reveal">
+  <div class="sec-num">37 — ENGINEER STACK</div>
+  <h2>AI Engineer <span class="accent">Stack</span></h2>
+
+  <div class="stack-grid">
+    <div class="stack-card"><b>Language</b><span>Python</span></div>
+    <div class="stack-card"><b>ML</b><span>PyTorch · scikit-learn</span></div>
+    <div class="stack-card"><b>Model</b><span>Transformers · Hugging Face</span></div>
+    <div class="stack-card"><b>Data</b><span>Pandas · NumPy · Spark</span></div>
+    <div class="stack-card"><b>Vector</b><span>FAISS · pgvector · Qdrant · Milvus</span></div>
+    <div class="stack-card"><b>Serving</b><span>vLLM · llama.cpp · SGLang</span></div>
+    <div class="stack-card"><b>MLOps</b><span>MLflow</span></div>
+    <div class="stack-card"><b>Containers</b><span>Docker</span></div>
+    <div class="stack-card"><b>Orchestration</b><span>Kubernetes</span></div>
+    <div class="stack-card"><b>Cloud</b><span>AWS · Azure · GCP</span></div>
+    <div class="stack-card"><b>Monitoring</b><span>OpenTelemetry · Prometheus · Grafana</span></div>
+    <div class="stack-card"><b>Security</b><span>IAM · Secrets · Guardrails · Audit · Isolation</span></div>
+  </div>
+</section>
+
+<!-- ============ 40. LAB ============ -->
+<section id="lab" class="reveal">
+  <div class="sec-num">38 — VISUAL LAB</div>
+  <h2>AI Architecture <span class="accent">Lab</span></h2>
+  <p class="lead">Select a diagram to view a simplified architecture.</p>
+
+  <div class="arch-grid" id="archGrid"></div>
+  <div class="arch-stage" id="archStage">
+    <div class="flow-node hi">Select a diagram above</div>
+  </div>
+</section>
+
+<!-- ============ 41. QUIZ ============ -->
+<section id="quiz" class="reveal">
+  <div class="sec-num">39 — KNOWLEDGE CHECK</div>
+  <h2>Knowledge <span class="accent">Check</span></h2>
+  <p class="lead">18 multiple-choice questions with explanations.</p>
+
+  <div id="quizContainer"></div>
+  <div class="quiz-score" id="quizScore">Score: 0 / 18</div>
+</section>
+
+<!-- ============ 42. INTERVIEW ============ -->
+<section id="interview" class="reveal">
+  <div class="sec-num">40 — INTERVIEW</div>
+  <h2>Interview <span class="accent">Preparation</span></h2>
+
+  <div class="tabs" id="interviewTabs">
+    <div class="tab active" data-tab="iq-ai">AI Engineer</div>
+    <div class="tab" data-tab="iq-ml">ML Engineer</div>
+    <div class="tab" data-tab="iq-llm">LLM Engineer</div>
+    <div class="tab" data-tab="iq-mlops">MLOps</div>
+    <div class="tab" data-tab="iq-sec">AI Security</div>
+    <div class="tab" data-tab="iq-design">AI System Design</div>
+  </div>
+
+  <div class="tab-panel active" id="iq-ai">
+    <h4>AI Engineer</h4>
+    <div class="grid grid-2">
+      <div class="mini"><b>Beginner</b><span>What is a token? What is inference?</span></div>
+      <div class="mini"><b>Intermediate</b><span>Explain RAG and when to use it over fine-tuning.</span></div>
+      <div class="mini"><b>Advanced</b><span>Design evaluation for a production LLM feature.</span></div>
+      <div class="mini"><b>Architect</b><span>Choose between API, self-hosted, and fine-tuned model for a given product.</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="iq-ml">
+    <h4>ML Engineer</h4>
+    <div class="grid grid-2">
+      <div class="mini"><b>Beginner</b><span>Supervised vs unsupervised learning.</span></div>
+      <div class="mini"><b>Intermediate</b><span>How do you detect and reduce overfitting?</span></div>
+      <div class="mini"><b>Advanced</b><span>Explain FSDP and when to use it.</span></div>
+      <div class="mini"><b>Architect</b><span>Design a training pipeline for a domain-specific model.</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="iq-llm">
+    <h4>LLM Engineer</h4>
+    <div class="grid grid-2">
+      <div class="mini"><b>Beginner</b><span>What is a context window?</span></div>
+      <div class="mini"><b>Intermediate</b><span>How does KV cache affect throughput?</span></div>
+      <div class="mini"><b>Advanced</b><span>Explain LoRA and QLoRA trade-offs.</span></div>
+      <div class="mini"><b>Architect</b><span>Design a multi-tenant LLM platform with cost controls.</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="iq-mlops">
+    <h4>MLOps</h4>
+    <div class="grid grid-2">
+      <div class="mini"><b>Beginner</b><span>What is a model registry?</span></div>
+      <div class="mini"><b>Intermediate</b><span>How do you version models and datasets together?</span></div>
+      <div class="mini"><b>Advanced</b><span>Design drift monitoring for a production model.</span></div>
+      <div class="mini"><b>Architect</b><span>Plan a rollout with canary evaluation and rollback.</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="iq-sec">
+    <h4>AI Security</h4>
+    <div class="grid grid-2">
+      <div class="mini"><b>Beginner</b><span>What is prompt injection?</span></div>
+      <div class="mini"><b>Intermediate</b><span>How do you secure a RAG system against poisoned content?</span></div>
+      <div class="mini"><b>Advanced</b><span>Design tool authorization for an agent platform.</span></div>
+      <div class="mini"><b>Architect</b><span>Threat model an enterprise AI deployment.</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="iq-design">
+    <h4>AI System Design</h4>
+    <div class="grid grid-2">
+      <div class="mini"><b>Beginner</b><span>Sketch a simple RAG chatbot architecture.</span></div>
+      <div class="mini"><b>Intermediate</b><span>Design an agent with sandboxed tools and audit logs.</span></div>
+      <div class="mini"><b>Advanced</b><span>Design a multi-tenant, multi-model serving platform.</span></div>
+      <div class="mini"><b>Architect</b><span>Design enterprise AI governance and evaluation pipeline.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 43. HOW FAR ============ -->
+<section id="howfar" class="reveal">
+  <div class="sec-num">41 — HOW FAR CAN YOU GO</div>
+  <h2>How Far <span class="accent">Can You Go?</span></h2>
+  <p class="lead">Each level deepens work in data, algorithms, systems, distributed computing, evaluation, infrastructure, security, and research.</p>
+
+  <div class="ladder">
+    <div class="rung"><div class="rung-num">01</div><div class="rung-body"><b>AI User</b><span>Uses AI tools and products effectively.</span></div></div>
+    <div class="rung"><div class="rung-num">02</div><div class="rung-body"><b>AI Developer</b><span>Builds applications on top of model APIs.</span></div></div>
+    <div class="rung"><div class="rung-num">03</div><div class="rung-body"><b>AI Application Engineer</b><span>Adds RAG, tools, and structured output.</span></div></div>
+    <div class="rung"><div class="rung-num">04</div><div class="rung-body"><b>LLM Engineer</b><span>Prompting, fine-tuning, serving, evaluation.</span></div></div>
+    <div class="rung"><div class="rung-num">05</div><div class="rung-body"><b>ML Engineer</b><span>Trains and ships classical and deep models.</span></div></div>
+    <div class="rung"><div class="rung-num">06</div><div class="rung-body"><b>AI Systems Engineer</b><span>Designs reliable, observable AI systems end to end.</span></div></div>
+    <div class="rung"><div class="rung-num">07</div><div class="rung-body"><b>AI Infrastructure Engineer</b><span>Clusters, networking, storage, serving at scale.</span></div></div>
+    <div class="rung"><div class="rung-num">08</div><div class="rung-body"><b>Model Engineer</b><span>Architectures, training recipes, optimization.</span></div></div>
+    <div class="rung"><div class="rung-num">09</div><div class="rung-body"><b>Research Engineer</b><span>Novel methods, experiments, publications.</span></div></div>
+    <div class="rung"><div class="rung-num">10</div><div class="rung-body"><b>Foundation Model Engineer</b><span>Pretraining at scale, alignment, deployment.</span></div></div>
+  </div>
+</section>
+
+<!-- ============ 48. REFERENCES ============ -->
+<section id="refs" class="reveal">
+  <div class="sec-num">42 — REFERENCES</div>
+  <h2>Official <span class="accent">References</span></h2>
+  <p class="lead">Verify current capabilities against official documentation. Information checked: September 2026.</p>
+
+  <div class="ref-grid">
+    <div class="ref-card"><a href="https://platform.openai.com/docs" target="_blank" rel="noopener noreferrer">OpenAI Developer Documentation</a><span>API, models, tools, and platform guidance.</span></div>
+    <div class="ref-card"><a href="https://ai.google.dev/" target="_blank" rel="noopener noreferrer">Google Gemini Documentation</a><span>Model families, APIs, and capabilities.</span></div>
+    <div class="ref-card"><a href="https://docs.anthropic.com/" target="_blank" rel="noopener noreferrer">Anthropic Documentation</a><span>Claude models and developer guidance.</span></div>
+    <div class="ref-card"><a href="https://www.llama.com/" target="_blank" rel="noopener noreferrer">Meta Llama Documentation</a><span>Open-weight model family documentation.</span></div>
+    <div class="ref-card"><a href="https://huggingface.co/docs" target="_blank" rel="noopener noreferrer">Hugging Face Documentation</a><span>Transformers, datasets, tokenizers, hub.</span></div>
+    <div class="ref-card"><a href="https://pytorch.org/docs/" target="_blank" rel="noopener noreferrer">PyTorch Documentation</a><span>Framework, distributed training, ecosystem.</span></div>
+    <div class="ref-card"><a href="https://docs.nvidia.com/" target="_blank" rel="noopener noreferrer">NVIDIA Documentation</a><span>NIM, NeMo, inference, and GPU tooling.</span></div>
+    <div class="ref-card"><a href="https://mlflow.org/docs/" target="_blank" rel="noopener noreferrer">MLflow Documentation</a><span>Tracking, registry, evaluation.</span></div>
+    <div class="ref-card"><a href="https://kubernetes.io/docs/" target="_blank" rel="noopener noreferrer">Kubernetes Documentation</a><span>Orchestration and platform guidance.</span></div>
+    <div class="ref-card"><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI Risk Management Framework</a><span>Lifecycle risk management reference.</span></div>
+  </div>
+
+  <div class="callout warn"><p><strong>Information checked: September 2026.</strong> Model capabilities, availability, and names change rapidly. This page is not intended to be permanently current — always verify against official documentation.</p></div>
+</section>
+
+<!-- ============ FINAL ============ -->
+<section id="final" class="reveal">
+  <div class="sec-num">FINAL</div>
+  <h2>Where to <span class="accent">Go Next</span></h2>
+  <p class="lead">AI is a layered discipline. Start where you are, build the layer above, and keep evaluating as you go.</p>
+
+  <div class="grid grid-3">
+    <div class="mini"><b>If you are new</b><span>Start with Level 1 — an AI API application — and get one working end to end.</span></div>
+    <div class="mini"><b>If you have shipped an app</b><span>Add RAG, then tools, then agents. Measure every step.</span></div>
+    <div class="mini"><b>If you need domain accuracy</b><span>Consider fine-tuning or adapters after establishing a strong baseline.</span></div>
+    <div class="mini"><b>If you want local control</b><span>Try open-weight models with a local runtime and quantization.</span></div>
+    <div class="mini"><b>If you care about production</b><span>Invest in evaluation, observability, security, and governance.</span></div>
+    <div class="mini"><b>If you are researching</b><span>Distributed training, architectures, and evaluation methods are open frontiers.</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="hashtags">
+    <span>#AI</span>
+    <span>#MachineLearning</span>
+    <span>#DeepLearning</span>
+    <span>#Transformers</span>
+    <span>#LLM</span>
+    <span>#RAG</span>
+    <span>#AIAgents</span>
+    <span>#MultimodalAI</span>
+    <span>#ReasoningAI</span>
+    <span>#MLOps</span>
+    <span>#AISecurity</span>
+    <span>#AIInfrastructure</span>
+    <span>#PyTorch</span>
+    <span>#HuggingFace</span>
+    <span>#NVIDIA</span>
+    <span>#ResponsibleAI</span>
+    <span>#AIEngineering</span>
+  </div>
+  <small>
+    AI Evolution: From Rules to Reasoning, Agents &amp; AI Systems<br>
+    Information checked: September 2026. Model capabilities and names change rapidly — verify against official documentation.
+  </small>
+</footer>
+
+<button id="top" aria-label="Back to top">↑</button>
+
+<script>
+/* ============================================================
+   PROGRESS
+============================================================ */
+const progress = document.getElementById('progress');
+const topBtn = document.getElementById('top');
+function onScroll(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  progress.style.width = (scrolled * 100) + '%';
+  topBtn.classList.toggle('show', h.scrollTop > 600);
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+/* ============================================================
+   REVEAL
+============================================================ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('show'); revealObserver.unobserve(e.target); }
+  });
+}, {threshold:0.06, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ============================================================
+   TIMELINE STAGGER
+============================================================ */
+const tlObserver = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if(e.isIntersecting){
+      const el = e.target;
+      const delay = Array.from(el.parentNode.children).indexOf(el) % 4 * 80;
+      setTimeout(() => el.classList.add('show'), delay);
+      tlObserver.unobserve(el);
+    }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('.tl-item').forEach(el => tlObserver.observe(el));
+
+/* ============================================================
+   FAMILY TREE
+============================================================ */
+document.querySelectorAll('.tree-node').forEach(node => {
+  function toggle(){
+    node.classList.toggle('open');
+    node.setAttribute('aria-expanded', node.classList.contains('open'));
+  }
+  node.addEventListener('click', toggle);
+  node.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+  });
+});
+
+/* ============================================================
+   TABS
+============================================================ */
+function setupTabs(tabsId){
+  const container = document.getElementById(tabsId);
+  if(!container) return;
+  container.addEventListener('click', (e) => {
+    const tab = e.target.closest('.tab');
+    if(!tab) return;
+    const target = tab.dataset.tab;
+    const parent = tab.parentElement;
+    parent.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    let node = parent.nextElementSibling;
+    while(node && !node.classList.contains('tabs')){
+      if(node.classList.contains('tab-panel')) node.classList.remove('active');
+      node = node.nextElementSibling;
+    }
+    const panel = document.getElementById(target);
+    if(panel) panel.classList.add('active');
+  });
+}
+setupTabs('interviewTabs');
+
+/* ============================================================
+   NAV ACTIVE
+============================================================ */
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(link){
+        link.classList.add('active');
+        link.scrollIntoView({inline:'center', block:'nearest', behavior:'smooth'});
+      }
+    }
+  });
+}, {rootMargin:'-25% 0px -65% 0px'});
+sections.forEach(s => navObserver.observe(s));
+
+/* ============================================================
+   PROJECT BUILDER
+============================================================ */
+const PROJECTS = [
+  {id:'chatbot', name:'AI Chatbot', data:'Conversation logs, FAQ, policies', model:'Hosted LLM API', stack:'Frontend + API + prompt templates', arch:'User → Frontend → API → LLM → Response', deploy:'Serverless or container', security:'Rate limits, input validation, output filtering', eval:'Helpfulness, safety, latency'},
+  {id:'rag', name:'RAG Assistant', data:'Documents, PDFs, wikis', model:'LLM + embedding model', stack:'Ingestion + vector DB + retrieval + LLM', arch:'Docs → Chunks → Embeddings → Vector DB → Retrieve → LLM', deploy:'Container + managed vector DB', security:'Access control per document, prompt injection defense', eval:'Groundedness, retrieval quality, citation accuracy'},
+  {id:'coding', name:'Coding Assistant', data:'Codebase, docs, issues', model:'Code-tuned LLM', stack:'IDE plugin + API + context builder', arch:'Editor → Context → LLM → Suggestion', deploy:'IDE plugin + backend', security:'Secrets scanning, permission scopes', eval:'Correctness, security, developer acceptance'},
+  {id:'document', name:'Document AI', data:'PDFs, scans, forms', model:'Multimodal or OCR + LLM', stack:'OCR + layout analysis + LLM extraction', arch:'Upload → OCR → Structure → Extract → Validate', deploy:'Batch or streaming pipeline', security:'PII handling, access control, audit', eval:'Extraction accuracy, schema compliance'},
+  {id:'image', name:'Image AI', data:'Labeled images or paired captions', model:'Vision or multimodal model', stack:'Training or fine-tuning + serving', arch:'Upload → Preprocess → Model → Prediction', deploy:'GPU inference endpoint', security:'Upload validation, EXIF stripping, abuse prevention', eval:'Accuracy, fairness, robustness'},
+  {id:'voice', name:'Voice Assistant', data:'Audio + transcripts', model:'Speech-to-text + LLM + text-to-speech', stack:'Streaming ASR + LLM + TTS', arch:'Audio → ASR → LLM → TTS → Audio', deploy:'Low-latency streaming infra', security:'Consent, retention policy, access control', eval:'Word error rate, latency, task success'},
+  {id:'agent', name:'AI Agent', data:'Domain tools, APIs, docs', model:'Reasoning-capable LLM', stack:'Agent framework + tools + memory', arch:'Goal → Planner → Tools → Observation → Action', deploy:'Sandboxed runner + orchestration', security:'Tool authorization, sandboxing, human approval', eval:'Task success, tool correctness, safety'},
+  {id:'multiagent', name:'Multi-Agent System', data:'Task-specific data per agent', model:'LLMs + specialist models', stack:'Orchestrator + specialist agents + shared state', arch:'Goal → Orchestrator → Specialists → Verification', deploy:'Distributed runtime', security:'Isolation, mutual auth, audit trail', eval:'End-to-end success, coordination quality'},
+  {id:'recsys', name:'Recommendation Engine', data:'User-item interactions', model:'Collaborative or hybrid model', stack:'Feature store + model + serving', arch:'Events → Features → Model → Ranking → Response', deploy:'Low-latency serving', security:'Privacy, bias monitoring', eval:'CTR, diversity, fairness, latency'},
+  {id:'fraud', name:'Fraud Detection', data:'Transactions, behavior signals', model:'Gradient boosting or neural nets', stack:'Streaming features + model + rules', arch:'Transaction → Features → Score → Decision', deploy:'Real-time streaming', security:'Model access control, adversarial robustness', eval:'Precision/recall, false positive rate'},
+  {id:'health', name:'Healthcare Assistant', data:'Clinical guidelines, de-identified notes', model:'Domain-adapted LLM + retrieval', stack:'RAG + guardrails + audit', arch:'Query → Retrieve → LLM → Guardrails → Clinician', deploy:'HIPAA-aligned infrastructure', security:'PHI protection, access logs, consent', eval:'Factuality, safety, clinician review'},
+  {id:'pharma', name:'Pharma AI', data:'Literature, trial data, case reports', model:'LLM + domain models', stack:'Ingestion + retrieval + classification', arch:'Documents → Extract → Classify → Report', deploy:'Validated GxP-aware pipeline', security:'Data integrity, audit trail, access control', eval:'Accuracy, regulatory compliance'},
+  {id:'chem', name:'Chemical Process AI', data:'Sensor time series, lab results', model:'Time-series + anomaly detection', stack:'Streaming + features + models + dashboard', arch:'Sensors → Features → Model → Alerts → Engineer', deploy:'OT-adjacent infrastructure', security:'OT segmentation, read-only access, safety review', eval:'Detect rate, false alarm rate, safety impact'},
+  {id:'security', name:'Security AI', data:'Logs, alerts, threat intel', model:'LLM + detection models', stack:'SIEM integration + retrieval + triage', arch:'Alerts → Enrich → LLM triage → Analyst', deploy:'SOC-aligned infrastructure', security:'Strict access control, audit, adversarial testing', eval:'Triage accuracy, analyst time saved'},
+  {id:'industrial', name:'Industrial AI', data:'Machine telemetry, maintenance records', model:'Predictive models + LLM', stack:'Edge + cloud pipeline', arch:'Machines → Telemetry → Model → Prediction → Action', deploy:'Edge + cloud hybrid', security:'Device identity, network segmentation', eval:'Uptime, prediction accuracy, safety'}
+];
+
+const projGrid = document.getElementById('projGrid');
+const projDetail = document.getElementById('projDetail');
+
+PROJECTS.forEach(p => {
+  const chip = document.createElement('div');
+  chip.className = 'proj-chip';
+  chip.textContent = p.name;
+  chip.setAttribute('tabindex','0');
+  chip.setAttribute('role','button');
+  chip.addEventListener('click', () => selectProject(p.id, chip));
+  chip.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); selectProject(p.id, chip); }
+  });
+  projGrid.appendChild(chip);
+});
+
+function selectProject(id, chip){
+  document.querySelectorAll('.proj-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  const p = PROJECTS.find(x => x.id === id);
+  projDetail.innerHTML = `
+    <h4>${p.name}</h4>
+    <div class="row">
+      <div class="cell"><b>Data</b><span>${p.data}</span></div>
+      <div class="cell"><b>Model</b><span>${p.model}</span></div>
+      <div class="cell"><b>Stack</b><span>${p.stack}</span></div>
+      <div class="cell"><b>Architecture</b><span>${p.arch}</span></div>
+      <div class="cell"><b>Deployment</b><span>${p.deploy}</span></div>
+      <div class="cell"><b>Security</b><span>${p.security}</span></div>
+      <div class="cell"><b>Evaluation</b><span>${p.eval}</span></div>
+    </div>
+  `;
+}
+
+/* ============================================================
+   ARCH LAB
+============================================================ */
+const ARCHS = {
+  transformer:{name:'Transformer', nodes:['Tokens','Embeddings','Positional Info','Self-Attention','Multi-Head Attention','Feed Forward','Residual + Norm','Repeated Layers','Output']},
+  llm:{name:'LLM', nodes:['Text','Tokenizer','Tokens','Embeddings','Transformer','Logits','Decoder','Tokens','Text']},
+  rag:{name:'RAG', nodes:['Documents','Chunking','Embeddings','Vector DB','Retrieval','Context','LLM','Answer']},
+  agent:{name:'AI Agent', nodes:['User','Goal','Planner','Model','Tool Selector','Tools','Observation','Memory','Verification','Action','Result']},
+  multiagent:{name:'Multi-Agent', nodes:['Goal','Orchestrator','Research Agent','Coding Agent','Data Agent','Security Agent','Review Agent','Final Result']},
+  training:{name:'Training Cluster', nodes:['Data','Tokenization','Distributed Training','Checkpointing','Evaluation','Model Registry']},
+  inference:{name:'Inference Server', nodes:['User','API','Inference Server','Model','Tokens','Response']},
+  enterprise:{name:'Enterprise AI', nodes:['User','Frontend','API Gateway','Auth','AI Orchestrator','LLM','RAG','Tools','Guardrails','Observability','Audit','Response']},
+  health:{name:'Healthcare AI', nodes:['Clinical Data','De-identified Pipeline','Retrieval','Model','Guardrails','Clinician Review','Audit']},
+  chem:{name:'Chemical AI', nodes:['Sensors','Process Data','Features','Model','Prediction','Engineer Review','Control']},
+  security:{name:'AI Security', nodes:['Input','Prompt Filtering','Model','Tool Authorization','Sandbox','Output Validation','Audit Log']}
+};
+
+const archGrid = document.getElementById('archGrid');
+const archStage = document.getElementById('archStage');
+
+Object.entries(ARCHS).forEach(([key, val]) => {
+  const chip = document.createElement('div');
+  chip.className = 'arch-chip';
+  chip.textContent = val.name;
+  chip.setAttribute('tabindex','0');
+  chip.setAttribute('role','button');
+  chip.addEventListener('click', () => renderArch(key, chip));
+  chip.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); renderArch(key, chip); }
+  });
+  archGrid.appendChild(chip);
+});
+
+function renderArch(key, chip){
+  document.querySelectorAll('.arch-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  const nodes = ARCHS[key].nodes;
+  archStage.innerHTML = '';
+  nodes.forEach((n, i) => {
+    const el = document.createElement('div');
+    el.className = 'flow-node' + (i === 0 || i === nodes.length - 1 ? ' hi' : '');
+    el.textContent = n;
+    archStage.appendChild(el);
+    if(i < nodes.length - 1){
+      const arr = document.createElement('div');
+      arr.className = 'flow-arrow';
+      arr.textContent = '↓';
+      archStage.appendChild(arr);
+    }
+  });
+}
+
+/* ============================================================
+   QUIZ
+============================================================ */
+const QUIZ = [
+  {q:'What is pretraining?', opts:['Training a model from scratch on a task','Self-supervised learning on large corpora to build general representations','Running inference on a trained model','Compressing a model for deployment'], a:1, ex:'Pretraining uses self-supervised objectives on large datasets to build general-purpose representations that can later be adapted.'},
+  {q:'What is fine-tuning?', opts:['Adding retrieval to a model','Adjusting a pretrained model on domain-specific data','Compressing model weights','Logging model outputs'], a:1, ex:'Fine-tuning updates model weights (fully or partially) on a smaller, domain-specific dataset.'},
+  {q:'What is RAG?', opts:['Random augmentation generation','Retrieval-Augmented Generation — retrieving context and passing it to a model','A type of transformer layer','A model compression technique'], a:1, ex:'RAG retrieves relevant content from a knowledge store and provides it as context to the model at inference time.'},
+  {q:'What is the core innovation of the Transformer?', opts:['Recurrence','Convolution','Self-attention','Pooling'], a:2, ex:'Self-attention lets the model weigh all positions in a sequence in parallel, replacing the sequential nature of RNNs.'},
+  {q:'What is self-attention?', opts:['A regularization method','A mechanism where tokens attend to other tokens in the same sequence','A type of optimizer','A tokenization scheme'], a:1, ex:'Self-attention computes relationships between all pairs of tokens in a sequence to build context-aware representations.'},
+  {q:'What is an embedding?', opts:['A compressed image','A vector representation of content in a continuous space','A type of database','A training schedule'], a:1, ex:'Embeddings map content (text, images, audio) into vectors where similarity has meaning.'},
+  {q:'What is an AI agent?', opts:['A chatbot with a nice UI','A system that plans, uses tools, and acts toward a goal','A dataset loader','A tokenizer'], a:1, ex:'Agents combine a model with planning, memory, and tools to take actions in service of a goal.'},
+  {q:'What is inference?', opts:['Training a model','Running a trained model to produce outputs','Compressing a dataset','Labeling data'], a:1, ex:'Inference is the process of using a trained model to generate predictions or outputs.'},
+  {q:'What is model evaluation?', opts:['Deploying a model','Measuring quality, safety, and behavior across metrics','Compressing a model','Tokenizing text'], a:1, ex:'Evaluation measures model quality along many dimensions — accuracy, safety, latency, cost, and more.'},
+  {q:'What is quantization?', opts:['Reducing the numeric precision of model weights to save memory and compute','Splitting a model across GPUs','Adding retrieval','A form of prompt engineering'], a:0, ex:'Quantization lowers precision (e.g., from FP16 to INT8/INT4), reducing memory and speeding inference, sometimes at a small quality cost.'},
+  {q:'What is distributed training?', opts:['Training on multiple GPUs or nodes cooperatively','Training one model at a time','Running inference on many servers','A form of evaluation'], a:0, ex:'Distributed training spreads the work across multiple accelerators or machines using strategies like data, tensor, or pipeline parallelism.'},
+  {q:'What is a model registry?', opts:['A database of prompts','A system that versions and tracks models and their metadata','A vector store','A tokenizer'], a:1, ex:'A model registry tracks model versions, evaluation results, and deployment state.'},
+  {q:'What is prompt injection?', opts:['A type of database attack','Malicious instructions in input that manipulate model behavior','A compiler bug','A model compression technique'], a:1, ex:'Prompt injection occurs when untrusted input contains instructions that alter the model\'s behavior, potentially bypassing guardrails.'},
+  {q:'What is multimodal AI?', opts:['AI that only uses text','AI that handles more than one modality, such as text and images','AI that runs on multiple GPUs','AI that uses multiple databases'], a:1, ex:'Multimodal AI handles more than one type of input or output — for example, text and images together.'},
+  {q:'What is model serving?', opts:['Training a model','Hosting a trained model behind an API for inference','Labeling data','Evaluating a model'], a:1, ex:'Serving makes a trained model available for inference, typically via an API with batching, scaling, and monitoring.'},
+  {q:'What is a KV cache?', opts:['A key-value database for RAG','Cached attention keys and values to speed up generation','A model registry feature','A tokenizer optimization'], a:1, ex:'The KV cache stores attention keys and values from previous tokens so the model does not recompute them at each step.'},
+  {q:'What is retrieval quality?', opts:['How fast the vector DB runs','How relevant and complete retrieved context is for a query','How many documents exist','The size of the embedding model'], a:1, ex:'Retrieval quality measures whether the retrieved content is relevant and sufficient to answer the query well.'},
+  {q:'What is the difference between model capability and application workflow?', opts:['There is no difference','Model capability is what the model can do; application workflow is how the surrounding system uses it','Model capability is older; workflow is newer','Workflow is a type of model'], a:1, ex:'Reasoning, for example, can be a model capability or an application-level orchestration pattern — production systems often combine both.'}
+];
+
+const quizContainer = document.getElementById('quizContainer');
+const quizScore = document.getElementById('quizScore');
+let answered = new Set();
+let correctCount = 0;
+
+QUIZ.forEach((item, idx) => {
+  const el = document.createElement('div');
+  el.className = 'quiz-item';
+  el.innerHTML = `<div class="quiz-q">${idx + 1}. ${item.q}</div>`;
+  item.opts.forEach((opt, oi) => {
+    const optEl = document.createElement('label');
+    optEl.className = 'quiz-opt';
+    optEl.innerHTML = `<input type="radio" name="q${idx}" value="${oi}"><span>${opt}</span>`;
+    optEl.addEventListener('click', (e) => {
+      if(answered.has(idx)) return;
+      answered.add(idx);
+      const correct = oi === item.a;
+      const parent = optEl.parentElement;
+      parent.querySelectorAll('.quiz-opt').forEach((o, i) => {
+        if(i === item.a) o.classList.add('correct');
+        else if(i === oi) o.classList.add('wrong');
+      });
+      const expl = document.createElement('div');
+      expl.className = 'quiz-expl show';
+      expl.textContent = (correct ? '✓ Correct. ' : '✗ Not quite. ') + item.ex;
+      parent.appendChild(expl);
+      if(correct) correctCount++;
+      quizScore.textContent = `Score: ${correctCount} / ${QUIZ.length}`;
+      quizScore.style.color = correctCount >= 14 ? '#22c55e' : correctCount >= 9 ? '#22d3ee' : '#f59e0b';
+    });
+    el.appendChild(optEl);
+  });
+  quizContainer.appendChild(el);
+});
+
+/* ============================================================
+   SMOOTH ANCHOR
+============================================================ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e){
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({top:y, behavior:'smooth'});
+    }
+  });
+});
+</script>
+</body>
+</html>

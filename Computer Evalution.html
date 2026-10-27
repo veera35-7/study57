@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Story of Computing & Vision — Animated Journey</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #05070d;
+    --accent: #58a6ff;
+    --accent2: #a855f7;
+    --accent3: #22d3ee;
+    --gold: #fbbf24;
+    --green: #22c55e;
+    --pink: #ec4899;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+  }
+
+  /* Animated background */
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(88,166,255,0.15), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(168,85,247,0.15), transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(34,211,238,0.08), transparent 60%),
+      #05070d;
+    animation: bgShift 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgShift {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(35deg); }
+  }
+
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5vh 5vw;
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    pointer-events: none;
+    text-align: center;
+  }
+
+  .scene.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  /* Typography */
+  .title {
+    font-size: clamp(1.8rem, 5vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    background: linear-gradient(120deg, #58a6ff, #a855f7, #22d3ee, #fbbf24);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5vh;
+    animation: fadeUp 0.9s ease both, gradientMove 6s ease infinite;
+  }
+
+  @keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .subtitle {
+    font-size: clamp(0.85rem, 1.8vw, 1.25rem);
+    color: var(--muted);
+    font-weight: 400;
+    max-width: 900px;
+    animation: fadeUp 1s 0.25s ease both;
+  }
+
+  .narration {
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(920px, 90vw);
+    font-size: clamp(0.82rem, 1.5vw, 1.05rem);
+    color: #cbd5e1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px);
+    padding: 13px 22px;
+    border-radius: 14px;
+    animation: fadeUp 0.8s 0.5s ease both;
+    line-height: 1.55;
+  }
+
+  .narration::before {
+    content: '🎙';
+    margin-right: 10px;
+    filter: drop-shadow(0 0 6px var(--accent));
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes popIn {
+    0% { opacity: 0; transform: scale(0.4); }
+    70% { transform: scale(1.08); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+
+  @keyframes floatRotate {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-16px) rotate(3deg); }
+  }
+
+  @keyframes scanline {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.12); opacity: 0.85; }
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(88,166,255,0.5); }
+    50% { box-shadow: 0 0 45px rgba(168,85,247,0.8), 0 0 70px rgba(88,166,255,0.4); }
+  }
+
+  @keyframes spin3d {
+    from { transform: rotateY(0deg) rotateX(-10deg); }
+    to { transform: rotateY(360deg) rotateX(-10deg); }
+  }
+
+  @keyframes binaryFall {
+    from { transform: translateY(-100vh); opacity: 0.8; }
+    to { transform: translateY(100vh); opacity: 0; }
+  }
+
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  /* ==== SCENE 1: 3D Cube ==== */
+  .cube-scene {
+    perspective: 1400px;
+    margin-bottom: 3vh;
+    animation: popIn 1s ease both;
+  }
+
+  .cube {
+    width: min(200px, 30vw);
+    height: min(200px, 30vw);
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spin3d 12s linear infinite;
+  }
+
+  .cube-face {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(88,166,255,0.15), rgba(168,85,247,0.15));
+    border: 2px solid rgba(88,166,255,0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    box-shadow: 0 0 30px rgba(88,166,255,0.35) inset;
+    border-radius: 12px;
+  }
+
+  .cube-face.front  { transform: translateZ(calc(min(100px, 15vw))); }
+  .cube-face.back   { transform: rotateY(180deg) translateZ(calc(min(100px, 15vw))); }
+  .cube-face.right  { transform: rotateY(90deg) translateZ(calc(min(100px, 15vw))); }
+  .cube-face.left   { transform: rotateY(-90deg) translateZ(calc(min(100px, 15vw))); }
+  .cube-face.top    { transform: rotateX(90deg) translateZ(calc(min(100px, 15vw))); }
+  .cube-face.bottom { transform: rotateX(-90deg) translateZ(calc(min(100px, 15vw))); }
+
+  /* ==== SCENE 2: Ancient counting ==== */
+  .count-row {
+    display: flex;
+    gap: clamp(16px, 3vw, 40px);
+    align-items: center;
+    justify-content: center;
+    margin-top: 4vh;
+    flex-wrap: wrap;
+  }
+
+  .count-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .count-item .icon {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    filter: drop-shadow(0 0 20px rgba(88,166,255,0.5));
+  }
+
+  .count-item .label {
+    font-size: clamp(0.7rem, 1.3vw, 0.9rem);
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ==== SCENE 3: First computers ==== */
+  .machine-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 950px;
+    margin-top: 4vh;
+    width: 100%;
+  }
+
+  .machine-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    padding: 22px 14px;
+    text-align: center;
+    animation: popIn 0.6s ease both;
+    transition: transform 0.4s, box-shadow 0.4s;
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .machine-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(88,166,255,0.2), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .machine-card:hover { transform: translateY(-8px) rotateX(6deg); box-shadow: 0 20px 40px rgba(88,166,255,0.25); }
+  .machine-card:hover::before { opacity: 1; }
+
+  .machine-card .emoji {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    display: block;
+    margin-bottom: 8px;
+    animation: float 3.5s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+  }
+
+  .machine-card .name {
+    font-weight: 700;
+    font-size: clamp(0.85rem, 1.4vw, 1rem);
+    color: #fff;
+    position: relative;
+    z-index: 1;
+  }
+
+  .machine-card .year {
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-top: 4px;
+    font-family: 'Fira Code', monospace;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ==== SCENE 4: Binary rain ==== */
+  .binary-rain {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .binary-rain span {
+    position: absolute;
+    font-family: 'Fira Code', monospace;
+    font-size: 1.1rem;
+    color: rgba(34,211,238,0.35);
+    animation: binaryFall 6s linear infinite;
+  }
+
+  .switch-demo {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-top: 4vh;
+    animation: popIn 0.8s ease both;
+    z-index: 2;
+  }
+
+  .switch-box {
+    background: rgba(0,0,0,0.5);
+    border: 3px solid var(--accent);
+    border-radius: 16px;
+    padding: 20px 30px;
+    min-width: 140px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(88,166,255,0.5);
+  }
+
+  .switch-box .big {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    color: var(--accent3);
+    text-shadow: 0 0 25px var(--accent3);
+  }
+
+  .switch-box .small {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 6px;
+  }
+
+  .switch-plus { font-size: 2rem; color: var(--accent2); }
+
+  /* ==== SCENE 5: Language evolution ==== */
+  .lang-timeline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 4vh;
+    max-width: 1100px;
+  }
+
+  .lang-node {
+    background: linear-gradient(135deg, rgba(88,166,255,0.12), rgba(168,85,247,0.12));
+    border: 2px solid rgba(88,166,255,0.4);
+    border-radius: 14px;
+    padding: 16px 18px;
+    text-align: center;
+    min-width: 120px;
+    animation: popIn 0.6s ease both;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s;
+  }
+
+  .lang-node:hover { transform: translateY(-6px) scale(1.05); }
+
+  .lang-node .icon { font-size: 1.8rem; margin-bottom: 6px; display: block; }
+  .lang-node .name { font-weight: 700; font-size: 0.9rem; }
+  .lang-node .yr { font-size: 0.7rem; color: var(--accent); font-family: 'Fira Code', monospace; margin-top: 2px; }
+
+  .lang-arrow { color: var(--accent3); font-size: 1.4rem; }
+
+  /* ==== SCENE 6: GUI revolution ==== */
+  .gui-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 900px;
+    margin-top: 3vh;
+    width: 100%;
+  }
+
+  .gui-box {
+    background: rgba(255,255,255,0.03);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    animation: popIn 0.8s ease both;
+  }
+
+  .gui-box.old { border-color: rgba(148,163,184,0.4); }
+  .gui-box.new { border-color: rgba(34,211,238,0.6); box-shadow: 0 0 30px rgba(34,211,238,0.25); }
+
+  .gui-box .term {
+    font-family: 'Fira Code', monospace;
+    background: #000;
+    color: #22c55e;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    text-align: left;
+    height: 100px;
+    overflow: hidden;
+    line-height: 1.5;
+  }
+
+  .gui-icons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .gui-icons .app {
+    font-size: 2.2rem;
+    animation: float 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(34,211,238,0.6));
+  }
+
+  .gui-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 12px;
+  }
+
+  /* ==== SCENE 7: Internet globe ==== */
+  .globe-wrap {
+    position: relative;
+    width: min(320px, 55vw);
+    aspect-ratio: 1;
+    margin-top: 2vh;
+    animation: popIn 1s ease both;
+  }
+
+  .globe {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #1e40af, #0c1a3d 70%);
+    border: 2px solid rgba(34,211,238,0.5);
+    box-shadow: 0 0 60px rgba(34,211,238,0.4), inset 0 0 60px rgba(30,64,175,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(4rem, 10vw, 7rem);
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .node {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--accent3);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--accent3);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* ==== SCENE 8: Neural network ==== */
+  .neural-svg {
+    width: min(600px, 90vw);
+    height: auto;
+    margin-top: 2vh;
+    animation: popIn 1s ease both;
+  }
+
+  .neural-svg .node-dot {
+    fill: var(--accent);
+    filter: drop-shadow(0 0 8px var(--accent));
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .neural-svg .node-dot.hidden2 { fill: var(--accent2); animation-delay: 0.4s; }
+  .neural-svg .node-dot.hidden3 { fill: var(--accent3); animation-delay: 0.8s; }
+
+  .neural-svg .link-line {
+    stroke: rgba(88,166,255,0.4);
+    stroke-width: 1.5;
+    stroke-dasharray: 6 6;
+    animation: dashLine 2s linear infinite;
+  }
+
+  @keyframes dashLine {
+    to { stroke-dashoffset: -24; }
+  }
+
+  /* ==== SCENE 9: Vision demo ==== */
+  .demo-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 850px;
+    width: 100%;
+    margin-top: 2vh;
+  }
+
+  .demo-box {
+    aspect-ratio: 1;
+    background: #0f172a;
+    border: 2px solid rgba(88,166,255,0.3);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .demo-box .scan {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent3), transparent);
+    animation: scanline 2.4s linear infinite;
+    box-shadow: 0 0 20px var(--accent3);
+  }
+
+  .demo-box canvas { width: 90%; height: 90%; border-radius: 8px; }
+
+  .demo-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  /* ==== SCENE 10: Summary ==== */
+  .final-formula {
+    font-family: 'Fira Code', monospace;
+    font-size: clamp(0.95rem, 2.2vw, 1.6rem);
+    background: rgba(88,166,255,0.08);
+    border: 2px solid rgba(88,166,255,0.3);
+    padding: 26px 36px;
+    border-radius: 20px;
+    margin-top: 3vh;
+    animation: popIn 0.9s ease both;
+    line-height: 1.8;
+  }
+
+  .final-formula .op { color: var(--accent2); margin: 0 10px; }
+  .final-formula .eq { color: var(--accent3); margin: 0 10px; }
+  .final-formula .res {
+    background: linear-gradient(90deg, #22d3ee, #a855f7, #fbbf24);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 900;
+    animation: gradientMove 3s ease infinite;
+  }
+
+  .final-quote {
+    font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+    color: var(--muted);
+    margin-top: 3vh;
+    font-style: italic;
+    max-width: 800px;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+
+  /* ==== Controls ==== */
+  .controls {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(15,23,42,0.75);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 999px;
+    padding: 8px 14px;
+    z-index: 100;
+    opacity: 0.3;
+    transition: opacity 0.3s;
+  }
+
+  .controls:hover { opacity: 1; }
+
+  .controls button {
+    background: transparent;
+    border: none;
+    color: #e5e7eb;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition: 0.2s;
+  }
+
+  .controls button:hover { background: rgba(88,166,255,0.2); color: var(--accent); }
+
+  .dots { display: flex; gap: 5px; margin: 0 6px; }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background: var(--accent);
+    width: 22px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3), var(--gold));
+    z-index: 200;
+    width: 0%;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 12px var(--accent);
+  }
+
+  @media (max-width: 720px) {
+    .machine-grid { grid-template-columns: 1fr 1fr; }
+    .gui-grid { grid-template-columns: 1fr; }
+    .demo-wrap { grid-template-columns: 1fr; }
+    .lang-arrow { transform: rotate(90deg); }
+    .lang-timeline { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="stage" id="stage">
+
+  <!-- ===================== SCENE 1: Intro ===================== -->
+  <div class="scene active" data-duration="7000">
+    <div class="cube-scene">
+      <div class="cube">
+        <div class="cube-face front">💻</div>
+        <div class="cube-face back">🧠</div>
+        <div class="cube-face right">👁️</div>
+        <div class="cube-face left">⚙️</div>
+        <div class="cube-face top">🚀</div>
+        <div class="cube-face bottom">✨</div>
+      </div>
+    </div>
+    <h1 class="title">The Story of Computing &amp; Vision</h1>
+    <p class="subtitle">From the first counting stones to machines that can see</p>
+    <div class="narration">
+      A journey across thousands of years — how humans taught machines to think, and finally, how they learned to see. No tech background needed. Let's begin.
+    </div>
+  </div>
+
+  <!-- ===================== SCENE 2: Ancient Counting ===================== -->
+  <div class="scene" data-duration="7500">
+    <h1 class="title" style="font-size:clamp(1.6rem,4vw,3rem)">Before Computers, We Counted</h1>
+    <p class="subtitle">Humans always needed to store and share information</p>
+
+    <div class="count-row">
+      <div class="count-item" style="animation-delay:0s">
+        <div class="icon">✋</div>
+        <div class="label">Fingers</div>
+      </div>
+      <div class="count-item" style="animation-delay:0.3s">
+        <div class="icon">🪨</div>
+        <div class="label">Stones</div>
+      </div>
+      <div class="count-item" style="animation-delay:0.6s">
+        <div class="icon">🧮</div>
+        <div class="label">Abacus</div>
+      </div>
+      <div class="count-item" style="animation-delay:0.9s">
+        <div class="icon">📜</div>
+        <div class="label">Written Marks</div>
+      </div>
+      <div class="count-item" style="animation-delay:1.2s">
+        <div class="icon">🕰️</div>
+        <div class="label">Mechanical Devices</div>
+      </div>
+    </div>
+
+    <div class="narration">
+      Long before computers, people counted on their fingers, piled stones, and used the abacus. Every era invented a better way to store numbers and ideas.
+    </div>
+  </div>
+
+  <!-- ===================== SCENE 3: First Computers ===================== -->
+  <div class="scene" data-duration="8000">
+    <h1 class="title" style="font-size:clamp(1.6rem,4vw,3rem)">The First Computers</h1>
+    <p class="subtitle">Room-sized machines that changed everything</p>
+
+    <div class="machine-grid">
+      <div class="machine-card" style="animation-delay:0.2s">
+        <span class="emoji">⚙️</span>
+        <div class="name">Babbage Engine</div>
+        <div class="year">1837</div>
+      </div>
+      <div class="machine-card" style="animation-delay:0.4s">
+        <span class="emoji">🔢</span>
+        <div class="name">Turing Machine</div>
+        <div class="year">1936</div>
+      </div>
+      <div class="machine-card" style="animation-delay:0.6s">
+        <span class="emoji">🏛️</span>
+        <div class="name">ENIAC</div>
+        <div class="year">1945</div>
+      </div>
+      <div class="machine-card" style="animation-delay:0.8s">
+        <span class="emoji">💳</span>
+        <div class="name">Punch Cards</div>
+        <div class="year">1801</div>
+      </div>
+      <div class="machine-card" style="animation-delay:1s">
+        <span class="emoji">💡</span>
+        <div class="name">Vacuum Tubes</div>
+        <div class="year">1940s</div>
+      </div>
+      <div class="machine-card" style="animation-delay:1.2s">
+        <span class="emoji">🔌</span>
+        <div class="name">Transistors</div>
+        <div class="year">1947</div>
+      </div>
+    </div>
+
+    <div class="narration">
+      The first computers filled entire rooms. They used punch cards and glowing vacuum tubes. A single calculation took hours — but they opened the door to everything we have today.
+    </div>
+  </div>
+
+  <!-- ===================== SCENE 4: Binary ===================== -->
+  <div class="scene" data-duration="7500">
+    <div class="binary-rain" id="binaryRain"></div>
+
+    <h1 class="title" style="font-size:clamp(1.6rem,4vw,3rem)">How Humans Talk to Computers</h1>
+    <p class="subtitle">A computer only understands two things: ON and OFF</p>
+
+    <div class="switch-demo">
+      <div class="switch-box">
+        <div class="big">1</div>
+        <div class="small">ON</div>
+      </div>
+      <div class="switch-plus">+</div>
+      <div class="switch-box" style="border-color: var(--accent2); box-shadow: 0 0 30px rgba(168,85,247,0.5);">
+        <div class="big" style="color: var(--accent2); text-shadow: 0 0 25px var(--accent2);">0</div>
+        <div class="small">OFF</div>
+      </div>
+    </div>
+
+    <div class="narration">
+      Every photo, song, video, and message you send is ultimately made of just two symbols: <b style="color: var(--accent3);">1</b> and <b style="color: var(--accent2);">0</b>. That's called binary — the language of computers.
+    </div>
+  </div>
+
+  <!-- ===================== SCENE 5: Programming Languages ===================== -->
+  <div class="scene" data-duration="8000">
+    <h1 class="title" style="font-size:clamp(1.6rem,4vw,3rem)">Teaching Computers Our Language</h1>
+    <p class="subtitle">Programming languages evolved to make talking to machines easier</p>
+
+    <div class="lang-timeline">
+      <div class="lang-node" style="animation-delay:0.2s">
+        <span class="icon">🔩</span>
+        <div class="name">Machine Code</div>
+        <div class="yr">1940s</div>
+      </div>
+      <div class="lang-arrow">➜</div>
+      <div class="lang-node" style="animation-delay:0.4s">
+        <span class="icon">📝</span>
+        <div class="name">Assembly</div>
+        <div class="yr">1949</div>
+      </div>
+      <div class="lang-arrow">➜</div>
+      <div class="lang-node" style="animation-delay:0.6s">
+        <span class="icon">⚡</span>
+        <div class="name">C</div>
+        <div class="yr">1972</div>
+      </div>
+      <div class="lang-arrow">➜</div>
+      <div class="lang-node" style="animation-delay:0.8s">
+        <span class="icon">☕</span>
+        <div class="name">Java</div>
+        <div class="yr">1995</div>
+      </div>
+      <div class="lang-arrow">➜</div>
+      <div class="lang-node" style="animation-delay:1s">
+        <span class="icon">🐍</span>
+        <div class="name">Python</div>
+        <div class="yr">1991</div>
+      </div>
+      <div class="lang-arrow">➜</div>
+      <div class="lang-node" style="animation-delay:1.2s; border-color: var(--gold);">
+        <span class="icon">🤖</span>
+        <div class="name">AI &amp; JS</div>
+        <div class="yr">Today</div>
+      </div>
+    </div>
+
+    <div class="narration">
+      Early programmers wrote only <b>1s and 0s</b>. Then came English-like languages — C, Java, Python — making it easier for humans to give instructions. Today, even a beginner can write an app.
+    </div>
+  </div>
+
+  <!-- ===================== SCENE 6: GUI Revolution ===================== -->
+  <div class="scene" data-duration="7500">
+    <h1 class="title" style="font-size:clamp(1.6rem,4vw,3rem)">From Typing to Touching</h1>
+    <p class="subtitle">The visual revolution — icons, windows, and clicks</p>
+
+    <div class="gui-grid">
+      <div class="gui-box old">
+        <div class="term">
+          &gt; dir /w<br>
+          &gt; copy file.txt a:\<br>
+          &gt; run program.exe<br>
+          &gt; _<span style="animation: blink 1s infinite;">█</span>
+        </div>
+        <div class="gui-label">Before: Text Commands</div>
+      </div>
+      <div class="gui-box new">
+        <div class="gui-icons">
+          <span class="app">📁</span>
+          <span class="app" style="animation-delay:0.3s">🖼️</span>
+          <span class="app" style="animation-delay:0.6s">🎵</span>
+          <span class="app" style="animation-delay:0.9s">🌐</span>
+          <span class="app" style="animation-delay:1.2s">📧</span>
+        </div>
+        <div class="gui-label">After: Icons &amp; Windows</div>
+      </div>
+    </div>
+
+    <div class="narration">
+      In the 1980s, computers learned to show pictures, windows, and icons. Suddenly you didn't need to memorize commands — you could just <b>click</b>. This opened computers to everyone.
+    </div>
+  </div>
+
+  <!-- ===================== SCENE 7: Internet ===================== -->
+  <div class="scene" data-duration="7000">
+    <h1 class="title" style="font-size:clamp(1.6rem,4vw,3rem)">The World Connects</h1>
+    <p class="subtitle">Every computer on Earth linked together</p>
+
+    <div class="globe-wrap">
+      <div class="globe">🌐</div>
+      <div class="node" style="top: 15%; left: 20%;"></div>
+      <div class="node" style="top: 30%; left: 80%; animation-delay:0.5s;"></div>
+      <div class="node" style="top: 70%; left: 15%; animation-delay:1s;"></div>
+      <div class="node" style="top: 80%; left: 75%; animation-delay:1.5s;"></div>
+      <div class="node" style="top: 50%; left: 50%; animation-delay:0.7s;"></div>
+    </div>
+
+    <div class="narration">
+      Then came the internet. Millions of machines started talking to each other — sharing ideas, photos, and stories — all in milliseconds.
+    </div>
+  </div>
+
+  <!-- ===================== SCENE 8: AI ===================== -->
+  <div class="scene" data-duration="7500">
+    <h1 class="title" style="font-size:clamp(1.6rem,4vw,3rem)">Machines Learn to Think</h1>
+    <p class="subtitle">Artificial Intelligence — inspired by the human brain</p>
+
+    <svg class="neural-svg" viewBox="0 0 600 260">
+      <!-- Layer 1 -->
+      <circle class="node-dot" cx="80"  cy="80"  r="14"/>
+      <circle class="node-dot" cx="80"  cy="140" r="14"/>
+      <circle class="node-dot" cx="80"  cy="200" r="14"/>
+
+      <!-- Layer 2 -->
+      <circle class="node-dot hidden2" cx="300" cy="60"  r="14"/>
+      <circle class="node-dot hidden2" cx="300" cy="120" r="14"/>
+      <circle class="node-dot hidden2" cx="300" cy="180" r="14"/>
+      <circle class="node-dot hidden2" cx="300" cy="240" r="14"/>
+
+      <!-- Layer 3 -->
+      <circle class="node-dot hidden3" cx="520" cy="100" r="14"/>
+      <circle class="node-dot hidden3" cx="520" cy="160" r="14"/>
+
+      <!-- Links L1-L2 -->
+      <g class="link-line">
+        <line x1="80" y1="80"  x2="300" y2="60"/>
+        <line x1="80" y1="80"  x2="300" y2="120"/>
+        <line x1="80" y1="80"  x2="300" y2="180"/>
+        <line x1="80" y1="140" x2="300" y2="60"/>
+        <line x1="80" y1="140" x2="300" y2="120"/>
+        <line x1="80" y1="140" x2="300" y2="180"/>
+        <line x1="80" y1="140" x2="300" y2="240"/>
+        <line x1="80" y1="200" x2="300" y2="120"/>
+        <line x1="80" y1="200" x2="300" y2="180"/>
+        <line x1="80" y1="200" x2="300" y2="240"/>
+      </g>
+
+      <!-- Links L2-L3 -->
+      <g class="link-line">
+        <line x1="300" y1="60"  x2="520" y2="100"/>
+        <line x1="300" y1="60"  x2="520" y2="160"/>
+        <line x1="300" y1="120" x2="520" y2="100"/>
+        <line x1="300" y1="120" x2="520" y2="160"/>
+        <line x1="300" y1="180" x2="520" y2="100"/>
+        <line x1="300" y1="180" x2="520" y2="160"/>
+        <line x1="300" y1="240" x2="520" y2="160"/>
+      </g>
+    </svg>
+
+    <div class="narration">
+      Scientists built <b>artificial neural networks</b> — loosely inspired by brain cells. Instead of being told every rule, machines started learning from examples. This is Artificial Intelligence.
+    </div>
+  </div>
+
+  <!-- ===================== SCENE 9: Computer Vision ===================== -->
+  <div class="scene" data-duration="8500">
+    <h1 class="title" style="font-size:clamp(1.6rem,4vw,3rem)">Now Machines Can See</h1>
+    <p class="subtitle">Computer Vision — the eye of Artificial Intelligence</p>
+
+    <div class="demo-wrap">
+      <div>
+        <div class="demo-box">
+          <canvas id="canvasOrig" width="300" height="300"></canvas>
+          <div class="scan"></div>
+        </div>
+        <div class="demo-label">👁️ What the camera sees</div>
+      </div>
+      <div>
+        <div class="demo-box">
+          <canvas id="canvasEdge" width="300" height="300"></canvas>
+          <div class="scan" style="animation-delay:1.2s;"></div>
+        </div>
+        <div class="demo-label">🧠 What the AI detects</div>
+      </div>
+    </div>
+
+    <div class="narration">
+      Computer Vision lets machines <b>understand images</b> — reading faces, spotting tumours, driving cars, recognising handwriting. In milliseconds, they see what took nature millions of years to evolve.
+    </div>
+  </div>
+
+  <!-- ===================== SCENE 10: Summary ===================== -->
+  <div class="scene" data-duration="8000">
+    <h1 class="title" style="font-size:clamp(1.6rem,4vw,3rem)">The Big Picture</h1>
+    <p class="subtitle">From stones to seeing machines — the journey continues</p>
+
+    <div class="final-formula">
+      🪨 Counting <span class="op">+</span> 💡 Electricity <span class="op">+</span> 🔢 Binary
+      <span class="op">+</span> 💻 Programming <span class="op">+</span> 🌐 Internet
+      <span class="op">+</span> 🧠 AI <span class="eq">=</span>
+      <span class="res">👁️ Vision</span>
+    </div>
+
+    <p class="final-quote">
+      "Every photo you take, every scan, every self-driving car — stands on thousands of years of human curiosity. And this is only the beginning."
+    </p>
+
+    <div class="narration">
+      Thank you for watching. Save this, share it, and remember — the next chapter of computing is being written right now. Maybe by you. ✨
+    </div>
+  </div>
+
+</div>
+
+<!-- Controls -->
+<div class="controls">
+  <button onclick="prevScene()" title="Previous">⏮</button>
+  <button onclick="togglePlay()" id="playBtn" title="Play/Pause">⏸</button>
+  <button onclick="nextScene()" title="Next">⏭</button>
+  <div class="dots" id="dots"></div>
+</div>
+
+<script>
+  const scenes = document.querySelectorAll('.scene');
+  const dotsContainer = document.getElementById('dots');
+  const progressBar = document.getElementById('progressBar');
+  const playBtn = document.getElementById('playBtn');
+
+  let current = 0;
+  let playing = true;
+  let progressTimer = null;
+
+  // Build dots
+  scenes.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsContainer.appendChild(d);
+  });
+
+  function updateDots() {
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function showScene(i) {
+    scenes.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    updateDots();
+  }
+
+  function startSceneTimer() {
+    clearInterval(progressTimer);
+    const duration = parseInt(scenes[current].dataset.duration) || 7000;
+    const startTime = Date.now();
+    const startOffset = (current / scenes.length) * 100;
+    const endOffset = ((current + 1) / scenes.length) * 100;
+
+    progressTimer = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const ratio = Math.min(elapsed / duration, 1);
+      progressBar.style.width = (startOffset + (endOffset - startOffset) * ratio) + '%';
+
+      if (elapsed >= duration) {
+        clearInterval(progressTimer);
+        if (current < scenes.length - 1) {
+          current++;
+          showScene(current);
+          startSceneTimer();
+        } else {
+          playing = false;
+          playBtn.textContent = '▶';
+          progressBar.style.width = '100%';
+        }
+      }
+    }, 50);
+  }
+
+  function goTo(i) {
+    current = i;
+    showScene(current);
+    if (playing) startSceneTimer();
+    else progressBar.style.width = ((i + 1) / scenes.length * 100) + '%';
+  }
+
+  function nextScene() { if (current < scenes.length - 1) goTo(current + 1); }
+  function prevScene() { if (current > 0) goTo(current - 1); }
+
+  function togglePlay() {
+    playing = !playing;
+    playBtn.textContent = playing ? '⏸' : '▶';
+    if (playing) {
+      if (current === scenes.length - 1 && progressBar.style.width === '100%') {
+        current = 0;
+        showScene(0);
+      }
+      startSceneTimer();
+    } else {
+      clearInterval(progressTimer);
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+    if (e.code === 'ArrowRight') nextScene();
+    if (e.code === 'ArrowLeft') prevScene();
+  });
+
+  // ==== Binary rain ====
+  (function buildBinaryRain() {
+    const container = document.getElementById('binaryRain');
+    if (!container) return;
+    const cols = 24;
+    for (let i = 0; i < cols; i++) {
+      const span = document.createElement('span');
+      span.textContent = Math.random() > 0.5 ? '1' : '0';
+      span.style.left = (i / cols) * 100 + '%';
+      span.style.animationDelay = (Math.random() * 6) + 's';
+      span.style.animationDuration = (4 + Math.random() * 4) + 's';
+      container.appendChild(span);
+    }
+  })();
+
+  // ==== Vision demo ====
+  function drawOriginal() {
+    const c = document.getElementById('canvasOrig');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    const w = c.width, h = c.height;
+
+    const g = ctx.createLinearGradient(0, 0, w, h);
+    g.addColorStop(0, '#1e3a8a');
+    g.addColorStop(1, '#0f172a');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.fillStyle = '#22d3ee';
+    ctx.beginPath(); ctx.arc(90, 90, 45, 0, Math.PI * 2); ctx.fill();
+
+    ctx.fillStyle = '#a855f7';
+    ctx.fillRect(170, 60, 90, 90);
+
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath();
+    ctx.moveTo(150, 260); ctx.lineTo(90, 180); ctx.lineTo(210, 180);
+    ctx.closePath(); ctx.fill();
+
+    ctx.fillStyle = '#22c55e';
+    ctx.beginPath(); ctx.arc(230, 230, 35, 0, Math.PI * 2); ctx.fill();
+  }
+
+  function drawEdges() {
+    const orig = document.getElementById('canvasOrig');
+    const edge = document.getElementById('canvasEdge');
+    if (!orig || !edge) return;
+    const octx = orig.getContext('2d');
+    const ectx = edge.getContext('2d');
+    const w = orig.width, h = orig.height;
+
+    const data = octx.getImageData(0, 0, w, h).data;
+    const out = ectx.createImageData(w, h);
+    const outData = out.data;
+
+    for (let y = 1; y < h - 1; y++) {
+      for (let x = 1; x < w - 1; x++) {
+        const i  = (y * w + x) * 4;
+        const iL = (y * w + (x - 1)) * 4;
+        const iR = (y * w + (x + 1)) * 4;
+        const iU = ((y - 1) * w + x) * 4;
+        const iD = ((y + 1) * w + x) * 4;
+
+        const gx = data[iR] - data[iL];
+        const gy = data[iD] - data[iU];
+        const mag = Math.sqrt(gx * gx + gy * gy);
+
+        outData[i]     = mag;
+        outData[i + 1] = mag > 40 ? 220 : mag * 2;
+        outData[i + 2] = mag > 40 ? 255 : mag;
+        outData[i + 3] = 255;
+      }
+    }
+    ectx.putImageData(out, 0, 0);
+  }
+
+  function initDemo() {
+    drawOriginal();
+    setTimeout(drawEdges, 400);
+  }
+
+  // Redraw when scene 9 (index 8) becomes active
+  const observer = new MutationObserver(() => {
+    if (scenes[8] && scenes[8].classList.contains('active')) initDemo();
+  });
+  scenes.forEach(s => observer.observe(s, { attributes: true, attributeFilter: ['class'] }));
+
+  // Kick off
+  showScene(0);
+  startSceneTimer();
+  initDemo();
+</script>
+</body>
+</html>

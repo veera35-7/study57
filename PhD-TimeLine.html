@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhD Research Roadmap — Adaptive &amp; Explainable ML</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060a14;--panel:rgba(255,255,255,.035);--panel-2:rgba(255,255,255,.055);
+  --stroke:rgba(140,180,255,.16);--line:rgba(120,180,255,.35);--line-strong:rgba(120,180,255,.6);
+  --accent:#22d3ee;--accent2:#8b5cf6;--accent3:#34d399;--accent4:#f59e0b;--accent5:#f472b6;
+  --text:#e8eefb;--muted:#93a4bf;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(900px 500px at 15% -5%,rgba(34,211,238,.13),transparent 60%),
+             radial-gradient(800px 500px at 88% 8%,rgba(139,92,246,.15),transparent 62%),
+             radial-gradient(700px 600px at 50% 110%,rgba(52,211,153,.09),transparent 65%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 22px 100px}
+
+/* ============ MAIN PAGE ============ */
+.hero{padding:84px 0 56px;text-align:center}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.28);padding:8px 18px;border-radius:999px;margin-bottom:28px}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.hero h1{font-size:clamp(1.6rem,3.6vw,2.75rem);font-weight:800;line-height:1.22;letter-spacing:-.02em;background:linear-gradient(120deg,#ffffff 10%,#7dd3fc 45%,#c4b5fd 75%,#ffffff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;max-width:940px;margin:0 auto 20px}
+.hero p.sub{color:var(--muted);font-size:1.02rem;max-width:640px;margin:0 auto}
+.hero .rule{width:120px;height:3px;border-radius:2px;margin:34px auto 0;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
+
+.cta-wrap{margin-top:38px;display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
+.cta-btn{display:inline-flex;align-items:center;gap:12px;padding:17px 34px;border-radius:15px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:800;font-size:1rem;color:#06101f;background:linear-gradient(135deg,#22d3ee 0%,#60a5fa 45%,#8b5cf6 100%);box-shadow:0 0 44px rgba(34,211,238,.42),0 8px 26px rgba(0,0,0,.4);transition:transform .28s ease,box-shadow .28s ease;position:relative;overflow:hidden}
+.cta-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s ease}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 0 70px rgba(139,92,246,.55),0 12px 34px rgba(0,0,0,.5)}
+.cta-btn:hover::after{transform:translateX(120%)}
+.cta-hint{width:100%;text-align:center;color:var(--muted);font-size:.82rem;margin-top:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+.float-btn{position:fixed;bottom:28px;right:28px;z-index:99;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#22d3ee,#8b5cf6);color:#06101f;font-size:1.4rem;display:grid;place-items:center;box-shadow:0 0 40px rgba(34,211,238,.5),0 10px 30px rgba(0,0,0,.45);transition:transform .28s ease}
+.float-btn:hover{transform:translateY(-4px) scale(1.06)}
+.float-btn .tip{position:absolute;right:74px;top:50%;transform:translateY(-50%);background:rgba(6,10,20,.94);color:var(--text);font-size:.78rem;font-weight:600;padding:8px 14px;border-radius:9px;border:1px solid var(--stroke);white-space:nowrap;opacity:0;pointer-events:none;transition:.25s ease;font-family:'JetBrains Mono',monospace}
+.float-btn:hover .tip{opacity:1}
+
+section{margin-top:78px}
+.sec-head{margin-bottom:34px}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);display:block;margin-bottom:10px}
+.sec-head h2{font-size:clamp(1.25rem,2.4vw,1.7rem);font-weight:800;letter-spacing:-.015em}
+.sec-head p{color:var(--muted);font-size:.95rem;margin-top:8px;max-width:720px}
+
+.tree-scroll{overflow-x:auto;padding:6px 0 12px}
+.tree-scroll::-webkit-scrollbar{height:8px}
+.tree-scroll::-webkit-scrollbar-thumb{background:rgba(120,180,255,.25);border-radius:99px}
+.tree{min-width:860px;display:flex;flex-direction:column;align-items:center}
+.tree-root{max-width:660px;text-align:center;padding:26px 34px;border-radius:20px;background:linear-gradient(150deg,rgba(34,211,238,.14),rgba(139,92,246,.14));border:1px solid rgba(120,180,255,.32);box-shadow:0 0 46px rgba(34,211,238,.13)}
+.tree-root .tree-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:10px}
+.tree-root h3{font-size:1.06rem;font-weight:700;line-height:1.45}
+.stem{width:2px;height:38px;background:var(--line);flex:none}
+.branches{display:flex;align-items:flex-start;width:100%}
+.branch{flex:1;position:relative;padding-top:46px}
+.branch::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--line)}
+.branch:first-child::before{left:50%}
+.branch:last-child::before{right:50%}
+.branch::after{content:'';position:absolute;top:0;left:50%;margin-left:-1px;width:2px;height:46px;background:var(--line)}
+.branch-card{margin:0 9px;padding:20px 14px;text-align:center;border-radius:14px;background:var(--panel);border:1px solid var(--stroke);transition:.28s ease;height:100%}
+.branch-card:hover{background:var(--panel-2);border-color:var(--line-strong);transform:translateY(-4px)}
+.branch-icon{font-size:1.5rem;line-height:1;margin-bottom:10px;display:block}
+.branch-card h4{font-size:.94rem;font-weight:700;margin-bottom:6px}
+.branch-card p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted)}
+.merger{display:flex;width:100%}
+.merge-col{flex:1;position:relative;height:46px}
+.merge-col::after{content:'';position:absolute;top:0;left:50%;margin-left:-1px;width:2px;height:46px;background:var(--line)}
+.merge-col::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--line)}
+.merge-col:first-child::before{left:50%}
+.merge-col:last-child::before{right:50%}
+.tree-leaf{padding:14px 40px;border-radius:14px;font-weight:700;font-size:.95rem;background:rgba(52,211,153,.11);border:1px solid rgba(52,211,153,.36);color:#a7f3d0}
+.tree-final{padding:18px 46px;border-radius:16px;font-weight:800;font-size:1.02rem;text-align:center;background:linear-gradient(135deg,rgba(139,92,246,.22),rgba(34,211,238,.2));border:1px solid rgba(167,139,250,.5);box-shadow:0 0 50px rgba(139,92,246,.22)}
+
+.timeline{position:relative}
+.timeline::before{content:'';position:absolute;left:23px;top:14px;bottom:14px;width:2px;background:linear-gradient(180deg,var(--accent),var(--accent2),var(--accent3),var(--accent4));opacity:.42;border-radius:2px}
+.paper{position:relative;padding-left:76px;margin-bottom:24px}
+.paper:last-child{margin-bottom:0}
+.paper-num{position:absolute;left:0;top:0;width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:.9rem;color:#06101f;background:linear-gradient(140deg,var(--accent),#60a5fa)}
+.paper::after{content:'';position:absolute;left:48px;top:24px;width:28px;height:2px;background:var(--line)}
+.paper-card{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:24px 26px;transition:.28s ease}
+.paper-card:hover{background:var(--panel-2);border-color:var(--line-strong);transform:translateX(5px)}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:14px;font-weight:600}
+.tag.t1{background:rgba(34,211,238,.12);color:#67e8f9;border:1px solid rgba(34,211,238,.3)}
+.tag.t2{background:rgba(96,165,250,.12);color:#93c5fd;border:1px solid rgba(96,165,250,.3)}
+.tag.t3{background:rgba(139,92,246,.14);color:#c4b5fd;border:1px solid rgba(139,92,246,.32)}
+.tag.t4{background:rgba(52,211,153,.12);color:#6ee7b7;border:1px solid rgba(52,211,153,.3)}
+.tag.t5{background:rgba(245,158,11,.12);color:#fcd34d;border:1px solid rgba(245,158,11,.3)}
+.tag.t6{background:rgba(244,114,182,.12);color:#f9a8d4;border:1px solid rgba(244,114,182,.3)}
+.paper-card h3{font-size:1.03rem;font-weight:700;line-height:1.45;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:5px 11px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--stroke);color:#c8d6ea}
+.chip.hi{background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3);color:#67e8f9}
+.purpose{font-size:.87rem;color:var(--muted);border-top:1px dashed var(--stroke);padding-top:13px;margin-top:4px}
+.purpose strong{color:var(--accent3);font-weight:600}
+.mini-flow{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:4px 0 14px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#b9c9e0}
+.mini-flow span.n{padding:5px 10px;border-radius:8px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.28)}
+.mini-flow span.a{color:var(--accent2);font-size:.8rem}
+
+.flow-box{background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.015));border:1px solid var(--stroke);border-radius:22px;padding:48px 22px}
+.flow{display:flex;flex-direction:column;align-items:center;width:100%}
+.fnode{padding:14px 30px;border-radius:13px;font-weight:600;font-size:.92rem;text-align:center;background:var(--panel-2);border:1px solid var(--stroke);transition:.25s ease;min-width:210px}
+.fnode small{display:block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);font-weight:400;margin-top:4px}
+.fnode.main{background:linear-gradient(135deg,rgba(34,211,238,.2),rgba(139,92,246,.2));border-color:rgba(120,180,255,.45);font-weight:800;font-size:.86rem;box-shadow:0 0 38px rgba(34,211,238,.16)}
+.fnode.green{background:rgba(52,211,153,.13);border-color:rgba(52,211,153,.4);color:#a7f3d0}
+.fnode.violet{background:rgba(139,92,246,.15);border-color:rgba(167,139,250,.45);color:#ddd6fe}
+.fnode.final{background:linear-gradient(135deg,rgba(34,211,238,.24),rgba(139,92,246,.24));border-color:rgba(167,139,250,.6);font-weight:800;font-size:1rem;box-shadow:0 0 55px rgba(139,92,246,.3);padding:20px 46px}
+.arrow{color:var(--accent);font-size:13px;line-height:1;margin:7px 0;opacity:.65}
+.split{display:flex;width:100%;max-width:680px;position:relative}
+.split::before{content:'';position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--line)}
+.split-col{flex:1;display:flex;flex-direction:column;align-items:center}
+.split-stem{width:2px;height:32px;background:var(--line);flex:none}
+.split-col .fnode{width:calc(100% - 26px);min-width:0;padding:14px 12px;font-size:.85rem}
+.merge{display:flex;width:100%;max-width:680px;position:relative}
+.merge::before{content:'';position:absolute;bottom:0;left:25%;right:25%;height:2px;background:var(--line)}
+.merge-col{flex:1;display:flex;justify-content:center}
+.merge-col .split-stem{height:32px}
+
+.flex-note{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:30px 28px}
+.flex-note h3{font-size:1.02rem;font-weight:700;margin-bottom:8px}
+.flex-note p{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+.flex-grid{display:flex;flex-wrap:wrap;gap:10px}
+.flex-grid span{padding:10px 18px;border-radius:11px;font-size:.86rem;font-weight:500;background:rgba(255,255,255,.045);border:1px solid var(--stroke);transition:.25s ease}
+.flex-grid span:hover{background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.38);color:#a5f3fc;transform:translateY(-2px)}
+
+.roadmap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;padding:34px 26px;border-radius:20px;background:linear-gradient(135deg,rgba(34,211,238,.09),rgba(139,92,246,.09));border:1px solid rgba(120,180,255,.24)}
+.roadmap .rm{padding:11px 20px;border-radius:11px;font-size:.86rem;font-weight:600;background:rgba(6,10,20,.6);border:1px solid var(--stroke);white-space:nowrap}
+.roadmap .rm-arrow{color:var(--accent);font-size:1rem;opacity:.7}
+.roadmap .rm.hl{background:linear-gradient(135deg,rgba(34,211,238,.24),rgba(139,92,246,.24));border-color:rgba(167,139,250,.5)}
+
+footer{margin-top:70px;padding-top:30px;border-top:1px solid var(--stroke);text-align:center;color:var(--muted);font-size:.85rem}
+footer strong{color:var(--text)}
+
+/* ============ DETAIL OVERLAY ============ */
+#detailOverlay{display:none;position:fixed;inset:0;z-index:99999;background:#060a14;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#detailOverlay.open{display:block}
+#detailOverlay .ov-wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 22px 100px}
+#detailOverlay .ov-topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(6,10,20,.85);border-bottom:1px solid var(--stroke);padding:14px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+#detailOverlay .ov-brand{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);white-space:nowrap;font-weight:600}
+#detailOverlay .ov-nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+#detailOverlay .ov-nav a{color:var(--muted);text-decoration:none;font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:8px;transition:.22s ease;font-family:'JetBrains Mono',monospace}
+#detailOverlay .ov-nav a:hover{color:var(--accent);background:rgba(34,211,238,.1)}
+#detailOverlay .ov-close{padding:8px 16px;border-radius:9px;border:1px solid rgba(140,180,255,.3);background:rgba(34,211,238,.1);color:#67e8f9;font-weight:700;cursor:pointer;font-size:.82rem;font-family:'JetBrains Mono',monospace;transition:.2s;flex-shrink:0}
+#detailOverlay .ov-close:hover{background:rgba(34,211,238,.22);border-color:rgba(34,211,238,.5)}
+
+#detailOverlay .hero{padding:60px 0 40px;text-align:center}
+#detailOverlay .hero h1{font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;line-height:1.22;letter-spacing:-.02em;background:linear-gradient(120deg,#ffffff 10%,#7dd3fc 45%,#c4b5fd 75%,#ffffff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;max-width:940px;margin:0 auto 18px}
+#detailOverlay .hero p{color:var(--muted);font-size:.95rem;max-width:680px;margin:0 auto}
+#detailOverlay .kicker2{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.28);padding:8px 18px;border-radius:999px;margin-bottom:24px}
+
+#detailOverlay section{padding-top:56px;scroll-margin-top:80px}
+#detailOverlay .sec-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);display:block;margin-bottom:10px}
+#detailOverlay section > h2{font-size:clamp(1.2rem,2.3vw,1.65rem);font-weight:800;letter-spacing:-.015em;margin-bottom:10px}
+#detailOverlay section > p.lead{color:var(--muted);font-size:.95rem;max-width:760px;margin-bottom:34px}
+
+#detailOverlay .paper-detail{margin-bottom:34px;border-radius:20px;overflow:hidden;background:var(--panel);border:1px solid var(--stroke);transition:.3s ease}
+#detailOverlay .paper-detail:hover{border-color:var(--line)}
+#detailOverlay .pd-head{padding:26px 30px;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;border-bottom:1px solid var(--stroke)}
+#detailOverlay .pd-num{flex:none;width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.05rem;color:#06101f}
+#detailOverlay .pd-num.c1{background:linear-gradient(140deg,#22d3ee,#60a5fa)}
+#detailOverlay .pd-num.c2{background:linear-gradient(140deg,#60a5fa,#818cf8)}
+#detailOverlay .pd-num.c3{background:linear-gradient(140deg,#8b5cf6,#a78bfa)}
+#detailOverlay .pd-num.c4{background:linear-gradient(140deg,#34d399,#10b981)}
+#detailOverlay .pd-num.c5{background:linear-gradient(140deg,#f59e0b,#fbbf24)}
+#detailOverlay .pd-num.c6{background:linear-gradient(140deg,#f472b6,#fb7185)}
+#detailOverlay .pd-title{flex:1;min-width:220px}
+#detailOverlay .pd-title h3{font-size:1.12rem;font-weight:800;line-height:1.4;margin-bottom:10px}
+#detailOverlay .pd-meta{display:flex;flex-wrap:wrap;gap:10px}
+#detailOverlay .pd-meta span{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:8px;background:rgba(255,255,255,.045);border:1px solid var(--stroke);font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted)}
+#detailOverlay .pd-body{padding:26px 30px}
+#detailOverlay .pd-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:20px}
+#detailOverlay .pd-block{background:rgba(255,255,255,.028);border:1px solid var(--stroke);border-radius:14px;padding:18px 20px}
+#detailOverlay .pd-block .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:10px;font-weight:600}
+#detailOverlay .pd-block p{font-size:.87rem;color:#d3ddec}
+#detailOverlay .pd-full{background:rgba(255,255,255,.028);border:1px solid var(--stroke);border-radius:14px;padding:20px 22px;margin-bottom:16px}
+#detailOverlay .pd-full .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);display:block;margin-bottom:12px;font-weight:600}
+#detailOverlay .pd-full p,#detailOverlay .pd-full ul{font-size:.88rem;color:#d3ddec}
+#detailOverlay .pd-full ul{padding-left:20px;margin-top:8px}
+#detailOverlay .pd-full li{margin-bottom:6px}
+#detailOverlay .pd-full li::marker{color:var(--accent)}
+#detailOverlay .pd-full ol{padding-left:20px;margin-top:8px}
+#detailOverlay .pd-full ol li::marker{color:var(--accent2);font-weight:700}
+#detailOverlay .wf{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#c3d2e8;margin-top:6px}
+#detailOverlay .wf .n{padding:6px 12px;border-radius:9px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.28)}
+#detailOverlay .wf .a{color:var(--accent2)}
+#detailOverlay .chipset{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+#detailOverlay .chip{font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:6px 12px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--stroke);color:#c8d6ea}
+#detailOverlay .chip.hi{background:rgba(34,211,238,.12);border-color:rgba(34,211,238,.34);color:#67e8f9}
+#detailOverlay .chip.vi{background:rgba(139,92,246,.14);border-color:rgba(167,139,250,.36);color:#c4b5fd}
+#detailOverlay .chip.gr{background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.34);color:#6ee7b7}
+#detailOverlay .chip.am{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.34);color:#fcd34d}
+#detailOverlay .chip.pk{background:rgba(244,114,182,.12);border-color:rgba(244,114,182,.34);color:#f9a8d4}
+#detailOverlay .callout{border-left:3px solid var(--accent);background:rgba(34,211,238,.07);padding:14px 18px;border-radius:0 12px 12px 0;font-size:.87rem;color:#d3ddec;margin-top:16px}
+#detailOverlay .callout.warn{border-left-color:var(--accent4);background:rgba(245,158,11,.07)}
+#detailOverlay .callout.good{border-left-color:var(--accent3);background:rgba(52,211,153,.07)}
+#detailOverlay .callout strong{color:var(--text)}
+
+#detailOverlay .tree-wrap{overflow-x:auto;padding:6px 0 12px}
+#detailOverlay .tree{min-width:860px;display:flex;flex-direction:column;align-items:center}
+
+#detailOverlay .tbl-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--stroke);margin-top:14px}
+#detailOverlay table{border-collapse:collapse;width:100%;min-width:520px;font-size:.85rem}
+#detailOverlay th,#detailOverlay td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--stroke)}
+#detailOverlay th{background:rgba(34,211,238,.08);color:#a5f3fc;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+#detailOverlay tbody tr:hover{background:rgba(255,255,255,.035)}
+#detailOverlay tbody tr:last-child td{border-bottom:none}
+#detailOverlay td .pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:3px 10px;border-radius:999px;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3);color:#67e8f9}
+
+#detailOverlay .story{display:flex;flex-direction:column}
+#detailOverlay .story-item{display:flex;align-items:center;gap:18px;padding:20px 24px;border-radius:14px;background:var(--panel);border:1px solid var(--stroke);transition:.28s ease}
+#detailOverlay .story-item:hover{background:var(--panel-2);transform:translateX(6px);border-color:var(--line)}
+#detailOverlay .story-arrow{text-align:center;color:var(--accent);font-size:1.1rem;padding:6px 0;opacity:.6}
+#detailOverlay .story-num{flex:none;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.85rem;color:#06101f}
+#detailOverlay .story-item p{font-size:.92rem;font-weight:600;color:#dbe5f4}
+#detailOverlay .story-item p em{color:var(--accent);font-style:normal;font-family:'JetBrains Mono',monospace;font-size:.8rem;margin-right:8px}
+
+#detailOverlay .refs{display:flex;flex-direction:column;gap:12px}
+#detailOverlay .ref{display:flex;gap:16px;padding:18px 22px;border-radius:14px;background:var(--panel);border:1px solid var(--stroke);transition:.25s ease}
+#detailOverlay .ref:hover{background:var(--panel-2);border-color:var(--line);transform:translateX(4px)}
+#detailOverlay .ref-num{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.3);color:#67e8f9}
+#detailOverlay .ref-body{flex:1;min-width:0}
+#detailOverlay .ref-body .t{font-weight:700;font-size:.92rem;margin-bottom:4px;color:var(--text)}
+#detailOverlay .ref-body .a{color:var(--muted);font-size:.83rem;margin-bottom:8px}
+#detailOverlay .ref-body .doi{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--accent);text-decoration:none;padding:5px 11px;border-radius:8px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.25);transition:.22s}
+#detailOverlay .ref-body .doi:hover{background:rgba(34,211,238,.18);border-color:rgba(34,211,238,.5)}
+#detailOverlay .ref-cat{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);margin:26px 0 12px;font-weight:600}
+#detailOverlay .ref-cat:first-child{margin-top:0}
+
+/* responsive */
+@media(max-width:760px){
+  .wrap,#detailOverlay .ov-wrap{padding:0 16px 70px}
+  .hero{padding:56px 0 38px}
+  .paper{padding-left:62px}
+  .paper-num{width:40px;height:40px;border-radius:12px;font-size:.8rem}
+  .paper::after{left:40px;width:22px;top:20px}
+  .timeline::before{left:19px}
+  .paper-card{padding:20px 18px}
+  .flow-box{padding:34px 14px}
+  .fnode{min-width:0;width:100%;max-width:340px;padding:13px 16px;font-size:.85rem}
+  .fnode.final{width:100%;padding:18px 20px;font-size:.92rem}
+  .split-col .fnode{width:calc(100% - 12px);font-size:.78rem;padding:12px 8px}
+  section{margin-top:58px}
+  .float-btn{width:52px;height:52px;font-size:1.2rem;bottom:20px;right:20px}
+  .cta-btn{padding:15px 24px;font-size:.92rem}
+  #detailOverlay .pd-head{padding:20px;gap:14px}
+  #detailOverlay .pd-num{width:46px;height:46px;border-radius:13px;font-size:.9rem}
+  #detailOverlay .pd-body{padding:20px}
+  #detailOverlay .pd-title h3{font-size:1rem}
+  #detailOverlay .ov-nav a{padding:5px 9px;font-size:.72rem}
+  #detailOverlay .story-item{padding:16px 18px;gap:13px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker"><span class="dot"></span> PhD Research Roadmap</div>
+    <h1>An Adaptive and Explainable Machine Learning Framework for Robust Information Security Threat Detection</h1>
+    <p class="sub">One tree trunk. Six branches. One thesis. Each small paper feeds the parent — you don't need any single paper to solve the whole PhD.</p>
+    <div class="cta-wrap">
+      <button class="cta-btn" type="button" onclick="openDetail()">
+        <span>📄</span><span>Open Detailed PhD Plan</span><span>→</span>
+      </button>
+      <div class="cta-hint">full paper plan · methods · datasets · 13 references</div>
+    </div>
+    <div class="rule"></div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-tag">01 — The Structure</span>
+      <h2>My Research Tree</h2>
+      <p>Everything ultimately contributes to the parent. Four pillars branch out, converge through robustness, and fuse into the final framework.</p>
+    </div>
+    <div class="tree-scroll">
+      <div class="tree">
+        <div class="tree-root"><span class="tree-label">PhD Parent</span><h3>An Adaptive and Explainable Machine Learning Framework for Robust Information Security Threat Detection</h3></div>
+        <div class="stem"></div>
+        <div class="branches">
+          <div class="branch"><div class="branch-card"><span class="branch-icon">🛡️</span><h4>Detection</h4><p>ML Models</p></div></div>
+          <div class="branch"><div class="branch-card"><span class="branch-icon">🔧</span><h4>Feature Engineering</h4><p>Feature Selection</p></div></div>
+          <div class="branch"><div class="branch-card"><span class="branch-icon">🔍</span><h4>Explainable AI</h4><p>SHAP / LIME</p></div></div>
+          <div class="branch"><div class="branch-card"><span class="branch-icon">🔄</span><h4>Adaptive Learning</h4><p>Concept Drift</p></div></div>
+        </div>
+        <div class="merger"><div class="merge-col"></div><div class="merge-col"></div><div class="merge-col"></div><div class="merge-col"></div></div>
+        <div class="tree-leaf">Robustness</div>
+        <div class="stem"></div>
+        <div class="tree-final">Final PhD Framework</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-tag">02 — The Branches</span>
+      <h2>Six Small Papers, Start to Finish</h2>
+    </div>
+    <div class="timeline">
+      <article class="paper"><div class="paper-num">01</div><div class="paper-card">
+        <span class="tag t1">Baseline</span>
+        <h3>A Comparative Study of Machine Learning Algorithms for Information Security Threat Detection</h3>
+        <div class="chips"><span class="chip">Logistic Regression</span><span class="chip">Decision Tree</span><span class="chip">Random Forest</span><span class="chip">SVM</span><span class="chip">XGBoost</span></div>
+        <p class="purpose"><strong>Purpose:</strong> Establish My baseline.</p>
+      </div></article>
+
+      <article class="paper"><div class="paper-num">02</div><div class="paper-card">
+        <span class="tag t2">Efficiency</span>
+        <h3>Feature Selection for Efficient Machine Learning-Based Information Security Threat Detection</h3>
+        <p class="purpose"><strong>Purpose:</strong> Begin the lightweight / efficient part of My framework.</p>
+      </div></article>
+
+      <article class="paper"><div class="paper-num">03</div><div class="paper-card">
+        <span class="tag t3">Explainability</span>
+        <h3>An Explainable Machine Learning Approach for Information Security Threat Detection</h3>
+        <div class="chips"><span class="chip hi">SHAP</span><span class="chip hi">LIME</span><span class="chip hi">Feature Importance</span></div>
+        <p class="purpose"><strong>Purpose:</strong> Build the Explainable component.</p>
+      </div></article>
+
+      <article class="paper"><div class="paper-num">04</div><div class="paper-card">
+        <span class="tag t4">Robustness</span>
+        <h3>Evaluating Machine Learning Models for Robust Information Security Threat Detection</h3>
+        <p class="purpose"><strong>Purpose:</strong> Build the Robust component.</p>
+      </div></article>
+
+      <article class="paper"><div class="paper-num">05</div><div class="paper-card">
+        <span class="tag t5">Adaptation</span>
+        <h3>Adaptive Machine Learning for Evolving Information Security Threat Detection</h3>
+        <div class="mini-flow"><span class="n">Old Data</span><span class="a">→</span><span class="n">Train</span><span class="a">→</span><span class="n">New Threats</span><span class="a">→</span><span class="n">Drift</span><span class="a">→</span><span class="n">Update</span><span class="a">→</span><span class="n">Continue</span></div>
+        <p class="purpose"><strong>Purpose:</strong> Build the Adaptive component.</p>
+      </div></article>
+
+      <article class="paper"><div class="paper-num">06</div><div class="paper-card">
+        <span class="tag t6">Integration</span>
+        <h3>Lightweight Adaptive and Explainable Machine Learning for Information Security Threat Detection</h3>
+        <div class="chips"><span class="chip">Lightweight</span><span class="chip">+</span><span class="chip">Adaptive</span><span class="chip">+</span><span class="chip">Explainable</span></div>
+        <p class="purpose"><strong>Purpose:</strong> Combine all three into a stronger, integrated paper.</p>
+      </div></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-tag">03 — The Trunk</span>
+      <h2>Final PhD Integration</h2>
+    </div>
+    <div class="flow-box">
+      <div class="flow">
+        <div class="fnode main">INFORMATION SECURITY DATA</div>
+        <div class="arrow">▼</div>
+        <div class="fnode">Preprocessing</div>
+        <div class="arrow">▼</div>
+        <div class="fnode">Feature Engineering</div>
+        <div class="arrow">▼</div>
+        <div class="fnode">Feature Selection</div>
+        <div class="arrow">▼</div>
+        <div class="fnode">Lightweight ML Model</div>
+        <div class="split">
+          <div class="split-col"><div class="split-stem"></div><div class="fnode">Threat Detection</div></div>
+          <div class="split-col"><div class="split-stem"></div><div class="fnode violet">Explainability<small>SHAP / LIME</small></div></div>
+        </div>
+        <div class="merge"><div class="merge-col"><div class="split-stem"></div></div><div class="merge-col"><div class="split-stem"></div></div></div>
+        <div class="arrow">▼</div>
+        <div class="fnode green">Robustness Test</div>
+        <div class="arrow">▼</div>
+        <div class="fnode">Adaptive Update</div>
+        <div class="arrow">▼</div>
+        <div class="fnode final">Final Threat Detection</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-tag">04 — In One Line</span>
+      <h2>My Roadmap</h2>
+    </div>
+    <div class="roadmap">
+      <span class="rm">Baseline ML</span><span class="rm-arrow">→</span>
+      <span class="rm">Feature Selection</span><span class="rm-arrow">→</span>
+      <span class="rm">Explainability</span><span class="rm-arrow">→</span>
+      <span class="rm">Robustness</span><span class="rm-arrow">→</span>
+      <span class="rm">Adaptation</span><span class="rm-arrow">→</span>
+      <span class="rm hl">Integrated Framework</span>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>PhD Research Roadmap</strong> — Adaptive &amp; Explainable ML for Robust Information Security Threat Detection</p>
+  </footer>
+</div>
+
+<button class="float-btn" type="button" onclick="openDetail()" title="Open Detailed PhD Plan">📄<span class="tip">Open Detailed Plan →</span></button>
+
+<!-- ============================================================
+     DETAILED OVERLAY — inline, no iframe, no blob, no popups
+     ============================================================ -->
+<div id="detailOverlay">
+  <div class="ov-topbar">
+    <span class="ov-brand">📄 Detailed PhD Plan</span>
+    <nav class="ov-nav">
+      <a href="#ov-tree" onclick="return scrollIn('ov-tree')">Tree</a>
+      <a href="#ov-p1" onclick="return scrollIn('ov-p1')">P1</a>
+      <a href="#ov-p2" onclick="return scrollIn('ov-p2')">P2</a>
+      <a href="#ov-p3" onclick="return scrollIn('ov-p3')">P3</a>
+      <a href="#ov-p4" onclick="return scrollIn('ov-p4')">P4</a>
+      <a href="#ov-p5" onclick="return scrollIn('ov-p5')">P5</a>
+      <a href="#ov-p6" onclick="return scrollIn('ov-p6')">P6</a>
+      <a href="#ov-connect" onclick="return scrollIn('ov-connect')">Connect</a>
+      <a href="#ov-refs" onclick="return scrollIn('ov-refs')">References</a>
+    </nav>
+    <button class="ov-close" type="button" onclick="closeDetail()">✕ Close</button>
+  </div>
+
+  <div class="ov-wrap">
+
+    <header class="hero">
+      <div class="kicker2">🎓 Parent PhD · Publication Path</div>
+      <h1>An Adaptive and Explainable Machine Learning Framework for Robust Information Security Threat Detection</h1>
+      <p>The six papers below are not six unrelated topics. They progressively build the parent research — every paper contributes a component to the final framework.</p>
+    </header>
+
+    <section id="ov-tree">
+      <span class="sec-tag">The Structure</span>
+      <h2>My Complete Research Tree</h2>
+      <p class="lead">Recent literature supports this structure: ML-based cybersecurity detection is well established, while feature selection, explainability, concept drift/adaptation, and robustness remain active research directions.</p>
+      <div class="tree-wrap">
+        <div class="tree">
+          <div class="tree-root"><span class="tree-label">PhD Parent</span><h3>An Adaptive and Explainable Machine Learning Framework for Robust Information Security Threat Detection</h3></div>
+          <div class="stem"></div>
+          <div class="branches">
+            <div class="branch"><div class="branch-card"><span class="branch-icon">🛡️</span><h4>Baseline Detection</h4><p>P1</p></div></div>
+            <div class="branch"><div class="branch-card"><span class="branch-icon">🔧</span><h4>Feature Selection</h4><p>P2</p></div></div>
+            <div class="branch"><div class="branch-card"><span class="branch-icon">🔍</span><h4>Explainability</h4><p>P3</p></div></div>
+            <div class="branch"><div class="branch-card"><span class="branch-icon">🛡️</span><h4>Robust Detection</h4><p>P4</p></div></div>
+          </div>
+          <div class="merger"><div class="merge-col"></div><div class="merge-col"></div><div class="merge-col"></div><div class="merge-col"></div></div>
+          <div class="tree-leaf">Adaptive Learning · P5</div>
+          <div class="stem"></div>
+          <div class="tree-final">Integrated Framework · P6</div>
+        </div>
+      </div>
+      <div class="callout">📌 <strong>6 main papers.</strong> You can add a 7th/8th later if My supervisor wants more publications.</div>
+    </section>
+
+    <section id="ov-p1">
+      <span class="sec-tag">Paper 1 · Foundation</span>
+      <div class="paper-detail">
+        <div class="pd-head">
+          <div class="pd-num c1">01</div>
+          <div class="pd-title">
+            <h3>A Comparative Study of Machine Learning Algorithms for Information Security Threat Detection</h3>
+            <div class="pd-meta"><span>⭐ Easy</span><span>Role · Baseline detection</span></div>
+          </div>
+        </div>
+        <div class="pd-body">
+          <div class="pd-grid">
+            <div class="pd-block"><span class="k">Purpose</span><p>Starting paper. Establish a baseline by comparing conventional ML algorithms for security-threat detection.</p></div>
+            <div class="pd-block"><span class="k">Research Question</span><p>Which conventional ML algorithms provide an effective balance between detection performance and computational cost?</p></div>
+            <div class="pd-block"><span class="k">Dataset</span><p>Primary: <strong>CIC-IDS2017</strong>. Later add <strong>UNSW-NB15</strong>.</p></div>
+            <div class="pd-block"><span class="k">Difficulty</span><p>⭐ Easy — safest starting point. Reuses dataset + pipeline for all later papers.</p></div>
+          </div>
+          <div class="pd-full"><span class="k">Algorithms</span>
+            <div class="chipset"><span class="chip">Logistic Regression</span><span class="chip">Decision Tree</span><span class="chip">Random Forest</span><span class="chip">SVM</span><span class="chip">XGBoost</span></div>
+            <p style="margin-top:12px;font-size:.85rem;color:var(--muted)">You don't need deep learning here.</p>
+          </div>
+          <div class="pd-full"><span class="k">Workflow</span>
+            <div class="wf">
+              <span class="n">Dataset</span><span class="a">→</span><span class="n">Data Cleaning</span><span class="a">→</span>
+              <span class="n">Missing / Invalid Values</span><span class="a">→</span><span class="n">Encoding</span><span class="a">→</span>
+              <span class="n">Feature Scaling</span><span class="a">→</span><span class="n">Train / Test Split</span><span class="a">→</span>
+              <span class="n">ML Models</span><span class="a">→</span><span class="n">Performance Comparison</span>
+            </div>
+          </div>
+          <div class="pd-full"><span class="k">Metrics</span>
+            <div class="chipset"><span class="chip">Accuracy</span><span class="chip">Precision</span><span class="chip">Recall</span><span class="chip">F1-score</span><span class="chip">ROC-AUC</span><span class="chip">False Positive Rate</span><span class="chip">Training time</span><span class="chip">Prediction time</span></div>
+          </div>
+          <div class="callout good"><strong>Expected contribution:</strong> Don't claim a new algorithm. My contribution is a systematic experimental comparison — particularly including computational cost.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ov-p2">
+      <span class="sec-tag">Paper 2 · Feature Selection</span>
+      <div class="paper-detail">
+        <div class="pd-head">
+          <div class="pd-num c2">02</div>
+          <div class="pd-title">
+            <h3>Feature Selection for Efficient Machine Learning-Based Information Security Threat Detection</h3>
+            <div class="pd-meta"><span>⭐⭐ Medium</span><span>Role · Efficient / lightweight detection</span></div>
+          </div>
+        </div>
+        <div class="pd-body">
+          <div class="pd-grid">
+            <div class="pd-block"><span class="k">Research Problem</span><p>Cybersecurity datasets can contain many features. More features do not automatically mean better detection.</p></div>
+            <div class="pd-block"><span class="k">Why It Matters</span><p>Feature selection can reduce computation, training time, model complexity, and redundant information.</p></div>
+          </div>
+          <div class="pd-full"><span class="k">Feature-Selection Methods</span>
+            <p style="margin-bottom:8px"><strong>Filter methods</strong></p>
+            <div class="chipset"><span class="chip hi">Correlation</span><span class="chip hi">Mutual Information</span><span class="chip hi">Chi-square</span><span class="chip hi">ANOVA</span></div>
+            <p style="margin:16px 0 8px"><strong>Wrapper / embedded methods</strong></p>
+            <div class="chipset"><span class="chip vi">Recursive Feature Elimination</span><span class="chip vi">Random Forest Importance</span><span class="chip vi">XGBoost Importance</span></div>
+          </div>
+          <div class="pd-full"><span class="k">Main Comparison</span>
+            <div class="tbl-wrap">
+              <table>
+                <thead><tr><th>Measurement</th><th>All Features</th><th>Selected Features</th></tr></thead>
+                <tbody>
+                  <tr><td>Accuracy</td><td>Calculate</td><td>Calculate</td></tr>
+                  <tr><td>F1</td><td>Calculate</td><td>Calculate</td></tr>
+                  <tr><td>FPR</td><td>Calculate</td><td>Calculate</td></tr>
+                  <tr><td>Training time</td><td>Calculate</td><td>Calculate</td></tr>
+                  <tr><td>Prediction time</td><td>Calculate</td><td>Calculate</td></tr>
+                  <tr><td>Number of features</td><td>Calculate</td><td>Calculate</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="callout warn"><strong>Do not put invented numbers into the paper.</strong> Generate actual results when you run experiments.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ov-p3">
+      <span class="sec-tag">Paper 3 · Explainable AI</span>
+      <div class="paper-detail">
+        <div class="pd-head">
+          <div class="pd-num c3">03</div>
+          <div class="pd-title">
+            <h3>An Explainable Machine Learning Approach for Information Security Threat Detection</h3>
+            <div class="pd-meta"><span>⭐⭐ Medium</span><span>Role · Explainability component</span></div>
+          </div>
+        </div>
+        <div class="pd-body">
+          <div class="pd-grid">
+            <div class="pd-block"><span class="k">Problem</span><p>A classifier may say "Attack". But a security analyst needs "Why did the model classify this traffic as an attack?"</p></div>
+            <div class="pd-block"><span class="k">Technologies</span><div class="chipset" style="margin-top:0"><span class="chip hi">SHAP</span><span class="chip hi">LIME</span><span class="chip hi">Feature Importance</span><span class="chip hi">Partial Dependence</span></div></div>
+          </div>
+          <div class="pd-full"><span class="k">Research Questions</span>
+            <ol>
+              <li>Which features contribute most to threat classification?</li>
+              <li>Are explanations consistent across models?</li>
+              <li>Can XAI help identify potentially misleading features?</li>
+              <li>Can explanations improve analyst understanding?</li>
+            </ol>
+          </div>
+          <div class="callout warn"><strong>Important:</strong> IEEE 2022/2023 papers already applied LIME and SHAP to IDS. <strong>Don't claim "XAI for IDS is new."</strong></div>
+          <div class="callout good"><strong>My contribution:</strong> Investigate explanation consistency, model comparison, feature stability, and usefulness alongside performance.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ov-p4">
+      <span class="sec-tag">Paper 4 · Robustness</span>
+      <div class="paper-detail">
+        <div class="pd-head">
+          <div class="pd-num c4">04</div>
+          <div class="pd-title">
+            <h3>Evaluating the Robustness of Machine Learning Models for Information Security Threat Detection</h3>
+            <div class="pd-meta"><span>⭐⭐⭐ Harder</span><span>Role · Robustness component</span></div>
+          </div>
+        </div>
+        <div class="pd-body">
+          <div class="pd-grid">
+            <div class="pd-block"><span class="k">Core Question</span><p>Does the model still work when the data changes?</p></div>
+            <div class="pd-block"><span class="k">Why It Matters</span><p>High benchmark accuracy doesn't automatically mean robust real-world detection.</p></div>
+          </div>
+          <div class="pd-full"><span class="k">Experiments</span>
+            <p><strong>A. Unseen data</strong> — Train: Dataset A · Test: Dataset B</p>
+            <p><strong>B. Noise</strong> — Controlled perturbations.</p>
+            <p><strong>C. Feature changes</strong> — Remove / change selected features.</p>
+            <p><strong>D. Class imbalance</strong> — Different attack / normal distributions.</p>
+            <p><strong>E. Different attack categories</strong> — Train on some classes, evaluate generalization.</p>
+          </div>
+          <div class="pd-full"><span class="k">Measurements</span>
+            <div class="chipset"><span class="chip gr">F1</span><span class="chip gr">Recall</span><span class="chip gr">FPR</span><span class="chip gr">Performance degradation</span><span class="chip gr">Robustness score</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ov-p5">
+      <span class="sec-tag">Paper 5 · Adaptive Learning</span>
+      <div class="paper-detail">
+        <div class="pd-head">
+          <div class="pd-num c5">05</div>
+          <div class="pd-title">
+            <h3>Adaptive Machine Learning for Evolving Information Security Threat Detection</h3>
+            <div class="pd-meta"><span>⭐⭐⭐ Harder</span><span>Role · Adaptive component</span></div>
+          </div>
+        </div>
+        <div class="pd-body">
+          <div class="pd-grid">
+            <div class="pd-block"><span class="k">Traditional ML Problem</span><p>Train once → Deploy → New threats appear → Model becomes outdated.</p></div>
+            <div class="pd-block"><span class="k">My Research</span><p>Initial model → New security data → Detect distribution change → Concept drift? → Update model → Continue detection.</p></div>
+          </div>
+          <div class="pd-full"><span class="k">Technology</span>
+            <div class="chipset"><span class="chip am">Online Learning</span><span class="chip am">Incremental Learning</span><span class="chip am">Adaptive Random Forest</span><span class="chip am">DDM</span><span class="chip am">ADWIN</span><span class="chip am">Page-Hinkley</span><span class="chip am">Sliding Windows</span></div>
+          </div>
+          <div class="callout good"><strong>My possible gap:</strong> Focus on <strong>adaptive + lightweight + explainable + robust</strong> rather than adaptation alone.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ov-p6">
+      <span class="sec-tag">Paper 6 · Integrated PhD Paper</span>
+      <div class="paper-detail">
+        <div class="pd-head">
+          <div class="pd-num c6">06</div>
+          <div class="pd-title">
+            <h3>An Adaptive and Explainable Machine Learning Framework for Robust Information Security Threat Detection</h3>
+            <div class="pd-meta"><span>🎓 Main PhD Paper</span><span>Role · Final framework</span></div>
+          </div>
+        </div>
+        <div class="pd-body">
+          <div class="pd-full"><span class="k">Final Evaluation</span>
+            <p style="margin-bottom:12px">You compare:</p>
+            <div class="chipset"><span class="chip">Static model</span><span class="chip">Feature-optimized model</span><span class="chip">Explainable model</span><span class="chip">Adaptive model</span><span class="chip pk">My Integrated Framework</span></div>
+            <p style="margin-top:16px;margin-bottom:8px">Then evaluate:</p>
+            <div class="chipset"><span class="chip">Detection performance</span><span class="chip">Generalization</span><span class="chip">Robustness</span><span class="chip">Explanation quality</span><span class="chip">Feature count</span><span class="chip">Training cost</span><span class="chip">Prediction cost</span><span class="chip">Adaptation cost</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ov-connect">
+      <span class="sec-tag">How They Connect</span>
+      <h2>The Logical PhD Story</h2>
+      <p class="lead">Each paper answers one question that leads naturally to the next.</p>
+      <div class="tbl-wrap" style="margin-bottom:34px">
+        <table>
+          <thead><tr><th>Paper</th><th>Main Technology</th><th>PhD Component</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td>ML</td><td><span class="pill">Detection</span></td></tr>
+            <tr><td><strong>2</strong></td><td>Feature Selection</td><td><span class="pill">Efficiency</span></td></tr>
+            <tr><td><strong>3</strong></td><td>SHAP / LIME</td><td><span class="pill">Explainability</span></td></tr>
+            <tr><td><strong>4</strong></td><td>Robust evaluation</td><td><span class="pill">Robustness</span></td></tr>
+            <tr><td><strong>5</strong></td><td>Online / Adaptive ML</td><td><span class="pill">Adaptation</span></td></tr>
+            <tr><td><strong>6</strong></td><td>All combined</td><td><span class="pill">Final framework</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="story">
+        <div class="story-item"><div class="story-num c1">01</div><p><em>Can ML detect threats?</em> Establish the baseline.</p></div>
+        <div class="story-arrow">↓</div>
+        <div class="story-item"><div class="story-num c2">02</div><p><em>Can we make it more efficient?</em> Reduce features, keep performance.</p></div>
+        <div class="story-arrow">↓</div>
+        <div class="story-item"><div class="story-num c3">03</div><p><em>Can we explain its decisions?</em> Open the black box.</p></div>
+        <div class="story-arrow">↓</div>
+        <div class="story-item"><div class="story-num c4">04</div><p><em>Does it remain reliable?</em> Stress-test it.</p></div>
+        <div class="story-arrow">↓</div>
+        <div class="story-item"><div class="story-num c5">05</div><p><em>Can it adapt?</em> Build adaptive learning.</p></div>
+        <div class="story-arrow">↓</div>
+        <div class="story-item" style="border-color:rgba(167,139,250,.5);background:linear-gradient(135deg,rgba(34,211,238,.1),rgba(139,92,246,.1))"><div class="story-num c6">06</div><p><em>Can we combine all?</em> The integrated contribution.</p></div>
+      </div>
+    </section>
+
+    <section id="ov-refs">
+      <span class="sec-tag">Starting References</span>
+      <h2>Research References</h2>
+      <p class="lead">Starting references, not the final bibliography.</p>
+      <div class="refs">
+        <div class="ref-cat">Foundational Cybersecurity + ML</div>
+        <div class="ref"><div class="ref-num">01</div><div class="ref-body"><div class="t">A Survey on Machine Learning Techniques for Cyber Security in the Last Decade</div><div class="a">Sarker et al., IEEE Access, 2020</div><a class="doi" href="https://doi.org/10.1109/ACCESS.2020.3041951" target="_blank" rel="noopener">🔗 10.1109/ACCESS.2020.3041951</a></div></div>
+        <div class="ref-cat">Feature Selection</div>
+        <div class="ref"><div class="ref-num">02</div><div class="ref-body"><div class="t">Feature Selection Based on Cross-Correlation for the Intrusion Detection System</div><div class="a">Farahani, Security and Communication Networks, 2020</div><a class="doi" href="https://doi.org/10.1155/2020/8875404" target="_blank" rel="noopener">🔗 10.1155/2020/8875404</a></div></div>
+        <div class="ref"><div class="ref-num">03</div><div class="ref-body"><div class="t">Review on intrusion detection using feature selection with machine learning techniques</div><div class="a">Kalimuthan &amp; Renjit, Materials Today: Proceedings, 2020</div><a class="doi" href="https://doi.org/10.1016/j.matpr.2020.06.218" target="_blank" rel="noopener">🔗 10.1016/j.matpr.2020.06.218</a></div></div>
+        <div class="ref"><div class="ref-num">04</div><div class="ref-body"><div class="t">Comprehensive analysis and recommendation of feature evaluation measures for intrusion detection</div><div class="a">Khammassi &amp; Krichen, Heliyon, 2020</div><a class="doi" href="https://doi.org/10.1016/j.heliyon.2020.e04262" target="_blank" rel="noopener">🔗 10.1016/j.heliyon.2020.e04262</a></div></div>
+        <div class="ref"><div class="ref-num">05</div><div class="ref-body"><div class="t">Supervised feature selection techniques in network intrusion detection: A critical review</div><div class="a">Bouke et al., Engineering Applications of AI, 2021</div><a class="doi" href="https://doi.org/10.1016/j.engappai.2021.104216" target="_blank" rel="noopener">🔗 10.1016/j.engappai.2021.104216</a></div></div>
+        <div class="ref"><div class="ref-num">06</div><div class="ref-body"><div class="t">An Ensemble Feature Selection Algorithm for Machine Learning based Intrusion Detection System</div><div class="a">IEEE NICS, 2021</div><a class="doi" href="https://doi.org/10.1109/NICS54270.2021.9701577" target="_blank" rel="noopener">🔗 10.1109/NICS54270.2021.9701577</a></div></div>
+        <div class="ref-cat">Explainable AI</div>
+        <div class="ref"><div class="ref-num">07</div><div class="ref-body"><div class="t">Explaining Network Intrusion Detection System Using Explainable AI Framework</div><div class="a">Mane &amp; Rao, arXiv:2103.07110, 2021</div><a class="doi" href="https://arxiv.org/abs/2103.07110" target="_blank" rel="noopener">🔗 arXiv:2103.07110</a></div></div>
+        <div class="ref"><div class="ref-num">08</div><div class="ref-body"><div class="t">Explainable AI for Intrusion Detection Systems</div><div class="a">IEEE, 2022 5th International Conference on Contemporary Computing and Informatics</div><a class="doi" href="https://doi.org/10.1109/IC3I56241.2022.10073356" target="_blank" rel="noopener">🔗 10.1109/IC3I56241.2022.10073356</a></div></div>
+        <div class="ref-cat">Concept Drift / Adaptive Security</div>
+        <div class="ref"><div class="ref-num">09</div><div class="ref-body"><div class="t">Concept Drift Analysis and Malware Attack Detection System Using Secure Adaptive Windowing</div><div class="a">Alsuwat et al., Computers, Materials &amp; Continua, 2023</div><a class="doi" href="https://doi.org/10.32604/cmc.2023.035126" target="_blank" rel="noopener">🔗 10.32604/cmc.2023.035126</a></div></div>
+        <div class="ref"><div class="ref-num">10</div><div class="ref-body"><div class="t">Concept Drift–Based Intrusion Detection For Evolving Data Stream Classification In IDS</div><div class="a">The Computer Journal, 2024</div><a class="doi" href="https://doi.org/10.1093/comjnl/bxae023" target="_blank" rel="noopener">🔗 10.1093/comjnl/bxae023</a></div></div>
+        <div class="ref"><div class="ref-num">11</div><div class="ref-body"><div class="t">Evolving cybersecurity frontiers: A comprehensive survey on concept drift and feature dynamics aware machine and deep learning in IDS</div><div class="a">Engineering Applications of AI, 2024</div><a class="doi" href="https://doi.org/10.1016/j.engappai.2024.109143" target="_blank" rel="noopener">🔗 10.1016/j.engappai.2024.109143</a></div></div>
+        <div class="ref-cat">Recent Feature-Selection Work</div>
+        <div class="ref"><div class="ref-num">12</div><div class="ref-body"><div class="t">Evaluating the impact of filter-based feature selection in intrusion detection systems</div><div class="a">International Journal of Information Security, 2024</div><a class="doi" href="https://doi.org/10.1007/S10207-023-00767-Y" target="_blank" rel="noopener">🔗 10.1007/S10207-023-00767-Y</a></div></div>
+        <div class="ref"><div class="ref-num">13</div><div class="ref-body"><div class="t">Empirical evaluation of feature selection methods for machine learning based intrusion detection in IoT scenarios</div><div class="a">Internet of Things, 2024</div><a class="doi" href="https://doi.org/10.1016/j.iot.2024.101367" target="_blank" rel="noopener">🔗 10.1016/j.iot.2024.101367</a></div></div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+function openDetail(){
+  var ov = document.getElementById('detailOverlay');
+  ov.classList.add('open');
+  ov.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+function closeDetail(){
+  var ov = document.getElementById('detailOverlay');
+  ov.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function scrollIn(id){
+  var ov = document.getElementById('detailOverlay');
+  var el = document.getElementById(id);
+  if (el && ov){
+    var top = el.offsetTop - 70;
+    ov.scrollTo({top: top, behavior:'smooth'});
+  }
+  return false;
+}
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeDetail();
+});
+</script>
+</body>
+</html>

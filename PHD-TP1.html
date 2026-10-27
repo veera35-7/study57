@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PhD Timeline — An Explainable and Lightweight Machine Learning Framework for Phishing URL Detection in Cybersecurity</title>
+<meta name="description" content="PhD research timeline of Mr. R. Veerappan (Dr. N.G.P. Arts and Science College, Coimbatore): An Explainable and Lightweight Machine Learning Framework for Phishing URL Detection in Cybersecurity. Planned 2026–2029." />
+<meta name="author" content="R. Veerappan" />
+<meta name="theme-color" content="#0b1220" />
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root{
+  --bg:#f5f7fb;
+  --surface:#ffffff;
+  --surface-2:#eef2f9;
+  --ink:#0e1729;
+  --ink-soft:#33405a;
+  --muted:#64708a;
+  --border:#dfe5f0;
+  --border-strong:#c6d0e2;
+
+  --brand:#1d4ed8;
+  --brand-dark:#12328f;
+  --brand-soft:#e5ecff;
+  --teal:#0e7490;
+  --teal-soft:#dff5fa;
+  --violet:#6d28d9;
+  --violet-soft:#efe8ff;
+  --amber:#b45309;
+  --amber-soft:#fdf0dc;
+  --green:#047857;
+  --green-soft:#dcf5ec;
+  --rose:#be123c;
+  --rose-soft:#ffe4ea;
+
+  --radius:16px;
+  --radius-sm:10px;
+  --shadow-sm:0 1px 2px rgba(14,23,41,.06), 0 2px 6px rgba(14,23,41,.05);
+  --shadow-md:0 6px 18px rgba(14,23,41,.08), 0 2px 6px rgba(14,23,41,.05);
+  --shadow-lg:0 22px 50px rgba(14,23,41,.18);
+  --maxw:1180px;
+  --nav-h:62px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth; scroll-padding-top:calc(var(--nav-h) + 16px); -webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  font-family:"Segoe UI",Roboto,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+  font-size:16px;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:var(--brand);text-decoration:none;}
+a:hover{text-decoration:underline;}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;font-weight:750;letter-spacing:-.01em;}
+p{margin:0 0 1em;}
+ul,ol{margin:0 0 1em;padding-left:1.25em;}
+li{margin:.32em 0;}
+code{
+  font-family:"JetBrains Mono",Consolas,"SF Mono",Menlo,monospace;
+  font-size:.87em;background:var(--surface-2);
+  padding:.12em .42em;border-radius:6px;border:1px solid var(--border);
+}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:6px;}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:sticky;top:0;z-index:100;
+  height:var(--nav-h);
+  background:rgba(255,255,255,.9);
+  backdrop-filter:saturate(180%) blur(12px);
+  -webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:var(--maxw);margin:0 auto;height:100%;
+  padding:0 18px;display:flex;align-items:center;gap:14px;
+}
+.nav-brand{
+  display:flex;align-items:center;gap:9px;font-weight:800;
+  font-size:.94rem;color:var(--ink);white-space:nowrap;flex-shrink:0;
+}
+.nav-brand:hover{text-decoration:none;}
+.nav-mark{
+  width:30px;height:30px;border-radius:9px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--brand),var(--teal));
+  display:grid;place-items:center;color:#fff;font-size:15px;
+  box-shadow:0 4px 10px rgba(29,78,216,.3);
+}
+.nav-links{
+  display:flex;gap:2px;margin-left:auto;overflow-x:auto;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-links a{
+  color:var(--ink-soft);font-size:.83rem;font-weight:600;
+  padding:7px 11px;border-radius:8px;white-space:nowrap;transition:.16s;
+}
+.nav-links a:hover{background:var(--brand-soft);color:var(--brand-dark);text-decoration:none;}
+.nav-links a.active{background:var(--brand);color:#fff;}
+.nav-toggle{
+  display:none;margin-left:auto;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:9px;
+  width:38px;height:34px;cursor:pointer;font-size:16px;color:var(--ink);
+}
+@media(max-width:900px){
+  .nav-toggle{display:block;}
+  .nav-links{
+    position:fixed;top:var(--nav-h);left:0;right:0;
+    background:var(--surface);border-bottom:1px solid var(--border);
+    flex-direction:column;padding:10px 14px 16px;gap:3px;
+    box-shadow:var(--shadow-md);display:none;max-height:70vh;overflow-y:auto;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a{font-size:.92rem;padding:11px 13px;}
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px;}
+section{padding:56px 0;scroll-margin-top:calc(var(--nav-h) + 10px);}
+section:nth-of-type(even){background:var(--surface);}
+.sec-head{margin-bottom:26px;max-width:900px;}
+.sec-kicker{
+  display:inline-block;font-size:.7rem;font-weight:800;
+  letter-spacing:.13em;text-transform:uppercase;
+  color:var(--brand);background:var(--brand-soft);
+  padding:5px 11px;border-radius:999px;margin-bottom:11px;
+}
+.sec-head h2{font-size:clamp(1.35rem,3vw,1.9rem);}
+.sec-head p{color:var(--muted);margin:0;font-size:.97rem;}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  background:
+    radial-gradient(1100px 420px at 12% -10%, rgba(29,78,216,.5), transparent 60%),
+    radial-gradient(900px 400px at 92% 0%, rgba(14,116,144,.45), transparent 62%),
+    linear-gradient(160deg,#0a1122 0%,#111d38 55%,#0a1526 100%);
+  color:#eaf0ff;padding:64px 0 58px;position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;
+  mask-image:radial-gradient(circle at 50% 30%,#000,transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at 50% 30%,#000,transparent 78%);
+}
+.hero .wrap{position:relative;z-index:1;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  padding:6px 15px;border-radius:999px;font-size:.75rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;margin-bottom:20px;color:#c8d8ff;
+}
+.dot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 3px rgba(52,211,153,.24);}
+.hero h1{
+  font-size:clamp(1.5rem,4vw,2.6rem);max-width:960px;
+  color:#fff;margin-bottom:16px;letter-spacing:-.02em;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(100deg,#7dd3fc,#a5b4fc 55%,#5eead4);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{color:#a9b8d8;max-width:800px;font-size:1rem;margin-bottom:26px;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:34px;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 19px;border-radius:11px;font-weight:700;font-size:.88rem;
+  border:1px solid transparent;cursor:pointer;transition:.18s;
+  font-family:inherit;text-decoration:none;
+}
+.btn:hover{text-decoration:none;transform:translateY(-1px);}
+.btn-primary{background:linear-gradient(135deg,#2563eb,#0891b2);color:#fff;box-shadow:0 8px 22px rgba(37,99,235,.4);}
+.btn-primary:hover{box-shadow:0 12px 28px rgba(37,99,235,.5);}
+.btn-ghost{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.24);color:#e6edff;}
+.btn-ghost:hover{background:rgba(255,255,255,.16);}
+
+.profile-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:1px;background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:14px;overflow:hidden;
+}
+.profile-item{background:rgba(9,17,34,.55);padding:15px 17px;}
+.profile-item dt{
+  font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;
+  color:#8fa3c9;font-weight:800;margin-bottom:5px;
+}
+.profile-item dd{margin:0;font-size:.89rem;color:#e9eFFF;font-weight:650;line-height:1.45;}
+
+/* ============================================================
+   CARDS / GRIDS
+   ============================================================ */
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm);
+}
+.grid{display:grid;gap:16px;}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(290px,1fr));}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+
+.callout{
+  border-left:4px solid var(--brand);background:var(--brand-soft);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:15px 19px;margin:0 0 18px;font-size:.92rem;color:#152a5e;
+}
+.callout.warn{border-color:var(--amber);background:var(--amber-soft);color:#6b3f06;}
+.callout.ok{border-color:var(--green);background:var(--green-soft);color:#04503a;}
+.callout strong{font-weight:800;}
+
+/* Scope list */
+.scope-list{list-style:none;padding:0;margin:0;display:grid;gap:11px;}
+.scope-list li{
+  display:flex;gap:12px;align-items:flex-start;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:13px 15px;font-size:.92rem;
+  box-shadow:var(--shadow-sm);
+}
+.scope-list .tick{
+  flex-shrink:0;width:22px;height:22px;border-radius:7px;
+  background:var(--green-soft);color:var(--green);
+  display:grid;place-items:center;font-size:12px;font-weight:900;margin-top:1px;
+}
+.scope-list .cross{
+  flex-shrink:0;width:22px;height:22px;border-radius:7px;
+  background:var(--rose-soft);color:var(--rose);
+  display:grid;place-items:center;font-size:12px;font-weight:900;margin-top:1px;
+}
+
+/* ============================================================
+   RESEARCH TREE
+   ============================================================ */
+.tree{display:flex;flex-direction:column;align-items:center;}
+.tree-root{
+  background:linear-gradient(135deg,#132a6b,#0e5c74);
+  color:#fff;border-radius:14px;padding:18px 26px;text-align:center;
+  max-width:720px;box-shadow:0 14px 34px rgba(19,42,107,.32);
+  position:relative;z-index:2;
+}
+.tree-root .lbl{
+  font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;
+  color:#9ec7ff;font-weight:800;margin-bottom:6px;
+}
+.tree-root h3{color:#fff;font-size:1.02rem;margin:0;line-height:1.4;}
+.tree-trunk{width:2px;height:34px;background:linear-gradient(var(--border-strong),var(--border));}
+.tree-bar{height:2px;background:var(--border);width:min(92%,1040px);border-radius:2px;}
+.tree-branches{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));
+  gap:16px;width:100%;margin-top:0;
+}
+.branch{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm);
+  position:relative;transition:.2s;display:flex;flex-direction:column;
+}
+.branch::before{
+  content:"";position:absolute;top:-17px;left:50%;transform:translateX(-50%);
+  width:2px;height:16px;background:var(--border);
+}
+.branch:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--border-strong);}
+.branch-num{
+  width:27px;height:27px;border-radius:9px;display:grid;place-items:center;
+  font-size:.75rem;font-weight:900;color:#fff;margin-bottom:10px;
+}
+.b1 .branch-num{background:#2563eb;} .b2 .branch-num{background:#0891b2;}
+.b3 .branch-num{background:#7c3aed;} .b4 .branch-num{background:#b45309;}
+.b5 .branch-num{background:#047857;} .b6 .branch-num{background:#be123c;}
+.branch h4{font-size:.93rem;margin-bottom:5px;}
+.branch p{font-size:.815rem;color:var(--muted);margin:0 0 11px;flex:1;}
+.branch .tag{
+  font-size:.67rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--brand-dark);background:var(--brand-soft);
+  padding:4px 9px;border-radius:999px;align-self:flex-start;
+}
+
+/* ============================================================
+   PAPER CARDS
+   ============================================================ */
+.papers{display:grid;grid-template-columns:repeat(auto-fit,minmax(292px,1fr));gap:16px;}
+.paper{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:19px;box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column;transition:.2s;position:relative;overflow:hidden;
+}
+.paper::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;}
+.paper.p1::before{background:#2563eb;} .paper.p2::before{background:#0891b2;}
+.paper.p3::before{background:#7c3aed;} .paper.p4::before{background:#b45309;}
+.paper.p5::before{background:#047857;} .paper.p6::before{background:#be123c;}
+.paper:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+.paper-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px;
+}
+.chip{
+  font-size:.66rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  padding:4px 9px;border-radius:999px;border:1px solid var(--border);
+  background:var(--surface-2);color:var(--ink-soft);
+}
+.chip.planned{background:var(--amber-soft);color:var(--amber);border-color:#f2ddb6;}
+.chip.focus{background:var(--brand-soft);color:var(--brand-dark);border-color:#c9d8ff;}
+.paper h4{font-size:.96rem;margin-bottom:8px;line-height:1.4;}
+.paper p{font-size:.83rem;color:var(--muted);margin:0 0 14px;flex:1;}
+.paper-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.mini-btn{
+  font-family:inherit;font-size:.76rem;font-weight:700;
+  padding:7px 13px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--border-strong);background:var(--surface);
+  color:var(--ink-soft);transition:.16s;
+}
+.mini-btn:hover{background:var(--brand-soft);border-color:var(--brand);color:var(--brand-dark);}
+.mini-btn.solid{background:var(--brand);border-color:var(--brand);color:#fff;}
+.mini-btn.solid:hover{background:var(--brand-dark);}
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+.table-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow-sm);-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;min-width:820px;font-size:.83rem;}
+thead th{
+  background:var(--surface-2);text-align:left;padding:12px 14px;
+  font-size:.69rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-soft);font-weight:800;border-bottom:1px solid var(--border);
+  white-space:nowrap;
+}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--ink-soft);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:#f9fbff;}
+td strong{color:var(--ink);}
+.tbd{
+  display:inline-block;font-size:.68rem;font-weight:800;
+  background:var(--amber-soft);color:var(--amber);
+  padding:2px 8px;border-radius:999px;border:1px solid #f2ddb6;white-space:nowrap;
+}
+
+/* ============================================================
+   METHOD WORKFLOW
+   ============================================================ */
+.flow{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;counter-reset:step;
+}
+.flow-step{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:15px;position:relative;
+  box-shadow:var(--shadow-sm);transition:.2s;
+}
+.flow-step:hover{border-color:var(--brand);transform:translateY(-2px);}
+.flow-step .n{
+  width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--brand),var(--teal));color:#fff;
+  font-size:.74rem;font-weight:900;margin-bottom:9px;
+}
+.flow-step h5{margin:0 0 5px;font-size:.83rem;font-weight:750;}
+.flow-step p{margin:0;font-size:.75rem;color:var(--muted);line-height:1.5;}
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.tl-controls{
+  display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:22px;
+}
+.filter-btn{
+  font-family:inherit;font-size:.8rem;font-weight:700;
+  padding:8px 15px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--border-strong);background:var(--surface);
+  color:var(--ink-soft);transition:.16s;
+}
+.filter-btn:hover{border-color:var(--brand);color:var(--brand-dark);}
+.filter-btn.active{background:var(--brand);border-color:var(--brand);color:#fff;}
+
+.progress-panel{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-sm);
+  margin-bottom:24px;
+}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.progress-top h4{margin:0;font-size:.95rem;}
+.progress-top .pct{font-size:1.35rem;font-weight:850;color:var(--brand);}
+.bar{height:11px;background:var(--surface-2);border-radius:999px;overflow:hidden;border:1px solid var(--border);}
+.bar > span{
+  display:block;height:100%;width:0%;
+  background:linear-gradient(90deg,#2563eb,#0891b2,#10b981);
+  border-radius:999px;transition:width .45s ease;
+}
+.progress-note{font-size:.78rem;color:var(--muted);margin:10px 0 0;}
+
+.tl-year{margin-bottom:30px;}
+.tl-year-head{
+  display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap;
+}
+.tl-year-head .yr{
+  font-size:1.35rem;font-weight:850;color:var(--brand-dark);
+  letter-spacing:-.02em;
+}
+.tl-year-head .yr-bar{flex:1;height:2px;background:var(--border);border-radius:2px;min-width:40px;}
+.tl-year-head .yr-prog{
+  font-size:.74rem;font-weight:800;color:var(--muted);
+  background:var(--surface-2);border:1px solid var(--border);
+  padding:4px 11px;border-radius:999px;
+}
+.tl-list{list-style:none;padding:0;margin:0;position:relative;}
+.tl-list::before{
+  content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;
+  background:var(--border);
+}
+.tl-item{
+  position:relative;padding:0 0 16px 34px;
+}
+.tl-item::before{
+  content:"";position:absolute;left:3px;top:9px;width:14px;height:14px;
+  border-radius:50%;background:var(--surface);
+  border:3px solid var(--border-strong);z-index:1;
+}
+.tl-item[data-status="completed"]::before{border-color:var(--green);background:var(--green);}
+.tl-item[data-status="inprogress"]::before{border-color:var(--brand);background:var(--brand);}
+.tl-item[data-status="deferred"]::before{border-color:var(--rose);background:var(--rose-soft);}
+.tl-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:15px 17px;box-shadow:var(--shadow-sm);
+}
+.tl-card-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start;}
+.tl-card h4{margin:0 0 5px;font-size:.92rem;}
+.tl-card .when{
+  font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--teal);background:var(--teal-soft);
+  padding:4px 9px;border-radius:999px;white-space:nowrap;
+}
+.tl-card p{font-size:.83rem;color:var(--muted);margin:0 0 10px;}
+.tl-card .deliv{
+  font-size:.79rem;color:var(--ink-soft);background:var(--surface-2);
+  border:1px dashed var(--border-strong);border-radius:8px;
+  padding:8px 11px;margin-bottom:11px;
+}
+.tl-card .deliv b{color:var(--ink);}
+.status-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.status-row label{font-size:.74rem;font-weight:700;color:var(--muted);}
+select.status{
+  font-family:inherit;font-size:.78rem;font-weight:700;
+  padding:6px 11px;border-radius:8px;border:1px solid var(--border-strong);
+  background:var(--surface);color:var(--ink-soft);cursor:pointer;
+}
+select.status:focus{border-color:var(--brand);}
+.prior-work{
+  border-left:4px solid var(--violet);background:var(--violet-soft);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:14px 17px;font-size:.85rem;color:#3d1f7a;
+}
+.prior-work b{color:#2c1461;}
+
+/* ============================================================
+   THESIS CHAPTERS
+   ============================================================ */
+.chapters{display:grid;gap:11px;counter-reset:ch;}
+.chapter{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:14px 16px;box-shadow:var(--shadow-sm);
+  transition:.18s;
+}
+.chapter:hover{border-color:var(--brand);transform:translateX(3px);}
+.chapter .cn{
+  flex-shrink:0;width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(135deg,var(--brand),var(--teal));color:#fff;
+  display:grid;place-items:center;font-weight:850;font-size:.85rem;
+}
+.chapter h4{margin:0 0 3px;font-size:.9rem;}
+.chapter p{margin:0;font-size:.8rem;color:var(--muted);}
+
+/* ============================================================
+   REFERENCES
+   ============================================================ */
+.ref-tools{
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;
+}
+.ref-search{
+  flex:1;min-width:220px;font-family:inherit;font-size:.88rem;
+  padding:11px 15px;border-radius:11px;border:1px solid var(--border-strong);
+  background:var(--surface);color:var(--ink);
+}
+.ref-search:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 3px var(--brand-soft);}
+.ref-group{margin-bottom:24px;}
+.ref-group h3{
+  font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:12px;font-weight:850;
+}
+.ref-list{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+.ref{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:13px 16px;font-size:.845rem;
+  color:var(--ink-soft);box-shadow:var(--shadow-sm);line-height:1.6;
+}
+.ref .rt{color:var(--ink);font-weight:700;}
+.ref .rv{color:var(--muted);font-style:italic;}
+.ref .rd{
+  display:inline-block;font-size:.7rem;font-weight:800;
+  background:var(--brand-soft);color:var(--brand-dark);
+  padding:2px 8px;border-radius:999px;margin-left:5px;word-break:break-all;
+}
+.ref .preprint{
+  background:var(--amber-soft);color:var(--amber);
+  padding:2px 8px;border-radius:999px;font-size:.68rem;
+  font-weight:800;margin-left:6px;
+}
+.ref.hidden{display:none;}
+.ref-empty{
+  display:none;padding:22px;text-align:center;color:var(--muted);
+  font-size:.88rem;background:var(--surface);
+  border:1px dashed var(--border-strong);border-radius:var(--radius-sm);
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(8,14,28,.62);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  z-index:200;display:none;align-items:flex-start;justify-content:center;
+  padding:24px 16px;overflow-y:auto;
+}
+.modal-backdrop.open{display:flex;}
+.modal{
+  background:var(--surface);border-radius:18px;max-width:760px;width:100%;
+  box-shadow:var(--shadow-lg);margin:auto;position:relative;
+  animation:pop .22s ease;
+}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98);}to{opacity:1;transform:none;}}
+.modal-head{
+  padding:22px 24px 16px;border-bottom:1px solid var(--border);
+  position:relative;
+}
+.modal-head .chip{margin-bottom:10px;}
+.modal-head h3{margin:0 0 6px;font-size:1.1rem;line-height:1.4;padding-right:38px;}
+.modal-head p{margin:0;font-size:.83rem;color:var(--muted);}
+.modal-close{
+  position:absolute;top:16px;right:16px;width:34px;height:34px;
+  border-radius:9px;border:1px solid var(--border);background:var(--surface-2);
+  font-size:17px;cursor:pointer;color:var(--ink-soft);line-height:1;
+  display:grid;place-items:center;transition:.16s;
+}
+.modal-close:hover{background:var(--rose-soft);border-color:var(--rose);color:var(--rose);}
+.modal-body{padding:20px 24px 26px;font-size:.885rem;color:var(--ink-soft);}
+.modal-body h4{
+  font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--brand);margin:18px 0 8px;
+}
+.modal-body h4:first-child{margin-top:0;}
+.modal-body ul{padding-left:1.15em;margin:0 0 4px;}
+.modal-body li{font-size:.865rem;}
+.modal-body .kv{
+  display:grid;grid-template-columns:130px 1fr;gap:7px 14px;
+  background:var(--surface-2);border-radius:var(--radius-sm);
+  padding:14px 16px;font-size:.83rem;margin-bottom:6px;
+}
+.modal-body .kv dt{font-weight:800;color:var(--ink);}
+.modal-body .kv dd{margin:0;color:var(--ink-soft);}
+@media(max-width:560px){.modal-body .kv{grid-template-columns:1fr;gap:2px 0;}}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  background:#0a1122;color:#93a4c4;padding:40px 0 30px;font-size:.84rem;
+}
+footer .wrap{display:grid;gap:18px;}
+footer h4{color:#fff;font-size:.95rem;margin-bottom:7px;}
+footer a{color:#9dc0ff;}
+.foot-bottom{
+  border-top:1px solid rgba(255,255,255,.1);margin-top:10px;padding-top:18px;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:.78rem;color:#7183a3;
+}
+
+/* Back to top */
+.to-top{
+  position:fixed;right:18px;bottom:18px;z-index:90;
+  width:44px;height:44px;border-radius:12px;border:1px solid var(--border);
+  background:var(--surface);color:var(--brand);font-size:17px;cursor:pointer;
+  box-shadow:var(--shadow-md);display:none;place-items:center;transition:.2s;
+}
+.to-top.show{display:grid;}
+.to-top:hover{background:var(--brand);color:#fff;}
+
+/* Utilities */
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+.mt-0{margin-top:0;} .mb-0{margin-bottom:0;}
+.small{font-size:.8rem;color:var(--muted);}
+@media print{
+  .nav,.to-top,.hero-actions,.tl-controls,.ref-tools{display:none !important;}
+  body{background:#fff;}
+  section{page-break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">
+      <span class="nav-mark" aria-hidden="true">◈</span>
+      <span>PhD&nbsp;Timeline&nbsp;·&nbsp;Phishing&nbsp;URL&nbsp;Detection</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#overview">Overview</a>
+      <a href="#scope">Scope</a>
+      <a href="#tree">Research Tree</a>
+      <a href="#papers">Six Papers</a>
+      <a href="#datasets">Datasets</a>
+      <a href="#method">Methodology</a>
+      <a href="#gap">Gap &amp; Novelty</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#thesis">Thesis</a>
+      <a href="#refs">References</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="hero-badge"><span class="dot" aria-hidden="true"></span> PhD Research Plan · 2026–2029</span>
+    <h1>
+      An <em>Explainable and Lightweight</em> Machine Learning Framework for
+      <em>Phishing URL Detection</em> in Cybersecurity
+    </h1>
+    <p class="hero-sub">
+      A focused doctoral research programme on accurate, interpretable and computationally
+      efficient phishing URL detection — with measurable efficiency, reliable explanations
+      and cross-dataset generalization as the core contribution areas.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#timeline">View 2026–2029 Timeline</a>
+      <a class="btn btn-ghost" href="#papers">Six Planned Papers</a>
+      <a class="btn btn-ghost" href="#gap">Research Gap</a>
+    </div>
+
+    <dl class="profile-grid">
+      <div class="profile-item"><dt>Research Scholar</dt><dd>Mr. R. Veerappan</dd></div>
+      <div class="profile-item"><dt>Department</dt><dd>Computer Science</dd></div>
+      <div class="profile-item"><dt>Institution</dt><dd>Dr. N.G.P. Arts and Science College, Coimbatore</dd></div>
+      <div class="profile-item"><dt>Research Area</dt><dd>Cybersecurity · Phishing URL Detection · Explainable AI · Lightweight ML</dd></div>
+      <div class="profile-item"><dt>PhD Commencement</dt><dd>June 2025</dd></div>
+      <div class="profile-item"><dt>Planned Research Period</dt><dd>2026 – 2029</dd></div>
+      <div class="profile-item"><dt>Min. Suggested Thesis Submission</dt><dd>1 July 2029</dd></div>
+      <div class="profile-item"><dt>Document Status</dt><dd>Proposed plan — not a record of completed work</dd></div>
+    </dl>
+  </div>
+</header>
+
+<!-- ================= OVERVIEW ================= -->
+<section id="overview">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">01 · Overview</span>
+      <h2>What this research is — and what it is not</h2>
+      <p>
+        This page replaces the earlier, broader security-threat-detection programme with a
+        single, tightly scoped doctoral topic. Every component below — research questions,
+        papers, datasets, methodology, timeline and references — supports phishing URL detection only.
+      </p>
+    </div>
+
+    <div class="callout">
+      <strong>Parent topic (used consistently across this page):</strong><br />
+      “An Explainable and Lightweight Machine Learning Framework for Phishing URL Detection in Cybersecurity.”
+    </div>
+
+    <div class="grid grid-3" style="margin-top:20px;">
+      <div class="card">
+        <h4 style="font-size:.95rem;">Problem</h4>
+        <p class="small mb-0">
+          Phishing remains one of the most common initial access vectors, and the URL is the
+          cheapest observable signal available before any page is loaded. Detection models must
+          therefore be accurate, fast enough for real-time use, small enough to deploy in
+          constrained environments, and transparent enough to justify a block decision to a human analyst.
+        </p>
+      </div>
+      <div class="card">
+        <h4 style="font-size:.95rem;">Approach</h4>
+        <p class="small mb-0">
+          Extract lexical and structural features directly from the URL string, compare
+          traditional lightweight classifiers, reduce the feature set to the minimum that
+          preserves performance, and attach SHAP-based (and, where appropriate, LIME-based)
+          explanations to individual predictions.
+        </p>
+      </div>
+      <div class="card">
+        <h4 style="font-size:.95rem;">Deliverable</h4>
+        <p class="small mb-0">
+          A reproducible, lightweight prototype that accepts a URL, returns a phishing/legitimate
+          prediction with a calibrated confidence, and explains the contributing features — supported
+          by evidence of cross-dataset generalization and computational efficiency.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCOPE ================= -->
+<section id="scope">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">02 · Research Scope</span>
+      <h2>In scope and explicitly out of scope</h2>
+      <p>
+        The proposed framework classifies URLs as phishing or legitimate using lightweight,
+        explainable machine learning. The boundary below is deliberate: it keeps the thesis
+        achievable within the planned period.
+      </p>
+    </div>
+
+    <div class="grid grid-2">
+      <div>
+        <h3 style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:12px;">
+          In scope
+        </h3>
+        <ul class="scope-list">
+          <li><span class="tick" aria-hidden="true">✓</span><span>Binary classification of URLs as <strong>phishing or legitimate</strong>.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span>Extraction of <strong>lexical and structural URL features</strong> (length, token counts, special characters, subdomain depth, TLD, presence of IP address, HTTPS usage, suspicious tokens, entropy, and similar).</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Feature reduction</strong> to lower computational cost without sacrificing detection quality.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span>Comparative evaluation of <strong>traditional machine learning algorithms</strong> as baselines.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Explanation</strong> of model decisions using SHAP and, where appropriate, LIME.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span>Reporting of <strong>accuracy, precision, recall, F1-score, false-positive rate, model size, training time and prediction latency</strong>.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span><strong>Generalization assessment</strong> on a separate, independent dataset where feasible.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span><span>A practical <strong>lightweight prototype</strong> that accepts a URL and explains its predicted result.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:12px;">
+          Out of scope
+        </h3>
+        <ul class="scope-list">
+          <li><span class="cross" aria-hidden="true">✕</span><span>General <strong>network intrusion detection</strong> or anomaly-based traffic analysis.</span></li>
+          <li><span class="cross" aria-hidden="true">✕</span><span><strong>Malware, ransomware or binary analysis</strong> of any kind.</span></li>
+          <li><span class="cross" aria-hidden="true">✕</span><span><strong>IoT, SCADA or industrial control system</strong> security.</span></li>
+          <li><span class="cross" aria-hidden="true">✕</span><span>Broad coverage of “every cybersecurity threat”.</span></li>
+          <li><span class="cross" aria-hidden="true">✕</span><span><strong>Online learning, concept-drift detection or adaptive learning</strong> as mandatory thesis components — these belong to the earlier, broader direction and would expand the project unnecessarily.</span></li>
+          <li><span class="cross" aria-hidden="true">✕</span><span>Full web-page content analysis, DOM inspection or browser-extension engineering.</span></li>
+          <li><span class="cross" aria-hidden="true">✕</span><span>Claims of robustness that are not backed by recorded experimental evidence.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESEARCH TREE ================= -->
+<section id="tree">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">03 · Research Tree</span>
+      <h2>One parent topic, six connected studies</h2>
+      <p>
+        The tree below replaces the previous six broad security branches. Each branch is a
+        planned study that feeds the next; together they form a single coherent thesis.
+      </p>
+    </div>
+
+    <div class="tree">
+      <div class="tree-root">
+        <div class="lbl">Parent Research Topic</div>
+        <h3>An Explainable and Lightweight Machine Learning Framework for Phishing URL Detection in Cybersecurity</h3>
+      </div>
+
+      <div class="tree-trunk" aria-hidden="true"></div>
+      <div class="tree-bar" aria-hidden="true"></div>
+
+      <div class="tree-branches">
+        <article class="branch b1">
+          <div class="branch-num">1</div>
+          <h4>Baseline Detection</h4>
+          <p>Reproducible comparison of lightweight classifiers — Logistic Regression, Decision Tree, Random Forest and a gradient-boosting model — on URL features.</p>
+          <span class="tag">Paper 1</span>
+        </article>
+
+        <article class="branch b2">
+          <div class="branch-num">2</div>
+          <h4>Feature Optimization</h4>
+          <p>Selected feature subsets versus the full feature set, measured by feature reduction, performance, inference time and computational efficiency.</p>
+          <span class="tag">Paper 2</span>
+        </article>
+
+        <article class="branch b3">
+          <div class="branch-num">3</div>
+          <h4>Explainability</h4>
+          <p>SHAP-based feature attribution to identify influential URL features and explain individual predictions; consistency and usefulness assessed.</p>
+          <span class="tag">Paper 3</span>
+        </article>
+
+        <article class="branch b4">
+          <div class="branch-num">4</div>
+          <h4>Generalization &amp; Robustness</h4>
+          <p>Behaviour on unseen data, dataset shift, changing URL patterns and realistic class distributions — with no robustness claim without evidence.</p>
+          <span class="tag">Paper 4</span>
+        </article>
+
+        <article class="branch b5">
+          <div class="branch-num">5</div>
+          <h4>Integrated Framework</h4>
+          <p>Integration of the strongest baseline, the chosen feature-selection method and the explanation technique into one framework, benchmarked against suitable baselines.</p>
+          <span class="tag">Paper 5</span>
+        </article>
+
+        <article class="branch b6">
+          <div class="branch-num">6</div>
+          <h4>Practical Validation</h4>
+          <p>Reproducibility, generalization, computational efficiency and practical inference tested through a small working prototype across diverse URL datasets.</p>
+          <span class="tag">Paper 6</span>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAPERS ================= -->
+<section id="papers">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">04 · Planned Publications</span>
+      <h2>Six connected papers</h2>
+      <p>
+        Working titles that may be refined after the literature review. These are
+        <strong>planned studies</strong> — no results, acceptance or publication are claimed.
+        Select any card for the full plan.
+      </p>
+    </div>
+
+    <div class="callout warn">
+      <strong>Status note:</strong> Every paper below is marked <em>Planned</em>. No experimental
+      results exist yet, and no submission, acceptance or publication is asserted anywhere on this page.
+    </div>
+
+    <div class="papers">
+
+      <article class="paper p1">
+        <div class="paper-meta">
+          <span class="chip planned">Planned</span>
+          <span class="chip focus">Baseline</span>
+        </div>
+        <h4>Paper 1 — A Comparative Evaluation of Lightweight Machine Learning Algorithms for Phishing URL Detection</h4>
+        <p>Establishes a reproducible baseline using Logistic Regression, Decision Tree, Random Forest and a gradient-boosting model, comparing predictive performance and computational cost.</p>
+        <div class="paper-actions">
+          <button class="mini-btn solid" data-modal="m-p1">Full plan</button>
+        </div>
+      </article>
+
+      <article class="paper p2">
+        <div class="paper-meta">
+          <span class="chip planned">Planned</span>
+          <span class="chip focus">Feature Optimization</span>
+        </div>
+        <h4>Paper 2 — Feature Selection for Efficient and Lightweight Machine Learning-Based Phishing URL Detection</h4>
+        <p>Compares selected feature sets against the full feature set, measuring feature reduction, model performance, inference time and computational efficiency.</p>
+        <div class="paper-actions">
+          <button class="mini-btn solid" data-modal="m-p2">Full plan</button>
+        </div>
+      </article>
+
+      <article class="paper p3">
+        <div class="paper-meta">
+          <span class="chip planned">Planned</span>
+          <span class="chip focus">Explainability</span>
+        </div>
+        <h4>Paper 3 — Explainable Phishing URL Detection Using SHAP-Based Feature Attribution</h4>
+        <p>Identifies influential URL features and provides explanations for individual predictions, evaluating the consistency and usefulness of those explanations.</p>
+        <div class="paper-actions">
+          <button class="mini-btn solid" data-modal="m-p3">Full plan</button>
+        </div>
+      </article>
+
+      <article class="paper p4">
+        <div class="paper-meta">
+          <span class="chip planned">Planned</span>
+          <span class="chip focus">Generalization</span>
+        </div>
+        <h4>Paper 4 — Evaluating the Robustness and Cross-Dataset Generalization of Lightweight Phishing URL Detectors</h4>
+        <p>Investigates performance on unseen data, dataset shifts, changing URL patterns and realistic class distributions. Robustness is never claimed without experimental evidence.</p>
+        <div class="paper-actions">
+          <button class="mini-btn solid" data-modal="m-p4">Full plan</button>
+        </div>
+      </article>
+
+      <article class="paper p5">
+        <div class="paper-meta">
+          <span class="chip planned">Planned</span>
+          <span class="chip focus">Integrated Framework</span>
+        </div>
+        <h4>Paper 5 — An Explainable and Lightweight Machine Learning Framework for Phishing URL Detection</h4>
+        <p>Integrates the strongest baseline, feature-selection method and explanation technique, then compares the integrated framework against suitable baselines.</p>
+        <div class="paper-actions">
+          <button class="mini-btn solid" data-modal="m-p5">Full plan</button>
+        </div>
+      </article>
+
+      <article class="paper p6">
+        <div class="paper-meta">
+          <span class="chip planned">Planned</span>
+          <span class="chip focus">Practical Validation</span>
+        </div>
+        <h4>Paper 6 — Experimental Validation of an Explainable and Lightweight Phishing URL Detection Framework Across Diverse URL Datasets</h4>
+        <p>Validates reproducibility, generalization, computational efficiency and practical inference through a small working prototype.</p>
+        <div class="paper-actions">
+          <button class="mini-btn solid" data-modal="m-p6">Full plan</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= DATASETS ================= -->
+<section id="datasets">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">05 · Dataset Strategy</span>
+      <h2>One primary dataset, one independent evaluation dataset</h2>
+      <p>
+        A manageable primary dataset will be paired with an independent evaluation dataset,
+        selected only after checking availability, licensing, labels, feature compatibility and
+        data provenance.
+      </p>
+    </div>
+
+    <div class="callout warn">
+      <strong>Important distinction — pre-engineered vs. raw URL data.</strong>
+      A <em>pre-engineered phishing website dataset</em> (for example the UCI Phishing Websites
+      dataset) supplies already-computed attributes such as <code>SSLfinal_State</code> or
+      <code>URL_of_Anchor</code>, many of which require page or certificate inspection.
+      A <em>raw-URL dataset</em> supplies only the URL string, from which lexical and structural
+      features must be extracted. Their feature spaces are <strong>not interchangeable</strong>,
+      and mixing them without an explicit mapping would create leakage and invalid comparisons.
+      The thesis will state clearly which type each dataset belongs to and how features are harmonized.
+    </div>
+
+    <div class="callout">
+      <strong>Ethical handling:</strong> live malicious URLs will not be collected or visited
+      unnecessarily. Where phishing feeds are used, access conditions and licensing will be
+      respected, and URL strings will be handled in a defanged form wherever feasible.
+    </div>
+
+    <h3 style="font-size:.95rem;margin:26px 0 12px;">Dataset comparison table</h3>
+    <div class="table-scroll">
+      <table>
+        <caption class="sr-only">Comparison of candidate datasets for phishing URL detection research</caption>
+        <thead>
+          <tr>
+            <th scope="col">Source</th>
+            <th scope="col">Sample size</th>
+            <th scope="col">Label format</th>
+            <th scope="col">Feature type</th>
+            <th scope="col">Collection period</th>
+            <th scope="col">Limitations</th>
+            <th scope="col">Planned usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>UCI ML Repository — Phishing Websites</strong></td>
+            <td><span class="tbd">To be verified</span></td>
+            <td>Binary class attribute (<code>-1 / 1</code> variants)</td>
+            <td>Pre-engineered website-level features (30 attributes)</td>
+            <td><span class="tbd">To be verified</span></td>
+            <td>No raw URLs; several attributes require page-level inspection; older collection window</td>
+            <td>Secondary reference point for attribute-level comparison; <em>not</em> a drop-in for URL-only models</td>
+          </tr>
+          <tr>
+            <td><strong>Public raw-URL phishing corpora</strong> (documented provenance)</td>
+            <td><span class="tbd">To be verified</span></td>
+            <td>Binary URL-level labels</td>
+            <td>Raw URL strings → lexical/structural features extracted by the researcher</td>
+            <td><span class="tbd">To be verified</span></td>
+            <td>Duplicates and near-duplicates; label noise; class imbalance; temporal drift</td>
+            <td>Candidate <strong>primary dataset</strong> after deduplication and leakage checks</td>
+          </tr>
+          <tr>
+            <td><strong>PhishTank / reputable phishing feeds</strong></td>
+            <td><span class="tbd">To be verified</span></td>
+            <td>Verified phishing URLs; legitimate set must be sourced separately</td>
+            <td>Raw URL strings</td>
+            <td>Continuously updated</td>
+            <td>Access conditions and licensing; no built-in legitimate class; feed churn</td>
+            <td>Possible <strong>independent evaluation</strong> source, subject to access conditions and licensing</td>
+          </tr>
+          <tr>
+            <td><strong>Benchmark phishing datasets from peer-reviewed studies</strong></td>
+            <td><span class="tbd">To be verified</span></td>
+            <td>Binary</td>
+            <td>Raw URL or pre-engineered (varies by study)</td>
+            <td><span class="tbd">To be verified</span></td>
+            <td>Compatibility with the primary feature set must be checked before use</td>
+            <td>Candidate <strong>cross-dataset generalization</strong> test set</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="small" style="margin-top:14px;">
+      All “To be verified” entries must be confirmed against the dataset's official documentation
+      before use. Sample sizes, licensing and collection periods are deliberately left unstated here
+      rather than estimated.
+    </p>
+  </div>
+</section>
+
+<!-- ================= METHODOLOGY ================= -->
+<section id="method">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">06 · Methodology</span>
+      <h2>Proposed framework workflow</h2>
+      <p>
+        A single, linear and reproducible pipeline. Each stage produces versioned artefacts that
+        the next stage consumes.
+      </p>
+    </div>
+
+    <div class="flow" role="list">
+      <div class="flow-step" role="listitem"><div class="n">1</div><h5>Dataset acquisition</h5><p>Primary dataset plus an independent evaluation dataset, with licensing and provenance recorded.</p></div>
+      <div class="flow-step" role="listitem"><div class="n">2</div><h5>Cleaning &amp; deduplication</h5><p>Normalization, duplicate and near-duplicate detection, malformed URL removal, label audit.</p></div>
+      <div class="flow-step" role="listitem"><div class="n">3</div><h5>Train / validation / test split</h5><p>Stratified splits, fixed random seeds, held-out test set untouched until final evaluation.</p></div>
+      <div class="flow-step" role="listitem"><div class="n">4</div><h5>URL feature extraction</h5><p>Lexical and structural features computed from the URL string only — no page fetching.</p></div>
+      <div class="flow-step" role="listitem"><div class="n">5</div><h5>Baseline ML models</h5><p>Logistic Regression, Decision Tree, Random Forest and a gradient-boosting model.</p></div>
+      <div class="flow-step" role="listitem"><div class="n">6</div><h5>Feature selection</h5><p>Filter, wrapper and embedded methods compared; selection performed inside the training fold only.</p></div>
+      <div class="flow-step" role="listitem"><div class="n">7</div><h5>Lightweight model selection</h5><p>Best performance-to-cost trade-off by model size, training time, latency and memory use.</p></div>
+      <div class="flow-step" role="listitem"><div class="n">8</div><h5>SHAP / LIME explanations</h5><p>Global feature attribution plus per-prediction explanations, with consistency checks.</p></div>
+      <div class="flow-step" role="listitem"><div class="n">9</div><h5>Independent evaluation</h5><p>Cross-dataset testing on compatible data; performance drop reported honestly.</p></div>
+      <div class="flow-step" role="listitem"><div class="n">10</div><h5>Prototype</h5><p>URL in → prediction, confidence and explanation out. Reproducible and documented.</p></div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:26px;">
+      <div class="card">
+        <h4 style="font-size:.93rem;">Validity safeguards</h4>
+        <ul class="small" style="margin-bottom:0;">
+          <li><strong>Leakage prevention:</strong> feature selection and hyper-parameter tuning are fitted on training folds only, never on validation or test data.</li>
+          <li><strong>Stratified splits</strong> where appropriate, to preserve class proportions across folds.</li>
+          <li><strong>Duplicate and near-duplicate checks</strong> before splitting — duplicates split across train and test inflate scores.</li>
+          <li><strong>Class-imbalance handling</strong> where needed (class weights, resampling), applied within folds only.</li>
+          <li><strong>Reproducibility:</strong> fixed seeds, versioned datasets, versioned experiment configs, logged environments.</li>
+          <li><strong>Leakage-aware design</strong> informed by published data-mining and security-ML methodology guidance.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4 style="font-size:.93rem;">Evaluation metrics</h4>
+        <p class="small"><strong>Predictive performance</strong></p>
+        <ul class="small">
+          <li>Accuracy</li>
+          <li>Precision</li>
+          <li>Recall</li>
+          <li>F1-score</li>
+          <li>PR-AUC</li>
+          <li>ROC-AUC</li>
+          <li>False-positive rate</li>
+        </ul>
+        <p class="small" style="margin-bottom:0;"><strong>Efficiency &amp; interpretability</strong></p>
+        <ul class="small" style="margin-bottom:0;">
+          <li>Number of selected features</li>
+          <li>Model size on disk</li>
+          <li>Inference latency per URL</li>
+          <li>Training time</li>
+          <li>Memory use</li>
+          <li>Explanation consistency and usefulness</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top:22px;">
+      <strong>Deliberately excluded:</strong> online learning, concept-drift detection and adaptive
+      learning are <em>not</em> mandatory components of this thesis. They belong to the earlier,
+      broader research direction and would unnecessarily expand this focused project.
+    </div>
+  </div>
+</section>
+
+<!-- ================= GAP & NOVELTY ================= -->
+<section id="gap">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">07 · Research Gap &amp; Novelty</span>
+      <h2>What already exists, and where a defensible gap may lie</h2>
+      <p>
+        Explainable phishing detection and SHAP-based feature analysis are <strong>not new</strong>.
+        Similar work already exists. A defensible gap can only be identified after a systematic
+        literature review — the directions below are candidates to investigate, not claims.
+      </p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h4 style="font-size:.93rem;">Existing literature to investigate</h4>
+        <ul class="small" style="margin-bottom:0;">
+          <li>Traditional machine-learning phishing URL detection and classical URL feature engineering.</li>
+          <li>Feature selection and dimensionality reduction for phishing detection.</li>
+          <li>SHAP and LIME explanations applied to security classifiers.</li>
+          <li>Lightweight and computationally efficient classifiers for constrained or real-time deployment.</li>
+          <li>Cross-dataset generalization and evaluation methodology in security machine learning.</li>
+          <li>Website-level (pre-engineered) versus URL-level (raw-string) detection approaches.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4 style="font-size:.93rem;">Candidate contribution areas</h4>
+        <ul class="small" style="margin-bottom:0;">
+          <li><strong>The trade-off between explanation quality and computational efficiency</strong> — most studies optimise one and report the other incidentally.</li>
+          <li><strong>Feature stability across datasets</strong> — whether the features a model relies on remain influential when the data source changes.</li>
+          <li><strong>Generalization with a compact feature set</strong> — how much cross-dataset performance survives aggressive feature reduction.</li>
+          <li><strong>Measurable, reproducible efficiency reporting</strong> — model size, latency and memory alongside accuracy, not instead of it.</li>
+          <li><strong>Honest negative results</strong> — documenting where the framework does <em>not</em> generalize.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top:22px;">
+      <strong>Claim discipline.</strong> This page does not claim that explainable phishing detection,
+      SHAP-based attribution or lightweight classifiers are novel in themselves. The novelty claim
+      will be written only after the systematic literature review, and only for what the experiments
+      actually demonstrate.
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">08 · PhD Timeline</span>
+      <h2>2026 – 2029</h2>
+      <p>
+        A proposed plan with milestones and deliverables. Statuses are editable and are saved in
+        your browser — nothing is marked complete by default.
+      </p>
+    </div>
+
+    <div class="tl-controls" role="group" aria-label="Filter timeline by year">
+      <button class="filter-btn active" data-year="all">All years</button>
+      <button class="filter-btn" data-year="2026">2026</button>
+      <button class="filter-btn" data-year="2027">2027</button>
+      <button class="filter-btn" data-year="2028">2028</button>
+      <button class="filter-btn" data-year="2029">2029</button>
+      <button class="mini-btn" id="resetStatus" style="margin-left:auto;">Reset all statuses</button>
+    </div>
+
+    <div class="progress-panel">
+      <div class="progress-top">
+        <h4>Overall progress</h4>
+        <span class="pct" id="overallPct">0%</span>
+      </div>
+      <div class="bar"><span id="overallBar"></span></div>
+      <p class="progress-note">
+        Progress is calculated from the status you set on each milestone
+        (Completed = 100%, In progress = 50%, Planned / Deferred = 0%).
+        All milestones default to <strong>Planned</strong>.
+      </p>
+    </div>
+
+    <!-- 2026 -->
+    <div class="tl-year" data-year="2026">
+      <div class="tl-year-head">
+        <span class="yr">2026</span>
+        <span class="yr-bar" aria-hidden="true"></span>
+        <span class="yr-prog" data-yearprog="2026">0%</span>
+      </div>
+      <ul class="tl-list">
+
+        <li class="tl-item" data-status="planned">
+          <div class="tl-card">
+            <div class="tl-card-head">
+              <div>
+                <h4>Research questions, literature review &amp; experimental protocol</h4>
+                <span class="when">Oct – Dec 2026</span>
+              </div>
+            </div>
+            <p>
+              Refine the research questions around explainable and lightweight phishing URL detection,
+              complete the systematic literature review, finalize dataset-selection criteria, and
+              prepare the experimental protocol (splits, seeds, metrics, tooling).
+            </p>
+            <div class="deliv"><b>Deliverable:</b> Revised research questions · Literature review chapter draft · Dataset-selection criteria · Experimental protocol document</div>
+            <div class="status-row">
+              <label for="s-2026a">Status</label>
+              <select class="status" id="s-2026a" data-key="2026a">
+                <option value="planned">Planned</option>
+                <option value="inprogress">In progress</option>
+                <option value="completed">Completed</option>
+                <option value="deferred">Deferred</option>
+              </select>
+            </div>
+          </div>
+        </li>
+
+        <li class="tl-item" data-status="planned">
+          <div class="tl-card">
+            <div class="tl-card-head">
+              <div>
+                <h4>Record prior related work separately</h4>
+                <span class="when">Oct – Dec 2026</span>
+              </div>
+            </div>
+            <div class="prior-work" style="margin-bottom:11px;">
+              <b>Prior related work (separate from the six new papers):</b><br />
+              “Explainable Concept-Drift Detection for Adaptive Machine Learning-Based Information
+              Security Threat Detection” — previously submitted. This belongs to the earlier, broader
+              research direction and <b>must not</b> be presented as one of the six phishing URL
+              detection papers.
+            </div>
+            <p>Document this work in the thesis as background/related work, clearly attributed to the earlier scope.</p>
+            <div class="deliv"><b>Deliverable:</b> Clearly separated prior-work record in the thesis and reference list</div>
+            <div class="status-row">
+              <label for="s-2026b">Status</label>
+              <select class="status" id="s-2026b" data-key="2026b">
+                <option value="planned">Planned</option>
+                <option value="inprogress">In progress</option>
+                <option value="completed">Completed</option>
+                <option value="deferred">Deferred</option>
+              </select>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- 2027 -->
+    <div class="tl-year" data-year="2027">
+      <div class="tl-year-head">
+        <span class="yr">2027</span>
+        <span class="yr-bar" aria-hidden="true"></span>
+        <span class="yr-prog" data-yearprog="2027">0%</span>
+      </div>
+      <ul class="tl-list">
+
+        <li class="tl-item" data-status="planned">
+          <div class="tl-card">
+            <div class="tl-card-head">
+              <div>
+                <h4>Datasets, preprocessing &amp; baseline experiments — Paper 1</h4>
+                <span class="when">Jan – Jun 2027</span>
+              </div>
+            </div>
+            <p>
+              Finalize the primary and independent evaluation datasets. Build the cleaning,
+              deduplication and feature-extraction pipeline. Train and evaluate Logistic Regression,
+              Decision Tree, Random Forest and a gradient-boosting model, recording both predictive
+              performance and computational cost.
+            </p>
+            <div class="deliv"><b>Deliverable:</b> Dataset documentation · Reproducible baseline pipeline · Paper 1 draft</div>
+            <div class="status-row">
+              <label for="s-2027a">Status</label>
+              <select class="status" id="s-2027a" data-key="2027a">
+                <option value="planned">Planned</option>
+                <option value="inprogress">In progress</option>
+                <option value="completed">Completed</option>
+                <option value="deferred">Deferred</option>
+              </select>
+            </div>
+          </div>
+        </li>
+
+        <li class="tl-item" data-status="planned">
+          <div class="tl-card">
+            <div class="tl-card-head">
+              <div>
+                <h4>Feature-selection experiments — Paper 2</h4>
+                <span class="when">Jul – Dec 2027</span>
+              </div>
+            </div>
+            <p>
+              Compare filter, wrapper and embedded feature-selection methods. Measure feature
+              reduction, model performance, inference time and computational efficiency against the
+              full feature set — with selection performed strictly inside training folds.
+            </p>
+            <div class="deliv"><b>Deliverable:</b> Feature-selection benchmark · Reduced feature set definition · Paper 2 draft</div>
+            <div class="status-row">
+              <label for="s-2027b">Status</label>
+              <select class="status" id="s-2027b" data-key="2027b">
+                <option value="planned">Planned</option>
+                <option value="inprogress">In progress</option>
+                <option value="completed">Completed</option>
+                <option value="deferred">Deferred</option>
+              </select>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- 2028 -->
+    <div class="tl-year" data-year="2028">
+      <div class="tl-year-head">
+        <span class="yr">2028</span>
+        <span class="yr-bar" aria-hidden="true"></span>
+        <span class="yr-prog" data-yearprog="2028">0%</span>
+      </div>
+      <ul class="tl-list">
+
+        <li class="tl-item" data-status="planned">
+          <div class="tl-card">
+            <div class="tl-card-head">
+              <div>
+                <h4>Explainability experiments — Paper 3</h4>
+                <span class="when">Jan – Jun 2028</span>
+              </div>
+            </div>
+            <p>
+              Apply SHAP-based feature attribution (and LIME where appropriate) to the selected
+              lightweight models. Identify influential URL features, generate per-prediction
+              explanations, and evaluate their consistency and usefulness.
+            </p>
+            <div class="deliv"><b>Deliverable:</b> Explanation framework · Consistency analysis · Paper 3 draft</div>
+            <div class="status-row">
+              <label for="s-2028a">Status</label>
+              <select class="status" id="s-2028a" data-key="2028a">
+                <option value="planned">Planned</option>
+                <option value="inprogress">In progress</option>
+                <option value="completed">Completed</option>
+                <option value="deferred">Deferred</option>
+              </select>
+            </div>
+          </div>
+        </li>
+
+        <li class="tl-item" data-status="planned">
+          <div class="tl-card">
+            <div class="tl-card-head">
+              <div>
+                <h4>Generalization &amp; robustness evaluation — Paper 4, framework integration</h4>
+                <span class="when">Jul – Dec 2028</span>
+              </div>
+            </div>
+            <p>
+              Evaluate the detectors on unseen data and across datasets, examining dataset shift,
+              changing URL patterns and realistic class distributions. Begin integrating the
+              strongest baseline, feature-selection method and explanation technique.
+            </p>
+            <div class="deliv"><b>Deliverable:</b> Cross-dataset evaluation report · Paper 4 draft · Integrated framework (v1)</div>
+            <div class="status-row">
+              <label for="s-2028b">Status</label>
+              <select class="status" id="s-2028b" data-key="2028b">
+                <option value="planned">Planned</option>
+                <option value="inprogress">In progress</option>
+                <option value="completed">Completed</option>
+                <option value="deferred">Deferred</option>
+              </select>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- 2029 -->
+    <div class="tl-year" data-year="2029">
+      <div class="tl-year-head">
+        <span class="yr">2029</span>
+        <span class="yr-bar" aria-hidden="true"></span>
+        <span class="yr-prog" data-yearprog="2029">0%</span>
+      </div>
+      <ul class="tl-list">
+
+        <li class="tl-item" data-status="planned">
+          <div class="tl-card">
+            <div class="tl-card-head">
+              <div>
+                <h4>Integrated framework, prototype — Papers 5 &amp; 6</h4>
+                <span class="when">Jan – Mar 2029</span>
+              </div>
+            </div>
+            <p>
+              Complete the integrated framework experiments and build the working prototype that
+              accepts a URL and returns a prediction with an explanation. Prepare Paper 5 and,
+              as appropriate, Paper 6.
+            </p>
+            <div class="deliv"><b>Deliverable:</b> Integrated framework (final) · Working prototype · Paper 5 and Paper 6 drafts</div>
+            <div class="status-row">
+              <label for="s-2029a">Status</label>
+              <select class="status" id="s-2029a" data-key="2029a">
+                <option value="planned">Planned</option>
+                <option value="inprogress">In progress</option>
+                <option value="completed">Completed</option>
+                <option value="deferred">Deferred</option>
+              </select>
+            </div>
+          </div>
+        </li>
+
+        <li class="tl-item" data-status="planned">
+          <div class="tl-card">
+            <div class="tl-card-head">
+              <div>
+                <h4>Thesis consolidation, validation &amp; submission</h4>
+                <span class="when">Apr – Jun 2029</span>
+              </div>
+            </div>
+            <p>
+              Consolidate thesis chapters, validate results, complete supervisor and Doctoral
+              Committee review, and prepare submission documents.
+            </p>
+            <div class="deliv">
+              <b>Deliverable:</b> Full thesis draft · Validated results · DC/supervisor sign-off · Submission documents<br />
+              <b>Minimum suggested thesis submission date:</b> 1 July 2029
+            </div>
+            <div class="status-row">
+              <label for="s-2029b">Status</label>
+              <select class="status" id="s-2029b" data-key="2029b">
+                <option value="planned">Planned</option>
+                <option value="inprogress">In progress</option>
+                <option value="completed">Completed</option>
+                <option value="deferred">Deferred</option>
+              </select>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <p class="small">
+      This schedule is a <strong>proposed plan</strong>, not a record of completed milestones.
+      Dates and statuses are editable to reflect actual progress and supervisory guidance.
+    </p>
+  </div>
+</section>
+
+<!-- ================= THESIS ================= -->
+<section id="thesis">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">09 · Thesis Structure</span>
+      <h2>Proposed chapter structure</h2>
+      <p>
+        Indicative only. The final structure will remain editable based on university regulations
+        and supervisor guidance.
+      </p>
+    </div>
+
+    <div class="chapters">
+      <div class="chapter"><div class="cn">1</div><div><h4>Introduction and Research Problem</h4><p>Phishing in the current threat landscape, the role of the URL as an early observable signal, problem statement, aims and objectives, scope and delimitations, thesis organisation.</p></div></div>
+      <div class="chapter"><div class="cn">2</div><div><h4>Literature Review and Research Gap</h4><p>Machine-learning phishing URL detection, URL feature engineering, feature selection, explainable AI in security, lightweight classifiers, cross-dataset evaluation practice — and the resulting gap statement.</p></div></div>
+      <div class="chapter"><div class="cn">3</div><div><h4>Dataset and Research Methodology</h4><p>Dataset selection criteria and provenance, the pre-engineered versus raw-URL distinction, cleaning and deduplication, splits, feature extraction, leakage prevention and reproducibility protocol.</p></div></div>
+      <div class="chapter"><div class="cn">4</div><div><h4>Baseline Machine Learning and Feature Optimization</h4><p>Baseline classifier comparison (Paper 1) and feature-selection study (Paper 2), with predictive performance and computational cost reported together.</p></div></div>
+      <div class="chapter"><div class="cn">5</div><div><h4>Explainability and Model Interpretation</h4><p>SHAP-based attribution and LIME where appropriate (Paper 3); global versus local explanations, consistency analysis and the usefulness of explanations to an analyst.</p></div></div>
+      <div class="chapter"><div class="cn">6</div><div><h4>Robustness, Generalization and Computational Evaluation</h4><p>Cross-dataset testing, dataset shift, changing URL patterns, realistic class distributions, and the full efficiency profile — model size, latency, training time and memory (Paper 4).</p></div></div>
+      <div class="chapter"><div class="cn">7</div><div><h4>Proposed Integrated Framework and Prototype</h4><p>Architecture of the integrated framework (Paper 5), design decisions, the working prototype and its practical inference behaviour (Paper 6).</p></div></div>
+      <div class="chapter"><div class="cn">8</div><div><h4>Results, Limitations, Conclusion and Future Work</h4><p>Consolidated findings, explicit limitations and negative results, contribution summary, practical implications and directions for future research.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REFERENCES ================= -->
+<section id="refs">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">10 · References</span>
+      <h2>Verified, directly relevant literature</h2>
+      <p>
+        Peer-reviewed publications and original research papers relevant to phishing URL detection,
+        lightweight machine learning, feature selection, SHAP/LIME and cross-dataset evaluation.
+        Preprints are labelled explicitly.
+      </p>
+    </div>
+
+    <div class="callout warn">
+      <strong>Verification reminder:</strong> confirm each reference's exact title, author list, year,
+      venue and DOI against the publisher's official record before including it in the thesis.
+      Preprints are marked as such and should not be cited as peer-reviewed findings.
+    </div>
+
+    <div class="ref-tools">
+      <input class="ref-search" id="refSearch" type="search" placeholder="Search references by author, title, venue or year…" aria-label="Search references" />
+    </div>
+
+    <div class="ref-group">
+      <h3>Phishing URL &amp; website detection</h3>
+      <ul class="ref-list">
+        <li class="ref"><span class="rt">Mohammad, R. M., Thabtah, F., &amp; McCluskey, L.</span> (2014). Predicting phishing websites based on self-structuring neural network. <span class="rv">Neural Computing and Applications, 25(2), 443–458.</span><span class="rd">doi:10.1007/s00521-013-1490-z</span></li>
+        <li class="ref"><span class="rt">Abdelhamid, N., Ayesh, A., &amp; Thabtah, F.</span> (2014). Phishing detection based on associative classification data mining. <span class="rv">Expert Systems with Applications, 41(13), 5948–5959.</span><span class="rd">doi:10.1016/j.eswa.2014.03.019</span></li>
+        <li class="ref"><span class="rt">Sahingoz, O. K., Buber, E., Demir, O., &amp; Diri, B.</span> (2019). Machine learning based phishing detection from URLs. <span class="rv">Expert Systems with Applications, 117, 345–357.</span><span class="rd">doi:10.1016/j.eswa.2018.09.029</span></li>
+        <li class="ref"><span class="rt">Rao, R. S., &amp; Pais, A. R.</span> (2019). Detection of phishing websites using an efficient feature-based machine learning framework. <span class="rv">Neural Computing and Applications, 31, 3851–3873.</span><span class="rd">doi:10.1007/s00521-017-3305-0</span></li>
+        <li class="ref"><span class="rt">Rao, R. S., Vaishnavi, T., &amp; Pais, A. R.</span> (2021). CatchPhish: detection of phishing websites by inspecting URLs. <span class="rv">Journal of Ambient Intelligence and Humanized Computing, 12, 1635–1647.</span><span class="rd">doi:10.1007/s12652-020-02152-2</span></li>
+        <li class="ref"><span class="rt">Aljofey, A., Jiang, Q., Qu, Q., Huang, M., &amp; Niyigena, J.-P.</span> (2020). An effective phishing detection model based on character-level convolutional neural network from URL. <span class="rv">Electronics, 9(9), 1514.</span><span class="rd">doi:10.3390/electronics9091514</span></li>
+        <li class="ref"><span class="rt">Sameen, M., Han, K., &amp; Hwang, S. O.</span> (2020). PhishHaven — an efficient real-time AI phishing URLs detection system. <span class="rv">IEEE Access, 8, 83425–83443.</span><span class="rd">doi:10.1109/ACCESS.2020.2991403</span></li>
+        <li class="ref"><span class="rt">Somesha, M., Pais, A. R., Rao, R. S., &amp; Rathour, V. S.</span> (2020). Efficient deep learning techniques for the detection of phishing websites. <span class="rv">Sādhanā, 45, 165.</span><span class="rd">doi:10.1007/s12046-020-01392-4</span></li>
+        <li class="ref"><span class="rt">Tang, L., &amp; Mahmoud, Q. H.</span> (2021). A survey of machine learning-based solutions for phishing website detection. <span class="rv">Machine Learning and Knowledge Extraction, 3(3), 672–694.</span><span class="rd">doi:10.3390/make3030034</span></li>
+        <li class="ref"><span class="rt">Sanchez-Paniagua, M., Fidalgo, E., Alegre, E., &amp; Aláiz-Rodríguez, R.</span> (2022). Phishing URL detection: a real-case scenario through login URLs. <span class="rv">IEEE Access, 10, 42949–42960.</span><span class="rd">doi:10.1109/ACCESS.2022.3168681</span></li>
+        <li class="ref"><span class="rt">Le, H., Pham, Q., Sahoo, D., &amp; Hoi, S. C. H.</span> (2018). URLNet: learning a URL representation with deep learning for malicious URL detection. <span class="rv">arXiv preprint.</span><span class="preprint">Preprint — not peer reviewed</span><span class="rd">arXiv:1802.03162</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-group">
+      <h3>Feature selection &amp; lightweight modelling</h3>
+      <ul class="ref-list">
+        <li class="ref"><span class="rt">Guyon, I., &amp; Elisseeff, A.</span> (2003). An introduction to variable and feature selection. <span class="rv">Journal of Machine Learning Research, 3, 1157–1182.</span></li>
+        <li class="ref"><span class="rt">Chiew, K. L., Tan, C. L., Wong, K., Yong, K. S. C., &amp; Tiong, W. K.</span> (2019). A new hybrid ensemble feature selection framework for machine learning-based phishing detection system. <span class="rv">Information Sciences, 484, 153–166.</span><span class="rd">doi:10.1016/j.ins.2019.01.064</span></li>
+        <li class="ref"><span class="rt">Toolan, F., &amp; Carthy, J.</span> (2010). Feature selection for spam and phishing detection. <span class="rv">eCrime Researchers Summit, 1–12.</span><span class="rd">doi:10.1109/ecrime.2010.5706694</span></li>
+        <li class="ref"><span class="rt">Breiman, L.</span> (2001). Random forests. <span class="rv">Machine Learning, 45(1), 5–32.</span><span class="rd">doi:10.1023/A:1010933404324</span></li>
+        <li class="ref"><span class="rt">Chen, T., &amp; Guestrin, C.</span> (2016). XGBoost: a scalable tree boosting system. <span class="rv">Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785–794.</span><span class="rd">doi:10.1145/2939672.2939785</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-group">
+      <h3>Explainability (SHAP, LIME)</h3>
+      <ul class="ref-list">
+        <li class="ref"><span class="rt">Lundberg, S. M., &amp; Lee, S.-I.</span> (2017). A unified approach to interpreting model predictions. <span class="rv">Advances in Neural Information Processing Systems 30 (NeurIPS), 4765–4774.</span><span class="rd">arXiv:1705.07874</span></li>
+        <li class="ref"><span class="rt">Ribeiro, M. T., Singh, S., &amp; Guestrin, C.</span> (2016). “Why should I trust you?” Explaining the predictions of any classifier. <span class="rv">Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 1135–1144.</span><span class="rd">doi:10.1145/2939672.2939778</span></li>
+        <li class="ref"><span class="rt">Lundberg, S. M., Erion, G., Chen, H., DeGrave, A., Prutkin, J. M., Nair, B., Katz, R., Himmelfarb, J., Bansal, N., &amp; Lee, S.-I.</span> (2020). From local explanations to global understanding with explainable AI for trees. <span class="rv">Nature Machine Intelligence, 2(1), 56–67.</span><span class="rd">doi:10.1038/s42256-019-0138-9</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-group">
+      <h3>Datasets, evaluation methodology &amp; generalization</h3>
+      <ul class="ref-list">
+        <li class="ref"><span class="rt">Vrbančič, G., Fister, I., &amp; Podgorelec, V.</span> (2020). Datasets for phishing websites detection. <span class="rv">Data in Brief, 33, 106438.</span><span class="rd">doi:10.1016/j.dib.2020.106438</span></li>
+        <li class="ref"><span class="rt">Hannousse, A., &amp; Yahiouche, S.</span> (2021). Towards benchmark datasets for machine learning based website phishing detection: an experimental study. <span class="rv">Engineering Applications of Artificial Intelligence, 104, 104347.</span><span class="rd">doi:10.1016/j.engappai.2021.104347</span></li>
+        <li class="ref"><span class="rt">Kaufman, S., Rosset, S., &amp; Perlich, C.</span> (2012). Leakage in data mining: formulation, detection, and avoidance. <span class="rv">ACM Transactions on Knowledge Discovery from Data, 6(4), 1–21.</span><span class="rd">doi:10.1145/2382577.2382579</span></li>
+        <li class="ref"><span class="rt">Arp, D., Quiring, E., Pendlebury, F., Grammatopoulos, A., Pierazzi, F., Korczyński, M., Cavallaro, L., &amp; Rieck, K.</span> (2022). Dos and don'ts of machine learning in computer security. <span class="rv">Proceedings of the 31st USENIX Security Symposium, 3971–3988.</span></li>
+        <li class="ref"><span class="rt">Pendlebury, F., Pierazzi, F., Jordaney, R., Kinder, J., &amp; Cavallaro, L.</span> (2019). TESSERACT: eliminating experimental bias in malware classification across space and time. <span class="rv">Proceedings of the 28th USENIX Security Symposium, 729–746.</span></li>
+        <li class="ref"><span class="rt">Apruzzese, G., Laskov, P., Montgomery, A., &amp; Vinci, A.</span> (2023). The role of machine learning in cybersecurity. <span class="rv">ACM Digital Threats: Research and Practice, 4(1), 1–38.</span><span class="rd">doi:10.1145/3545574</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-group">
+      <h3>Prior related work by the researcher (earlier, broader scope)</h3>
+      <ul class="ref-list">
+        <li class="ref">
+          <span class="rt">Veerappan, R.</span> — “Explainable Concept-Drift Detection for Adaptive Machine Learning-Based Information Security Threat Detection.”
+          <span class="rv">Previously submitted work.</span>
+          <span class="preprint">Belongs to the earlier, broader research direction</span>
+          Listed separately; it is not one of the six phishing URL detection papers.
+        </li>
+      </ul>
+    </div>
+
+    <p class="ref-empty" id="refEmpty">No references match your search.</p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>An Explainable and Lightweight Machine Learning Framework for Phishing URL Detection in Cybersecurity</h4>
+      <p style="margin:0;">
+        Mr. R. Veerappan · Department of Computer Science ·
+        Dr. N.G.P. Arts and Science College, Coimbatore, Tamil Nadu, India
+      </p>
+    </div>
+    <div class="foot-bottom">
+      <span>PhD commenced June 2025 · Planned research period 2026–2029 · Minimum suggested thesis submission: 1 July 2029</span>
+      <span>Proposed research plan — all publication statuses are <strong style="color:#fbbf24;">Planned</strong>.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<!-- ============================================================
+     MODALS
+     ============================================================ -->
+<div class="modal-backdrop" id="m-p1" role="dialog" aria-modal="true" aria-labelledby="m-p1-t">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="chip planned">Planned</span><span class="chip focus">Paper 1 · Baseline</span>
+      <h3 id="m-p1-t">A Comparative Evaluation of Lightweight Machine Learning Algorithms for Phishing URL Detection</h3>
+      <p>Branch 1 of 6 · Baseline Detection</p>
+      <button class="modal-close" data-close aria-label="Close dialog">✕</button>
+    </div>
+    <div class="modal-body">
+      <h4>Purpose</h4>
+      <p>Establish a reproducible baseline for phishing URL detection using lightweight classifiers, and characterise the accuracy-versus-cost trade-off before any optimisation is attempted.</p>
+      <h4>Models compared</h4>
+      <ul>
+        <li>Logistic Regression</li>
+        <li>Decision Tree</li>
+        <li>Random Forest</li>
+        <li>A gradient-boosting model (e.g., XGBoost or an equivalent)</li>
+      </ul>
+      <h4>Method</h4>
+      <ul>
+        <li>Extract lexical and structural features from the URL string only.</li>
+        <li>Apply stratified train/validation/test splits with fixed seeds.</li>
+        <li>Train each model with documented hyper-parameter search confined to training folds.</li>
+        <li>Record predictive performance and computational cost side by side.</li>
+      </ul>
+      <h4>Metrics</h4>
+      <dl class="kv">
+        <dt>Predictive</dt><dd>Accuracy, precision, recall, F1-score, PR-AUC, ROC-AUC, false-positive rate</dd>
+        <dt>Computational</dt><dd>Training time, inference latency per URL, model size, memory use</dd>
+      </dl>
+      <h4>Expected contribution</h4>
+      <p>A transparent, reproducible reference point that later feature-selection, explainability and integration studies are measured against.</p>
+      <h4>Status</h4>
+      <p class="mb-0"><strong>Planned.</strong> No results exist. No submission, acceptance or publication is claimed.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="m-p2" role="dialog" aria-modal="true" aria-labelledby="m-p2-t">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="chip planned">Planned</span><span class="chip focus">Paper 2 · Feature Optimization</span>
+      <h3 id="m-p2-t">Feature Selection for Efficient and Lightweight Machine Learning-Based Phishing URL Detection</h3>
+      <p>Branch 2 of 6 · Feature Optimization</p>
+      <button class="modal-close" data-close aria-label="Close dialog">✕</button>
+    </div>
+    <div class="modal-body">
+      <h4>Purpose</h4>
+      <p>Determine how much of the baseline detection performance can be retained with a substantially smaller feature set, and quantify the resulting efficiency gain.</p>
+      <h4>Method</h4>
+      <ul>
+        <li>Compare filter, wrapper and embedded feature-selection methods.</li>
+        <li>Benchmark selected feature subsets against the full feature set.</li>
+        <li>Perform feature selection <strong>inside training folds only</strong> to prevent leakage.</li>
+        <li>Examine how performance changes as the feature count is progressively reduced.</li>
+      </ul>
+      <h4>Measurements</h4>
+      <dl class="kv">
+        <dt>Reduction</dt><dd>Number of features retained, percentage reduction</dd>
+        <dt>Performance</dt><dd>Accuracy, precision, recall, F1-score, false-positive rate versus the full set</dd>
+        <dt>Efficiency</dt><dd>Inference time, training time, model size, memory footprint</dd>
+      </dl>
+      <h4>Expected contribution</h4>
+      <p>A defensible minimal feature set for lightweight phishing URL detection, with the accuracy cost of each reduction step reported explicitly.</p>
+      <h4>Status</h4>
+      <p class="mb-0"><strong>Planned.</strong> No results exist. No submission, acceptance or publication is claimed.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="m-p3" role="dialog" aria-modal="true" aria-labelledby="m-p3-t">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="chip planned">Planned</span><span class="chip focus">Paper 3 · Explainability</span>
+      <h3 id="m-p3-t">Explainable Phishing URL Detection Using SHAP-Based Feature Attribution</h3>
+      <p>Branch 3 of 6 · Explainability</p>
+      <button class="modal-close" data-close aria-label="Close dialog">✕</button>
+    </div>
+    <div class="modal-body">
+      <h4>Purpose</h4>
+      <p>Identify which URL features drive phishing predictions, generate per-prediction explanations that an analyst can act on, and evaluate whether those explanations are consistent and useful.</p>
+      <h4>Method</h4>
+      <ul>
+        <li>Apply SHAP-based feature attribution to the selected lightweight models.</li>
+        <li>Use LIME where appropriate as a complementary local explanation method.</li>
+        <li>Produce global feature-importance summaries and local, per-URL explanations.</li>
+        <li>Assess explanation consistency across repeated runs, data subsets and models.</li>
+        <li>Assess usefulness qualitatively — do explanations reflect plausible phishing indicators?</li>
+      </ul>
+      <h4>Measurements</h4>
+      <dl class="kv">
+        <dt>Attribution</dt><dd>Global feature importance ranking; stability of that ranking</dd>
+        <dt>Local</dt><dd>Per-prediction feature contributions</dd>
+        <dt>Consistency</dt><dd>Agreement across runs, subsets and compatible models</dd>
+        <dt>Cost</dt><dd>Explanation generation time and its effect on practical latency</dd>
+      </dl>
+      <h4>Expected contribution</h4>
+      <p>Evidence on the trade-off between explanation quality and computational efficiency — an area where existing work typically optimises one and reports the other incidentally.</p>
+      <h4>Status</h4>
+      <p class="mb-0"><strong>Planned.</strong> This page does not claim that explainable phishing detection or SHAP-based attribution is entirely new; similar work already exists.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="m-p4" role="dialog" aria-modal="true" aria-labelledby="m-p4-t">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="chip planned">Planned</span><span class="chip focus">Paper 4 · Generalization &amp; Robustness</span>
+      <h3 id="m-p4-t">Evaluating the Robustness and Cross-Dataset Generalization of Lightweight Phishing URL Detectors</h3>
+      <p>Branch 4 of 6 · Generalization and Robustness</p>
+      <button class="modal-close" data-close aria-label="Close dialog">✕</button>
+    </div>
+    <div class="modal-body">
+      <h4>Purpose</h4>
+      <p>Test whether a lightweight detector trained on one dataset continues to perform on unseen data, under dataset shift, changing URL patterns and realistic class distributions.</p>
+      <h4>Method</h4>
+      <ul>
+        <li>Train on the primary dataset; evaluate on an independent dataset with a compatible feature space.</li>
+        <li>Document any feature harmonization required and its assumptions.</li>
+        <li>Examine performance under varying class prevalence to reflect realistic deployment conditions.</li>
+        <li>Compare degradation against the in-dataset baseline results from Papers 1 and 2.</li>
+        <li>Report where the framework fails to generalize — negative results are reported, not hidden.</li>
+      </ul>
+      <h4>Measurements</h4>
+      <dl class="kv">
+        <dt>Generalization</dt><dd>Cross-dataset performance drop across all predictive metrics</dd>
+        <dt>Robustness</dt><dd>Sensitivity to dataset shift, URL-pattern change and class prevalence</dd>
+        <dt>Stability</dt><dd>Whether selected features remain influential across datasets</dd>
+      </dl>
+      <h4>Claim discipline</h4>
+      <p>Robustness will not be asserted without experimental evidence. Where evidence is inconclusive or negative, that will be stated.</p>
+      <h4>Status</h4>
+      <p class="mb-0"><strong>Planned.</strong> No results exist. No submission, acceptance or publication is claimed.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="m-p5" role="dialog" aria-modal="true" aria-labelledby="m-p5-t">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="chip planned">Planned</span><span class="chip focus">Paper 5 · Integrated Framework</span>
+      <h3 id="m-p5-t">An Explainable and Lightweight Machine Learning Framework for Phishing URL Detection</h3>
+      <p>Branch 5 of 6 · Integrated Framework</p>
+      <button class="modal-close" data-close aria-label="Close dialog">✕</button>
+    </div>
+    <div class="modal-body">
+      <h4>Purpose</h4>
+      <p>Integrate the strongest baseline model, the chosen feature-selection method and the explanation technique into a single coherent framework, then benchmark it fairly against suitable baselines.</p>
+      <h4>Framework components</h4>
+      <dl class="kv">
+        <dt>Detector</dt><dd>The best-performing lightweight classifier from Paper 1</dd>
+        <dt>Feature set</dt><dd>The reduced feature set from Paper 2</dd>
+        <dt>Explanations</dt><dd>The SHAP-based attribution approach from Paper 3, with LIME where appropriate</dd>
+        <dt>Evaluation</dt><dd>Cross-dataset protocol from Paper 4</dd>
+      </dl>
+      <h4>Method</h4>
+      <ul>
+        <li>Define the integrated architecture and its interfaces explicitly.</li>
+        <li>Compare the integrated framework against the unoptimised baseline and against published baselines where comparable.</li>
+        <li>Report predictive performance and computational cost together — never accuracy alone.</li>
+        <li>Release the configuration, seeds and preprocessing steps for reproducibility.</li>
+      </ul>
+      <h4>Expected contribution</h4>
+      <p>A lightweight, explainable detection framework whose efficiency and generalization behaviour are measured rather than assumed.</p>
+      <h4>Status</h4>
+      <p class="mb-0"><strong>Planned.</strong> No results exist. No submission, acceptance or publication is claimed.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="m-p6" role="dialog" aria-modal="true" aria-labelledby="m-p6-t">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="chip planned">Planned</span><span class="chip focus">Paper 6 · Practical Validation</span>
+      <h3 id="m-p6-t">Experimental Validation of an Explainable and Lightweight Phishing URL Detection Framework Across Diverse URL Datasets</h3>
+      <p>Branch 6 of 6 · Practical Validation</p>
+      <button class="modal-close" data-close aria-label="Close dialog">✕</button>
+    </div>
+    <div class="modal-body">
+      <h4>Purpose</h4>
+      <p>Validate the framework end to end: reproducibility, generalization, computational efficiency and practical inference through a small working prototype.</p>
+      <h4>Validation dimensions</h4>
+      <ul>
+        <li><strong>Reproducibility</strong> — independent re-run of the pipeline from documented configuration produces consistent results.</li>
+        <li><strong>Generalization</strong> — behaviour across diverse URL datasets with documented provenance.</li>
+        <li><strong>Efficiency</strong> — model size, inference latency and memory use measured under realistic conditions.</li>
+        <li><strong>Practical inference</strong> — prototype accepts a URL and returns a prediction, a confidence value and an explanation.</li>
+      </ul>
+      <h4>Prototype</h4>
+      <p>A small, documented tool: URL in → phishing/legitimate prediction, calibrated confidence, and the contributing features that produced the decision.</p>
+      <h4>Ethical handling</h4>
+      <p>Live malicious URLs will not be collected or visited unnecessarily. Feeds are used subject to their access conditions and licensing, with URLs handled in defanged form where feasible.</p>
+      <h4>Status</h4>
+      <p class="mb-0"><strong>Planned.</strong> No results exist. No submission, acceptance or publication is claimed.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ==========================================================
+     SAFE STORAGE (localStorage may be unavailable)
+     ========================================================== */
+  var store = (function () {
+    try {
+      var k = "__t" + Date.now();
+      window.localStorage.setItem(k, "1");
+      window.localStorage.removeItem(k);
+      return window.localStorage;
+    } catch (e) {
+      var mem = {};
+      return {
+        getItem: function (k) { return Object.prototype.hasOwnProperty.call(mem, k) ? mem[k] : null; },
+        setItem: function (k, v) { mem[k] = String(v); },
+        removeItem: function (k) { delete mem[k]; }
+      };
+    }
+  })();
+
+  var STORAGE_KEY = "phd-phish-timeline-status-v1";
+
+  /* ==========================================================
+     MOBILE NAV
+     ========================================================== */
+  var navToggle = document.getElementById("navToggle");
+  var navLinks = document.getElementById("navLinks");
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", function () {
+      var open = navLinks.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    navLinks.addEventListener("click", function (e) {
+      if (e.target.tagName === "A") {
+        navLinks.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  /* ==========================================================
+     ACTIVE NAV LINK ON SCROLL
+     ========================================================== */
+  var sections = Array.prototype.slice.call(document.querySelectorAll("section[id]"));
+  var navAnchors = Array.prototype.slice.call(document.querySelectorAll(".nav-links a"));
+
+  function syncActive() {
+    var y = window.scrollY + 120;
+    var currentId = "";
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].offsetTop <= y) currentId = sections[i].id;
+    }
+    navAnchors.forEach(function (a) {
+      var href = a.getAttribute("href") || "";
+      a.classList.toggle("active", href === "#" + currentId);
+    });
+  }
+
+  /* ==========================================================
+     MODALS
+     ========================================================== */
+  var lastFocused = null;
+
+  function openModal(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    lastFocused = document.activeElement;
+    el.classList.add("open");
+    document.body.style.overflow = "hidden";
+    var closeBtn = el.querySelector("[data-close]");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal(el) {
+    if (!el) return;
+    el.classList.remove("open");
+    document.body.style.overflow = "";
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  }
+
+  document.querySelectorAll("[data-modal]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      openModal(btn.getAttribute("data-modal"));
+    });
+  });
+
+  document.querySelectorAll(".modal-backdrop").forEach(function (backdrop) {
+    backdrop.addEventListener("click", function (e) {
+      if (e.target === backdrop) closeModal(backdrop);
+    });
+    var closeBtn = backdrop.querySelector("[data-close]");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function () { closeModal(backdrop); });
+    }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      var open = document.querySelector(".modal-backdrop.open");
+      if (open) closeModal(open);
+    }
+  });
+
+  /* ==========================================================
+     TIMELINE STATUS + PROGRESS
+     ========================================================== */
+  var STATUS_WEIGHT = { completed: 1, inprogress: 0.5, planned: 0, deferred: 0 };
+
+  var items = Array.prototype.slice.call(document.querySelectorAll(".tl-item"));
+  var selects = Array.prototype.slice.call(document.querySelectorAll("select.status"));
+
+  function loadStatuses() {
+    var raw = store.getItem(STORAGE_KEY);
+    if (!raw) return {};
+    try { return JSON.parse(raw) || {}; } catch (e) { return {}; }
+  }
+
+  function saveStatuses(map) {
+    try { store.setItem(STORAGE_KEY, JSON.stringify(map)); } catch (e) { /* ignore */ }
+  }
+
+  var saved = loadStatuses();
+
+  selects.forEach(function (sel) {
+    var key = sel.getAttribute("data-key");
+    if (key && saved[key] && STATUS_WEIGHT.hasOwnProperty(saved[key])) {
+      sel.value = saved[key];
+    }
+    applyStatus(sel);
+
+    sel.addEventListener("change", function () {
+      var m = loadStatuses();
+      m[key] = sel.value;
+      saveStatuses(m);
+      applyStatus(sel);
+      updateProgress();
+    });
+  });
+
+  function applyStatus(sel) {
+    var li = sel.closest ? sel.closest(".tl-item") : null;
+    if (li) li.setAttribute("data-status", sel.value);
+  }
+
+  function updateProgress() {
+    var total = 0;
+    var earned = 0;
+    var yearTotals = {};
+    var yearEarned = {};
+
+    items.forEach(function (li) {
+      var sel = li.querySelector("select.status");
+      var v = sel ? sel.value : "planned";
+      var w = STATUS_WEIGHT.hasOwnProperty(v) ? STATUS_WEIGHT[v] : 0;
+
+      total += 1;
+      earned += w;
+
+      var yearEl = li.closest(".tl-year");
+      if (yearEl) {
+        var y = yearEl.getAttribute("data-year");
+        yearTotals[y] = (yearTotals[y] || 0) + 1;
+        yearEarned[y] = (yearEarned[y] || 0) + w;
+      }
+    });
+
+    var pct = total ? Math.round((earned / total) * 100) : 0;
+    var overallPct = document.getElementById("overallPct");
+    var overallBar = document.getElementById("overallBar");
+    if (overallPct) overallPct.textContent = pct + "%";
+    if (overallBar) overallBar.style.width = pct + "%";
+
+    Object.keys(yearTotals).forEach(function (y) {
+      var el = document.querySelector('[data-yearprog="' + y + '"]');
+      if (el) {
+        var yp = yearTotals[y] ? Math.round((yearEarned[y] / yearTotals[y]) * 100) : 0;
+        el.textContent = yp + "%";
+      }
+    });
+  }
+
+  /* Reset button */
+  var resetBtn = document.getElementById("resetStatus");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+      if (!window.confirm("Reset all milestone statuses to Planned?")) return;
+      selects.forEach(function (sel) {
+        sel.value = "planned";
+        applyStatus(sel);
+      });
+      saveStatuses({});
+      updateProgress();
+    });
+  }
+
+  /* ==========================================================
+     YEAR FILTER
+     ========================================================== */
+  var filterBtns = Array.prototype.slice.call(document.querySelectorAll(".filter-btn"));
+  var yearBlocks = Array.prototype.slice.call(document.querySelectorAll(".tl-year"));
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var year = btn.getAttribute("data-year");
+      filterBtns.forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+
+      yearBlocks.forEach(function (block) {
+        var show = (year === "all") || (block.getAttribute("data-year") === year);
+        block.style.display = show ? "" : "none";
+      });
+    });
+  });
+
+  /* ==========================================================
+     REFERENCE SEARCH
+     ========================================================== */
+  var refSearch = document.getElementById("refSearch");
+  var refItems = Array.prototype.slice.call(document.querySelectorAll(".ref"));
+  var refGroups = Array.prototype.slice.call(document.querySelectorAll(".ref-group"));
+  var refEmpty = document.getElementById("refEmpty");
+
+  if (refSearch) {
+    refSearch.addEventListener("input", function () {
+      var q = refSearch.value.trim().toLowerCase();
+      var visible = 0;
+
+      refItems.forEach(function (ref) {
+        var text = (ref.textContent || "").toLowerCase();
+        var match = !q || text.indexOf(q) !== -1;
+        ref.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+
+      refGroups.forEach(function (group) {
+        var any = group.querySelectorAll(".ref:not(.hidden)").length > 0;
+        group.style.display = any ? "" : "none";
+      });
+
+      if (refEmpty) refEmpty.style.display = visible === 0 ? "block" : "none";
+    });
+  }
+
+  /* ==========================================================
+     BACK TO TOP
+     ========================================================== */
+  var toTop = document.getElementById("toTop");
+  if (toTop) {
+    toTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  /* ==========================================================
+     SCROLL HANDLER (throttled with rAF)
+     ========================================================== */
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () {
+      syncActive();
+      if (toTop) toTop.classList.toggle("show", window.scrollY > 600);
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* ==========================================================
+     INIT
+     ========================================================== */
+  updateProgress();
+  syncActive();
+  onScroll();
+
+})();
+</script>
+</body>
+</html>
